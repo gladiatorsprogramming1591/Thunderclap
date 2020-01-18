@@ -20,10 +20,17 @@ import edu.wpi.first.wpilibj2.command.Command;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
+  // The robot's subsystems are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-
+  
+  private final ElevatorSubsystem m_elevatorSubsystem = new ElevatorSubsystem();
+  
+  // The robot's commands are defined here...
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  
+
+  // The driver's controller
+  XboxController m_xboxController = new XboxController(OIConstants.kDriverControllerPort);
 
 
 
@@ -33,6 +40,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+
   }
 
   /**
@@ -42,7 +50,12 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    // Grab the hatch when the 'A' button is pressed.
+    new JoystickButton(m_xboxController, Button.kA.value)
+       .whenPressed(new GrabHatch(m_elevatorSubsystem));
+
   }
+
 
 
   /**
