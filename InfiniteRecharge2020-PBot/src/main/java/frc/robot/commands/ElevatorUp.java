@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class ElevatorUp extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final ElevatorSubsystem m_subsystem;
+  boolean m_isFinished = false;
 
   /**
    * Creates a new ExampleCommand.
@@ -36,6 +37,7 @@ public class ElevatorUp extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    m_isFinished = m_subsystem.elevatorTop();
   }
 
   // Called once the command ends or is interrupted.
@@ -46,6 +48,6 @@ public class ElevatorUp extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return m_isFinished;
   }
 }
