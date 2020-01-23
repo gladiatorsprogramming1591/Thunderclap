@@ -1,3 +1,9 @@
+package frc.robot.subsystems;
+
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2017-2019 FIRST. All Rights Reserved.                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */

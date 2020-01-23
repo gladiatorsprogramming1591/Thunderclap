@@ -9,9 +9,14 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.XboxController.Button;
+import frc.robot.commands.ElevatorUp;
 import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.ElevatorSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
+ 
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -21,16 +26,16 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  
   
   private final ElevatorSubsystem m_elevatorSubsystem = new ElevatorSubsystem();
   
   // The robot's commands are defined here...
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  // private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   
 
   // The driver's controller
-  XboxController m_xboxController = new XboxController(OIConstants.kDriverControllerPort);
+  XboxController m_xboxController = new XboxController(Constants.kDriverControllerPort);
 
 
 
@@ -52,7 +57,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     // Grab the hatch when the 'A' button is pressed.
     new JoystickButton(m_xboxController, Button.kA.value)
-       .whenPressed(new GrabHatch(m_elevatorSubsystem));
+       .whenPressed(new ElevatorUp(m_elevatorSubsystem));
 
   }
 
@@ -63,8 +68,8 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    return m_autoCommand;
-  }
+  // public Command getAutonomousCommand() {
+  //   // An ExampleCommand will run in autonomous
+  //   // return m_autoCommand;
+  // }
 }
