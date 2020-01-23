@@ -16,5 +16,7 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    static int kDriverControllerPort = 0;
+    public static int kDriverControllerPort = 0;
+    public static int kElevatorChannel = 0;
+    public static int kElevatorTopSwitchPort = 0;
 }

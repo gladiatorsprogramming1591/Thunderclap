@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2017-2019 FIRST. All Rights Reserved.                        */
@@ -29,6 +30,10 @@ public class ElevatorSubsystem extends SubsystemBase {
     //returned into methods to enable isfinshed() functionality
     boolean m_finished = false;
 
+    public ElevatorSubsystem(){
+        m_elevatorMotor = new Spark(Constants.kElevatorChannel);
+        m_elevatorTopSwitch = new DigitalInput(Constants.kElevatorTopSwitchPort);
+    }
     //move elevator to the top
     public boolean elevatorTop() { //make this while held so loop doesn't continue
         if (m_elevatorTopSwitch.get() == true){ //if the top switch is not pressed
