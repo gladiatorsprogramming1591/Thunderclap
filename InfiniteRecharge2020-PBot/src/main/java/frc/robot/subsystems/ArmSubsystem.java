@@ -16,7 +16,7 @@ public class ArmSubsystem extends SubsystemBase {
    * Creates a new ArmSubsystem.
    */
   public ArmSubsystem() {
-
+    armMotor = new WPI_TalonSRX(Constants.kArmCANID);
   }
 
   @Override
@@ -32,5 +32,9 @@ public class ArmSubsystem extends SubsystemBase {
 
   public void armStop() {
     armMotor.set(0);
+  }
+  public boolean armDown() {
+    armMotor.set(Constants.kArmDownSpeed);
+    return true;
   }
 }
