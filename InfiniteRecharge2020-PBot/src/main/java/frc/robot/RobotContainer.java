@@ -8,9 +8,10 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import frc.robot.commands.ArmUp;
+import frc.robot.subsystems.ElevatorSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import frc.robot.commands.IntakeOn;
 import frc.robot.commands.IntakeReverse;
 import frc.robot.commands.IntakeStop;
@@ -21,11 +22,10 @@ import frc.robot.commands.ShooterOff;
 import frc.robot.commands.ShooterOn;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-
+import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.JoystickButtonConstants;
-
+import edu.wpi.first.wpilibj2.command.button.Button;
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -39,8 +39,12 @@ public class RobotContainer {
 
 
   
+  private final ElevatorSubsystem m_elevatorSubsystem = new ElevatorSubsystem();
+
+  private final ArmSubsystem m_armSubsystem = new ArmSubsystem();
+  
   // The robot's commands are defined here...
-  private final IntakeOn m_autoCommand = new IntakeOn(m_intakeSubsystem);
+  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   
 
   // The driver's controller
@@ -95,8 +99,8 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    return m_autoCommand;
-  }
+  // public Command getAutonomousCommand() {
+  //   // An ExampleCommand will run in autonomous
+  //   return m_autoCommand;
+  // }
 }

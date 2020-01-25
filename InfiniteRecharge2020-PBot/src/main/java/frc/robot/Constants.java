@@ -24,7 +24,7 @@ public final class Constants {
     // Ports
     public static int kDriverControllerPort = 0;
     public static int kManipulatorControllerPort = 0;
-    // CAN IDs
     public static int kShooterMotorPort = 4;
     public final static int kIntakeChannel = 3;
+    public static double kArmUpSpeed = 1.0;
 }
