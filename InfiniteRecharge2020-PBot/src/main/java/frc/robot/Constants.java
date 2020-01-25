@@ -16,4 +16,5 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+    public final int kELEVATOR_UP_SPEED = 1;
 }
