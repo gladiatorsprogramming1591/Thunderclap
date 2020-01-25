@@ -16,5 +16,10 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public final int kELEVATOR_UP_SPEED = 1;
+    public final static int kELEVATOR_UP_SPEED = 1;
+    public final static double kIntakeForwardSpeed = 0.6;
+    public final static double kIntakeReverseSpeed = -0.6;
+	public final static int kIntakeChannel = 0;
+    public static int kDriverControllerPort = 0;
+    public static int kManipulatorControllerPort = 0;
 }
