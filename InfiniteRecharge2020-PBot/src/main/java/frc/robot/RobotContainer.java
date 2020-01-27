@@ -18,6 +18,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
+import frc.robot.subsystems.JoystickButtonConstants;
+
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -54,13 +56,13 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // Grab the hatch when the 'A' button is pressed.
-    new JoystickButton(m_manipulatorStick, 2)
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kX)
         .whenPressed(new IntakeOn(m_intakeSubsystem));
 
-    new JoystickButton(m_manipulatorStick, 4)
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kCircle)
         .whenPressed(new IntakeReverse(m_intakeSubsystem));
 
-    new JoystickButton(m_manipulatorStick, 3)
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kTriangle)
         .whenPressed(new IntakeStop(m_intakeSubsystem));
 
 
