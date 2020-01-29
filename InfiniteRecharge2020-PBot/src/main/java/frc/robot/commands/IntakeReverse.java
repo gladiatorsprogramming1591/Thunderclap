@@ -15,5 +15,10 @@ public class IntakeReverse extends CommandBase {
     public void initialize() {
         m_intakeSubsystem.intakeReverse();  
     }
+    public void end(boolean interrupted) {
+        if ( interrupted == false) {
+            m_intakeSubsystem.intakeStop();   
+        }
+    }
 }
 

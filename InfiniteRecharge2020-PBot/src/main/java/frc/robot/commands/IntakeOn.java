@@ -17,4 +17,9 @@ public class IntakeOn extends CommandBase {
         m_intakeSubsystem.intakeOn();    
     }
 
+    public void end(boolean interrupted) {
+        if ( interrupted == false) {
+            m_intakeSubsystem.intakeStop();   
+        }
+    }
 }
