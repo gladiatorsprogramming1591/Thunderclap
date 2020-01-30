@@ -16,7 +16,7 @@ import frc.robot.commands.ArmUp;
 import frc.robot.commands.IntakeOn;
 import frc.robot.commands.IntakeReverse;
 import frc.robot.commands.IntakeStop;
-
+import frc.robot.commands.MoveBall;
 import frc.robot.subsystems.IntakeSubsystem;
 
 import frc.robot.subsystems.ShooterSubsystem;
@@ -95,7 +95,7 @@ public class RobotContainer {
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kTriangle) 
       .whenPressed(new ShooterOn(m_shooterSubsystem));
     //
-      new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kX) 
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kTriangle) 
       .whenPressed(new HopperOn(m_hopperSubsystem));
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kTriangle) 
@@ -117,13 +117,17 @@ public class RobotContainer {
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kCircle)
       .whenPressed(new HopperReverse(m_hopperSubsystem));
 
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kX) 
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kTriangle) 
       .whenReleased(new HopperStop(m_hopperSubsystem));
 
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kCircle)
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kSquare)
       .whenReleased(new HopperStop(m_hopperSubsystem));
 
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR1)
+      .whenPressed(new MoveBall(m_hopperSubsystem).withTimeout(Constants.kMoveOneBallTimeOut));
 
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR2)
+      .whenPressed(new MoveBall(m_hopperSubsystem).withTimeout(Constants.kMoveAllBallsTimeOut));
   }
   
 

@@ -18,6 +18,15 @@ package frc.robot;
 public final class Constants {
     // Speeds
     public final static int kELEVATOR_UP_SPEED = 1; 
+    //Joystick ports
+    public final static int kDriverControllerPort = 0;
+    public final static int kManipulatorControllerPort = 0;
+
+    //Motor speed
+    public final static double kHopperReverseSpeed = -0.6;
+    public final static double kHopperForwardSpeed = 0.6;
+    public final static double kStopperReverseSpeed = -0.6;
+    public final static double kStopperForwardSpeed = 0.6;
     public final static double kIntakeForwardSpeed = 0.6;
     public final static double kIntakeReverseSpeed = -0.6;
     public final static double kShooterMotorSpeed = 1;
@@ -35,4 +44,15 @@ public final class Constants {
     public static double kHopperReverseSpeed = -0.6;
     public static double kHopperForwardSpeed = 0.6;
     public static int kHopperChannel = 4;
+
+    //CANid/channel numbers
+    public final static int kRightMotorChannel = 1;
+    public final static int kLeftMotorChannel = 2;
+    public final static int kIntakeChannel = 3;
+    public final static int kHopperChannel = 4;
+    public final static int kStopperChannel = 5;
+
+    //Timeouts
+    final static double kMoveOneBallTimeOut = 1.0;
+    final static double kMoveAllBallsTimeOut = 5.0;
 }

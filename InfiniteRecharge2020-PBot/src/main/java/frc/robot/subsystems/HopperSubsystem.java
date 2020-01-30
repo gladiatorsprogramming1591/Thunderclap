@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -21,9 +22,11 @@ import frc.robot.Constants;
 public class HopperSubsystem extends SubsystemBase {
 
     private final CANSparkMax m_hopperMotor;
+    private final WPI_TalonSRX m_stopperMotor;
 
     public HopperSubsystem() {
         m_hopperMotor = new CANSparkMax(Constants.kHopperChannel, MotorType.kBrushless);
+        m_stopperMotor = new WPI_TalonSRX(Constants.kStopperChannel);
     }
     public void hopperOn() {
         m_hopperMotor.set(Constants.kHopperForwardSpeed);
@@ -37,4 +40,15 @@ public class HopperSubsystem extends SubsystemBase {
         m_hopperMotor.set(0);
     }
 
+    public void stopperOn() {
+        m_stopperMotor.set(Constants.kStopperForwardSpeed);
+    }
+
+    public void stopperOff() {
+        m_stopperMotor.set(0);
+    }
+
+    public void stopperReverse() {
+        m_stopperMotor.set(Constants.kStopperReverseSpeed);
+    }
 }

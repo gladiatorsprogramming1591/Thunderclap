@@ -42,8 +42,8 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
 
-    m_rTalon = new WPI_TalonSRX(2);
-    m_lTalon = new WPI_TalonSRX(1);
+    m_rTalon = new WPI_TalonSRX(Constants.kRightMotorChannel);
+    m_lTalon = new WPI_TalonSRX(Constants.kLeftMotorChannel);
 
     m_robotContainer = new RobotContainer();
     m_joystick = new Joystick(0);
