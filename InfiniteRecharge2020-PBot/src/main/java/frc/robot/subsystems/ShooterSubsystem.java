@@ -9,18 +9,34 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import frc.robot.Constants;
 
 public class ShooterSubsystem extends SubsystemBase {
-  CANSparkMax ShooterMotor;
+  CANSparkMax m_shooterMotor;
+  
     /**
    * Creates a new ExampleSubsystem.
    */
   public ShooterSubsystem() {
-
+    m_shooterMotor = new CANSparkMax(Constants.kShooterMotorPort, MotorType.kBrushless);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   }
+
+  public void on() {
+    //Turns on the shooter motor
+    m_shooterMotor.set(Constants.kShooterMotorSpeed);
+
+  }
+
+  public void off() {
+    //Turns off the shooter motor
+    m_shooterMotor.set(0);
+    
+  }
+
 }
