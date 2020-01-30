@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot;
+package frc.robot.subsystems;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -15,11 +15,19 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {
-    public final static int kELEVATOR_UP_SPEED = 1;
-    public final static double kIntakeForwardSpeed = 0.6;
-    public final static double kIntakeReverseSpeed = -0.6;
-	public final static int kIntakeChannel = 3;
-    public static int kDriverControllerPort = 0;
-    public static int kManipulatorControllerPort = 0;
+public final class JoystickButtonConstants {
+    public static final int kSquare = 1;
+    public static final int kX = 2;
+    public static final int kCircle = 3;
+    public static final int kTriangle = 4;
+    public static final int kL1 = 5;
+    public static final int kR1 = 6;
+    public static final int kL2 = 7;
+    public static final int kR2 = 8;
+    public static final int kSelect = 9;
+    public static final int kStart = 10;
+    //Left joystick when clicked
+    public static final int kL3 = 11;
+    //Right joystick when clicked 
+    public static final int kR3 = 12;
 }

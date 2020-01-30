@@ -8,10 +8,18 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ExampleSubsystem;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import frc.robot.commands.IntakeOn;
+import frc.robot.commands.IntakeReverse;
+import frc.robot.commands.IntakeStop;
+import frc.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.Button;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
+import frc.robot.subsystems.JoystickButtonConstants;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -21,17 +29,15 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  
-  private final ElevatorSubsystem m_elevatorSubsystem = new ElevatorSubsystem();
+   private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
+
   
   // The robot's commands are defined here...
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  private final IntakeOn m_autoCommand = new IntakeOn(m_intakeSubsystem);
   
 
   // The driver's controller
-  XboxController m_xboxController = new XboxController(OIConstants.kDriverControllerPort);
-
+  Joystick m_manipulatorStick = new Joystick(Constants.kManipulatorControllerPort);
 
 
   /**
@@ -40,7 +46,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-
+    SmartDashboard.putData("intakeMotor", m_intakeSubsystem);
   }
 
   /**
@@ -51,8 +57,22 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // Grab the hatch when the 'A' button is pressed.
-    new JoystickButton(m_xboxController, Button.kA.value)
-       .whenPressed(new GrabHatch(m_elevatorSubsystem));
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kX) 
+      .whenPressed(new IntakeOn(m_intakeSubsystem));
+
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kCircle)
+      .whenPressed(new IntakeReverse(m_intakeSubsystem));
+
+    // new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kTriangle)
+    //   .whenPressed(new IntakeStop(m_intakeSubsystem));
+
+
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kX) 
+      .whenReleased(new IntakeStop(m_intakeSubsystem));
+
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kCircle)
+      .whenReleased(new IntakeStop(m_intakeSubsystem));
+
 
   }
 
