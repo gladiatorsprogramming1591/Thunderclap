@@ -10,9 +10,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.IntakeStop;
+
 import frc.robot.commands.IntakeOn;
 import frc.robot.commands.IntakeReverse;
+import frc.robot.commands.IntakeStop;
 import frc.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.Button;
@@ -56,12 +57,21 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // Grab the hatch when the 'A' button is pressed.
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kX)
-        .whileHeld(new IntakeOn(m_intakeSubsystem));
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kX) 
+      .whenPressed(new IntakeOn(m_intakeSubsystem));
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kCircle)
-        .whileHeld(new IntakeReverse(m_intakeSubsystem));
+      .whenPressed(new IntakeReverse(m_intakeSubsystem));
 
+    // new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kTriangle)
+    //   .whenPressed(new IntakeStop(m_intakeSubsystem));
+
+
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kX) 
+      .whenReleased(new IntakeStop(m_intakeSubsystem));
+
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kCircle)
+      .whenReleased(new IntakeStop(m_intakeSubsystem));
 
 
   }
