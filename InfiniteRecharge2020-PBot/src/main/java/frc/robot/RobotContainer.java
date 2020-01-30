@@ -26,6 +26,11 @@ import frc.robot.commands.ShooterOn;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.subsystems.ArmSubsystem;
+import frc.robot.commands.HopperOn;
+import frc.robot.commands.HopperReverse;
+import frc.robot.commands.HopperStop;
+import frc.robot.subsystems.HopperSubsystem;
+
 import frc.robot.subsystems.JoystickButtonConstants;
 import edu.wpi.first.wpilibj2.command.button.Button;
 /**
@@ -39,6 +44,7 @@ public class RobotContainer {
    private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
    private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
 
+   private final HopperSubsystem m_hopperSubsystem = new HopperSubsystem();
 
   
   //private final ElevatorSubsystem m_elevatorSubsystem = new ElevatorSubsystem();
@@ -88,6 +94,9 @@ public class RobotContainer {
     
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kTriangle) 
       .whenPressed(new ShooterOn(m_shooterSubsystem));
+    //
+      new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kX) 
+      .whenPressed(new HopperOn(m_hopperSubsystem));
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kTriangle) 
       .whenReleased(new ShooterOff(m_shooterSubsystem));
@@ -104,6 +113,16 @@ public class RobotContainer {
       
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL2)
       .whenReleased(new ArmDown(m_armSubsystem));
+
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kCircle)
+      .whenPressed(new HopperReverse(m_hopperSubsystem));
+
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kX) 
+      .whenReleased(new HopperStop(m_hopperSubsystem));
+
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kCircle)
+      .whenReleased(new HopperStop(m_hopperSubsystem));
+
 
   }
   

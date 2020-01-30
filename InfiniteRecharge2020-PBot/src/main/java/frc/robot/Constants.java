@@ -29,4 +29,10 @@ public final class Constants {
     public final static int kShooterMotorPort = 4;
     public final static int kIntakeChannel = 3;
     public final static int kArmCANID = 3;
+	public final static int kIntakeChannel = 3;
+    public static int kDriverControllerPort = 0;
+    public static int kManipulatorControllerPort = 0;
+    public static double kHopperReverseSpeed = -0.6;
+    public static double kHopperForwardSpeed = 0.6;
+    public static int kHopperChannel = 4;
 }
