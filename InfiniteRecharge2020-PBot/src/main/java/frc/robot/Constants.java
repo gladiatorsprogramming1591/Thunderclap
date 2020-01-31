@@ -27,6 +27,6 @@ public final class Constants {
     public static int kShooterMotorPort = 4;
     public final static int kIntakeChannel = 3;
     public static double kArmUpSpeed = 1.0;
-    public static double kArmDownSpeed = 1.0;
+    public static double kArmDownSpeed = -1.0;
     public static int kArmCANID = 3;
 }

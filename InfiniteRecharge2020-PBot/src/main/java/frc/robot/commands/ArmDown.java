@@ -31,23 +31,24 @@ public class ArmDown extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_armSubsystem.armDown();
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    m_armSubsystem.armDown();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_armSubsystem.armStop();
+  
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false; 
+    return true; 
   }
 }

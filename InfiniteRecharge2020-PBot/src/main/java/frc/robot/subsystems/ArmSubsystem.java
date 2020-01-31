@@ -25,16 +25,14 @@ public class ArmSubsystem extends SubsystemBase {
 
   }
   
-  public boolean armUp() {
+  public void armUp() {
     armMotor.set(Constants.kArmUpSpeed);
-    return true;
   }
 
   public void armStop() {
     armMotor.set(0);
   }
-  public boolean armDown() {
+  public void armDown() {
     armMotor.set(Constants.kArmDownSpeed);
-    return true;
   }
 }
