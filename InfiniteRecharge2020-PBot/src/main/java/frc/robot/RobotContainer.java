@@ -15,6 +15,11 @@ import frc.robot.commands.IntakeOn;
 import frc.robot.commands.IntakeReverse;
 import frc.robot.commands.IntakeStop;
 import frc.robot.subsystems.IntakeSubsystem;
+
+import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.commands.ShooterOff;
+import frc.robot.commands.ShooterOn;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -30,6 +35,8 @@ import frc.robot.subsystems.JoystickButtonConstants;
 public class RobotContainer {
   // The robot's subsystems are defined here...
    private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
+   private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
+
 
   
   // The robot's commands are defined here...
@@ -56,23 +63,28 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // Grab the hatch when the 'A' button is pressed.
+    
+    //---INTAKE SECTION---
+
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kX) 
       .whenPressed(new IntakeOn(m_intakeSubsystem));
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kCircle)
       .whenPressed(new IntakeReverse(m_intakeSubsystem));
 
-    // new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kTriangle)
-    //   .whenPressed(new IntakeStop(m_intakeSubsystem));
-
-
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kX) 
       .whenReleased(new IntakeStop(m_intakeSubsystem));
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kCircle)
       .whenReleased(new IntakeStop(m_intakeSubsystem));
 
+    //---SHOOTER SECTION---
+    
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kTriangle) 
+      .whenPressed(new ShooterOn(m_shooterSubsystem));
+
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kTriangle) 
+      .whenReleased(new ShooterOff(m_shooterSubsystem));
 
   }
 
