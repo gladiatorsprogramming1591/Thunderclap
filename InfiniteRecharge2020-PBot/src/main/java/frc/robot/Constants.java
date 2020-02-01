@@ -46,8 +46,8 @@ public final class Constants {
     public static int kHopperChannel = 4;
 
     //CANid/channel numbers
-    public final static int kRightMotorChannel = 1;
-    public final static int kLeftMotorChannel = 2;
+    public final static int kRightMotorChannel = 2;
+    public final static int kLeftMotorChannel = 1;
     public final static int kIntakeChannel = 3;
     public final static int kHopperChannel = 4;
     public final static int kStopperChannel = 5;
