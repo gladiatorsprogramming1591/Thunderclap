@@ -8,13 +8,15 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import frc.robot.commands.ArmUp;
-import frc.robot.subsystems.ElevatorSubsystem;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.ArmDown;
+import frc.robot.commands.ArmUp;
 import frc.robot.commands.IntakeOn;
 import frc.robot.commands.IntakeReverse;
 import frc.robot.commands.IntakeStop;
+
 import frc.robot.subsystems.IntakeSubsystem;
 
 import frc.robot.subsystems.ShooterSubsystem;
@@ -39,12 +41,12 @@ public class RobotContainer {
 
 
   
-  private final ElevatorSubsystem m_elevatorSubsystem = new ElevatorSubsystem();
+  //private final ElevatorSubsystem m_elevatorSubsystem = new ElevatorSubsystem();
 
   private final ArmSubsystem m_armSubsystem = new ArmSubsystem();
   
   // The robot's commands are defined here...
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   
 
   // The driver's controller
@@ -86,12 +88,24 @@ public class RobotContainer {
     
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kTriangle) 
       .whenPressed(new ShooterOn(m_shooterSubsystem));
+    // Arm subsystem buttons
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL1) 
+      .whenPressed(new ArmUp(m_armSubsystem));
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kTriangle) 
       .whenReleased(new ShooterOff(m_shooterSubsystem));
 
-  }
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL2)
+      .whenPressed(new ArmDown(m_armSubsystem));
 
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL1)
+      .whenReleased(new ArmUp(m_armSubsystem));
+      
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL2)
+      .whenReleased(new ArmDown(m_armSubsystem));
+
+  }
+  
 
 
   /**
