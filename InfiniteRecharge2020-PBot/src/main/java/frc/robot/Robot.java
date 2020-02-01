@@ -15,6 +15,10 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
+import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.DriveTrainC;
+import frc.robot.subsystems.DriveTrainP;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
@@ -29,9 +33,9 @@ public class Robot extends TimedRobot {
 
   private DifferentialDrive m_tankDrive;
   private Joystick m_driverController;
-
-  private WPI_TalonSRX m_rTalon;
-  private WPI_TalonSRX m_lTalon;
+  // Only one drivetrian should ever be active at a time
+  // private final DriveTrain m_driveTrain = new DriveTrainC();
+  private final DriveTrain m_driveTrain = new DriveTrainP();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -114,7 +118,8 @@ public class Robot extends TimedRobot {
    * This function is called periodically during operator control.
    */
   @Override
-  public void teleopPeriodic() {
+  public void teleopPeriodic() {    
+    m_driveTrain.drive();
   }
 
   @Override

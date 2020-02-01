@@ -35,8 +35,13 @@ import frc.robot.commands.HopperReverse;
 import frc.robot.commands.HopperStop;
 import frc.robot.subsystems.HopperSubsystem;
 
-import frc.robot.JoystickButtonConstants;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.JoystickButtonConstants;
+
+import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.DriveTrainC;
+import frc.robot.subsystems.DriveTrainP;
+
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -49,6 +54,7 @@ public class RobotContainer {
   private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
   private final HopperSubsystem m_hopperSubsystem = new HopperSubsystem();
   private final ArmSubsystem m_armSubsystem = new ArmSubsystem();
+  
   
   // The robot's commands are defined here...
   //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
