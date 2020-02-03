@@ -29,6 +29,8 @@ public final class Constants {
     public final static double kStopperForwardSpeed = 0.6;
     public final static double kIntakeForwardSpeed = 0.6;
     public final static double kIntakeReverseSpeed = -0.6;
+    public final static double kSuckerFowardSpeed = .6;
+    public final static double kSuckerReverseSpeed = -.6;
     public final static double kShooterMotorSpeed = 1;
     public final static double kArmUpSpeed = 1.0;
     public final static double kArmDownSpeed = -1.0;
@@ -49,8 +51,9 @@ public final class Constants {
     public final static int kRightMotorChannel = 2;
     public final static int kLeftMotorChannel = 1;
     public final static int kIntakeChannel = 3;
-    public final static int kHopperChannel = 4;
-    public final static int kStopperChannel = 5;
+    public final static int kHopperChannel = 5;
+    public final static int kStopperChannel = 6;
+    public final static int kSuckerChannel = 7;
 
     //Timeouts
     final static double kMoveOneBallTimeOut = 1.0;
