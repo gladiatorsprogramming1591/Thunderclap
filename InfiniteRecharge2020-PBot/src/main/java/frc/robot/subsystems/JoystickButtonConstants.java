@@ -24,8 +24,8 @@ public final class JoystickButtonConstants {        // MANIPULATOR  CONTROLLER  
     public static final int kR1 = 6;                // move 1 ball               //
     public static final int kL2 = 7;                // suckerReverse             //
     public static final int kR2 = 8;                // move all balls            //
-    public static final int kSelect = 9;            //
-    public static final int kStart = 10;            //
+    public static final int kSelect = 9;            // armDown                   //
+    public static final int kStart = 10;            // armUp                     //
     //Left joystick when clicked
     public static final int kL3 = 11;               //
     //Right joystick when clicked 
