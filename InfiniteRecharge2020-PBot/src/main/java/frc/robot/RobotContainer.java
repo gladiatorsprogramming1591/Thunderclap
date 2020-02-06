@@ -24,7 +24,7 @@ import frc.robot.commands.SuckerStop;
 import frc.robot.subsystems.IntakeSubsystem;
 
 import frc.robot.subsystems.ShooterSubsystem;
-import frc.robot.commands.ShooterOff;
+import frc.robot.commands.ShooterStop;
 import frc.robot.commands.ShooterOn;
 
 import edu.wpi.first.wpilibj2.command.Command;
@@ -35,7 +35,7 @@ import frc.robot.commands.HopperReverse;
 import frc.robot.commands.HopperStop;
 import frc.robot.subsystems.HopperSubsystem;
 
-import frc.robot.subsystems.JoystickButtonConstants;
+import frc.robot.JoystickButtonConstants;
 import edu.wpi.first.wpilibj2.command.button.Button;
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -81,49 +81,49 @@ public class RobotContainer {
   private void configureButtonBindings() {
     
     // ---INTAKE SECTION---
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kX) 
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kA) 
       .whenPressed(new IntakeOn(m_intakeSubsystem));
 
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kCircle)
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kB)
       .whenPressed(new IntakeReverse(m_intakeSubsystem));
 
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kX) 
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kA) 
       .whenReleased(new IntakeStop(m_intakeSubsystem));
 
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kCircle)
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kB)
       .whenReleased(new IntakeStop(m_intakeSubsystem));
 
     // ---SHOOTER SECTION---
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kTriangle) 
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kY) 
       .whenPressed(new ShooterOn(m_shooterSubsystem));
 
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kTriangle) 
-      .whenReleased(new ShooterOff(m_shooterSubsystem));
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kY) 
+      .whenReleased(new ShooterStop(m_shooterSubsystem));
 
     // ---ARM---
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kStart) 
       .whenPressed(new ArmUp(m_armSubsystem));
 
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kSelect)
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kBack)
       .whenPressed(new ArmDown(m_armSubsystem));
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kStart)
       .whenReleased(new ArmStop(m_armSubsystem));
       
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kSelect)
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kBack)
       .whenReleased(new ArmStop(m_armSubsystem));
 
     // ---HOPPER---
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kTriangle) 
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kY) 
       .whenPressed(new HopperOn(m_hopperSubsystem));
 
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kSquare)
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kX)
       .whenPressed(new HopperReverse(m_hopperSubsystem));
 
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kTriangle) 
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kY) 
       .whenReleased(new HopperStop(m_hopperSubsystem));
 
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kSquare)
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kX)
       .whenReleased(new HopperStop(m_hopperSubsystem));
 
     // ---MOVE BALL---

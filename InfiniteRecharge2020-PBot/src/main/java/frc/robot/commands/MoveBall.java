@@ -20,7 +20,8 @@ public class MoveBall extends CommandBase {
     public void initialize() {
         System.out.println("MoveBall Calling hopperOn and stopperOn");
         m_hopperSubsystem.hopperOn();   
-        m_hopperSubsystem.stopperOn();        
+        m_hopperSubsystem.stopperOn();
+        m_hopperSubsystem.suckerOn();
     }
 
     // @Override
@@ -32,5 +33,6 @@ public class MoveBall extends CommandBase {
         System.out.println("MoveBall Calling hopperStop and stopperOff");
         m_hopperSubsystem.hopperStop();
         m_hopperSubsystem.stopperOff();
+        m_hopperSubsystem.suckerOff();
      }
 }
