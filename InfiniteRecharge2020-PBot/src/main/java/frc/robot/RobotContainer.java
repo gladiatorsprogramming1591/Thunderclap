@@ -17,6 +17,9 @@ import frc.robot.commands.IntakeOn;
 import frc.robot.commands.IntakeReverse;
 import frc.robot.commands.IntakeStop;
 import frc.robot.commands.MoveBall;
+import frc.robot.commands.SuckerForward;
+import frc.robot.commands.SuckerReverse;
+import frc.robot.commands.SuckerStop;
 import frc.robot.subsystems.IntakeSubsystem;
 
 import frc.robot.subsystems.ShooterSubsystem;
@@ -129,6 +132,22 @@ public class RobotContainer {
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR2)
       .whenPressed(new MoveBall(m_hopperSubsystem).withTimeout(Constants.kMoveAllBallsTimeOut));
+
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL1) 
+      .whenPressed(new SuckerForward(m_hopperSubsystem));
+
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL2)
+      .whenPressed(new SuckerReverse(m_hopperSubsystem));
+
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL1) 
+      .whenReleased(new SuckerStop(m_hopperSubsystem));
+
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL2)
+      .whenReleased(new SuckerStop(m_hopperSubsystem));
+
+
+
+      
   }
   
 
