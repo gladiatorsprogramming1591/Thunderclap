@@ -8,12 +8,15 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+import frc.robot.commands.ArmDown;
+import frc.robot.commands.ArmUp;
 import frc.robot.commands.IntakeOn;
 import frc.robot.commands.IntakeReverse;
 import frc.robot.commands.IntakeStop;
+
 import frc.robot.subsystems.IntakeSubsystem;
 
 import frc.robot.subsystems.ShooterSubsystem;
@@ -21,11 +24,10 @@ import frc.robot.commands.ShooterOff;
 import frc.robot.commands.ShooterOn;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-
+import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.JoystickButtonConstants;
-
+import edu.wpi.first.wpilibj2.command.button.Button;
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -39,8 +41,12 @@ public class RobotContainer {
 
 
   
+  //private final ElevatorSubsystem m_elevatorSubsystem = new ElevatorSubsystem();
+
+  private final ArmSubsystem m_armSubsystem = new ArmSubsystem();
+  
   // The robot's commands are defined here...
-  private final IntakeOn m_autoCommand = new IntakeOn(m_intakeSubsystem);
+  //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   
 
   // The driver's controller
@@ -82,12 +88,24 @@ public class RobotContainer {
     
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kTriangle) 
       .whenPressed(new ShooterOn(m_shooterSubsystem));
+    // Arm subsystem buttons
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL1) 
+      .whenPressed(new ArmUp(m_armSubsystem));
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kTriangle) 
       .whenReleased(new ShooterOff(m_shooterSubsystem));
 
-  }
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL2)
+      .whenPressed(new ArmDown(m_armSubsystem));
 
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL1)
+      .whenReleased(new ArmUp(m_armSubsystem));
+      
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL2)
+      .whenReleased(new ArmDown(m_armSubsystem));
+
+  }
+  
 
 
   /**
@@ -95,8 +113,8 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    return m_autoCommand;
-  }
+  // public Command getAutonomousCommand() {
+  //   // An ExampleCommand will run in autonomous
+  //   return m_autoCommand;
+  // }
 }
