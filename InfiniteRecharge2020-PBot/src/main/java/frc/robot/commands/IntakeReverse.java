@@ -18,7 +18,7 @@ import frc.robot.subsystems.IntakeSubsystem;
      // Called when the command is initially scheduled.
      @Override
      public void initialize() {
-        System.out.println("IntakeReverse Calling IntakeReverse");
+        System.out.println("IntakeSubsystem Calling IntakeReverse");
          m_intakeSubsystem.intakeReverse();  
     }
      

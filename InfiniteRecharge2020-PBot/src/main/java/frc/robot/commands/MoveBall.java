@@ -18,7 +18,7 @@ public class MoveBall extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        System.out.println("MoveBall Calling hopperOn and stopperOn");
+        System.out.println("HopperSubsystem Calling hopperOn and stopperOn and suckerOn");
         m_hopperSubsystem.hopperOn();   
         m_hopperSubsystem.stopperOn();
         m_hopperSubsystem.suckerOn();
@@ -30,7 +30,7 @@ public class MoveBall extends CommandBase {
     // }
 
      public void end(boolean interrupted) {
-        System.out.println("MoveBall Calling hopperStop and stopperOff");
+        System.out.println("MoveBall Calling hopperStop and stopperOff and suckerStop");
         m_hopperSubsystem.hopperStop();
         m_hopperSubsystem.stopperOff();
         m_hopperSubsystem.suckerOff();

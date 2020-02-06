@@ -19,7 +19,7 @@ public class HopperStop extends CommandBase {
 	// Called when the command is initially scheduled.
 	@Override
 	public void initialize() {
-		System.out.println("HopperStop Calling HopperStop");
+		System.out.println("HopperSubsystem Calling HopperStop");
 		m_hopperSubsystem.hopperStop();;    
 	}
 

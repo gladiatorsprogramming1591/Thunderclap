@@ -31,7 +31,7 @@ public class SuckerReverse extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("Hopper; sucker reverse");
+    System.out.println("HopperSubsystem Calling SuckerReverse");
   }
 
   // Called every time the scheduler runs while the command is scheduled.

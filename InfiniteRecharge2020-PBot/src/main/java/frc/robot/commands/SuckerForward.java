@@ -31,7 +31,7 @@ public class SuckerForward extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("Hopper; sucker foward");
+    System.out.println("HopperSubsystem Calling SuckerForward");
   }
 
   // Called every time the scheduler runs while the command is scheduled.

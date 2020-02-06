@@ -19,7 +19,7 @@ public class IntakeStop extends CommandBase {
 	// Called when the command is initially scheduled.
 	@Override
 	public void initialize() {
-		System.out.println("IntakeStop Calling IntakeStop");
+		System.out.println("IntakeSubsystem Calling IntakeStop");
 		m_intakeSubsystem.intakeStop();;    
 	}
 

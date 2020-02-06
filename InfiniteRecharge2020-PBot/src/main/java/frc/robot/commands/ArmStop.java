@@ -32,7 +32,7 @@ public class ArmStop extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    
+    System.out.println("Arm subsystem Calling armStop");
   }
 
   // Called every time the scheduler runs while the command is scheduled.

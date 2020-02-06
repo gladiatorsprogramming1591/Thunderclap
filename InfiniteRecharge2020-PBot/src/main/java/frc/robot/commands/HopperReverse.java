@@ -18,7 +18,7 @@ import frc.robot.subsystems.HopperSubsystem;
      // Called when the command is initially scheduled.
      @Override
      public void initialize() {
-        System.out.println("HopperReverse Calling HopperReverse");
+        System.out.println("HopperSubsystem Calling HopperReverse");
          m_hopperSubsystem.hopperReverse();  
     }
      

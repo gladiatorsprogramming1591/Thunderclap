@@ -31,7 +31,7 @@ public class ArmDown extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    
+    System.out.println("Arm subsystem Calling armDown");
   }
 
   // Called every time the scheduler runs while the command is scheduled.

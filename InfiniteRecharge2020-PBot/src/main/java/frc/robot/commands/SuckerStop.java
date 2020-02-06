@@ -31,7 +31,7 @@ public class SuckerStop extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("Hopper; Sucker Stop");
+    System.out.println("HopperSubsystem Calling SuckerStop");
 
   }
 

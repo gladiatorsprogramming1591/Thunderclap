@@ -18,7 +18,7 @@ public class IntakeOn extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        System.out.println("IntakeOn Calling IntakeOn");
+        System.out.println("IntakeSubsystem Calling IntakeOn");
         m_intakeSubsystem.intakeOn();    
     }
 
