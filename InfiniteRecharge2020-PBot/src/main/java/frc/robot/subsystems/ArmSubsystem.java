@@ -20,6 +20,7 @@ public class ArmSubsystem extends SubsystemBase {
   public ArmSubsystem() {
     m_armMotor = new WPI_TalonSRX(Constants.kArmCANID);
     SmartDashboard.putData("Arm Motor", m_armMotor);
+    SmartDashboard.putData("Arm Subsystem", this);
   }
 
   @Override
