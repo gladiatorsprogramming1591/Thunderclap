@@ -88,12 +88,13 @@ public class RobotContainer {
     
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kTriangle) 
       .whenPressed(new ShooterOn(m_shooterSubsystem));
-    // Arm subsystem buttons
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL1) 
-      .whenPressed(new ArmUp(m_armSubsystem));
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kTriangle) 
       .whenReleased(new ShooterOff(m_shooterSubsystem));
+
+    // Arm subsystem buttons
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL1) 
+      .whenPressed(new ArmUp(m_armSubsystem));
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL2)
       .whenPressed(new ArmDown(m_armSubsystem));

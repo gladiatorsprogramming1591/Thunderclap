@@ -21,12 +21,12 @@ public final class Constants {
     public final static double kIntakeForwardSpeed = 0.6;
     public final static double kIntakeReverseSpeed = -0.6;
     public final static double kShooterMotorSpeed = 1;
+    public final static double kArmUpSpeed = 1.0;
+    public final static double kArmDownSpeed = -1.0;
     // Ports
-    public static int kDriverControllerPort = 0;
-    public static int kManipulatorControllerPort = 0;
-    public static int kShooterMotorPort = 4;
+    public final static int kDriverControllerPort = 0;
+    public final static int kManipulatorControllerPort = 0;
+    public final static int kShooterMotorPort = 4;
     public final static int kIntakeChannel = 3;
-    public static double kArmUpSpeed = 1.0;
-    public static double kArmDownSpeed = -1.0;
-    public static int kArmCANID = 3;
+    public final static int kArmCANID = 3;
 }
