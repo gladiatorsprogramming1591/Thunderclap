@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -29,6 +30,9 @@ public class HopperSubsystem extends SubsystemBase {
         m_hopperMotor = new CANSparkMax(Constants.kHopperChannel, MotorType.kBrushless);
         m_stopperMotor = new WPI_TalonSRX(Constants.kStopperChannel);
         m_suckerMotor = new WPI_TalonSRX(Constants.kSuckerChannel);
+
+        SmartDashboard.putData("Stopper Motor", m_stopperMotor);
+        SmartDashboard.putData("Sucker Motor", m_suckerMotor);
     }
     public void hopperOn() {
         m_hopperMotor.set(Constants.kHopperForwardSpeed);

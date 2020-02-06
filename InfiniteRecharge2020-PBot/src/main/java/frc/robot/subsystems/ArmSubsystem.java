@@ -7,16 +7,19 @@
 
 package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class ArmSubsystem extends SubsystemBase {
-  private WPI_TalonSRX armMotor; 
+  private WPI_TalonSRX m_armMotor; 
   /**
    * Creates a new ArmSubsystem.
    */
   public ArmSubsystem() {
-    armMotor = new WPI_TalonSRX(Constants.kArmCANID);
+    m_armMotor = new WPI_TalonSRX(Constants.kArmCANID);
+    SmartDashboard.putData("Arm Motor", m_armMotor);
   }
 
   @Override
@@ -26,13 +29,13 @@ public class ArmSubsystem extends SubsystemBase {
   }
   
   public void armUp() {
-    armMotor.set(Constants.kArmUpSpeed);
+    m_armMotor.set(Constants.kArmUpSpeed);
   }
 
   public void armStop() {
-    armMotor.set(0);
+    m_armMotor.set(0);
   }
   public void armDown() {
-    armMotor.set(Constants.kArmDownSpeed);
+    m_armMotor.set(Constants.kArmDownSpeed);
   }
 }
