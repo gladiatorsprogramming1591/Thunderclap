@@ -28,7 +28,7 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
 
   private DifferentialDrive m_tankDrive;
-  private Joystick m_joystick;
+  private Joystick m_driverController;
 
   private WPI_TalonSRX m_rTalon;
   private WPI_TalonSRX m_lTalon;
@@ -46,7 +46,7 @@ public class Robot extends TimedRobot {
     m_lTalon = new WPI_TalonSRX(Constants.kLeftMotorChannel);
 
     m_robotContainer = new RobotContainer();
-    m_joystick = new Joystick(0);
+    m_driverController = new Joystick(Constants.kDriverControllerPort);
     m_tankDrive = new DifferentialDrive(m_lTalon, m_rTalon);
   }
 
@@ -65,7 +65,7 @@ public class Robot extends TimedRobot {
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
 
-    m_tankDrive.arcadeDrive(m_joystick.getY(), m_joystick.getX());
+    m_tankDrive.arcadeDrive(m_driverController.getY(), m_driverController.getX());
   }
 
   /**

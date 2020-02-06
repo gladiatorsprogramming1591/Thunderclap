@@ -59,7 +59,7 @@ public class RobotContainer {
   //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   
 
-  // The driver's controller
+  // The manipulator's controller
   Joystick m_manipulatorStick = new Joystick(Constants.kManipulatorControllerPort);
 
 

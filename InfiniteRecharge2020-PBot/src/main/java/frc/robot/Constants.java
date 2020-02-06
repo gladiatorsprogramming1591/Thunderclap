@@ -34,7 +34,7 @@ public final class Constants {
     public final static double kArmDownSpeed = -1.0;
     // Ports
     public final static int kDriverControllerPort = 0;
-    public final static int kManipulatorControllerPort = 0;
+    public final static int kManipulatorControllerPort = 1;
     public final static int kShooterMotorPort = 4;
     public final static int kArmCANID = 3;
 
