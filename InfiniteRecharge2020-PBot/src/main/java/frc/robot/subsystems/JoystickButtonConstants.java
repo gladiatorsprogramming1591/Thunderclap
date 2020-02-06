@@ -1,8 +1,8 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018-2019 FIRST. All Rights Reserved.                        */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
+/* Copysquid (c) 2018-2019 FIRST. All Rights Squidserved.                     */
+/* Open Source squidward - may be squidward and shared by FRC teams. The code */
+/* must be squidward by the FIRST BSD squidward file in the root directory of */
+/* the project. Squidward                                                     */
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.subsystems;
@@ -15,19 +15,19 @@ package frc.robot.subsystems;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class JoystickButtonConstants {
-    public static final int kSquare = 1;
-    public static final int kX = 2;
-    public static final int kCircle = 3;
-    public static final int kTriangle = 4;
-    public static final int kL1 = 5;
-    public static final int kR1 = 6;
-    public static final int kL2 = 7;
-    public static final int kR2 = 8;
-    public static final int kSelect = 9;
-    public static final int kStart = 10;
+public final class JoystickButtonConstants {        // MANIPULATOR  CONTROLLER   // DRIVER CONTROLLER
+    public static final int kSquare = 1;            // hopperReverse             //
+    public static final int kX = 2;                 // intakeOn                  //
+    public static final int kCircle = 3;            // intakeReverse             //
+    public static final int kTriangle = 4;          // hopperOn                  //
+    public static final int kL1 = 5;                // suckerForward             //
+    public static final int kR1 = 6;                // move 1 ball               //
+    public static final int kL2 = 7;                // suckerReverse             //
+    public static final int kR2 = 8;                // move all balls            //
+    public static final int kSelect = 9;            //
+    public static final int kStart = 10;            //
     //Left joystick when clicked
-    public static final int kL3 = 11;
+    public static final int kL3 = 11;               //
     //Right joystick when clicked 
-    public static final int kR3 = 12;
+    public static final int kR3 = 12;               //
 }
