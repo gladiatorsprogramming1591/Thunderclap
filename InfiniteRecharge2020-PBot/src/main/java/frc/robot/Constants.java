@@ -32,19 +32,19 @@ public final class Constants {
     public final static double kShooterMotorSpeed = 1;
     public final static double kArmUpSpeed = 1.0;
     public final static double kArmDownSpeed = -1.0;
-    // Ports
+    // Controller Ports
     public final static int kDriverControllerPort = 0;
     public final static int kManipulatorControllerPort = 1;
-    public final static int kShooterMotorPort = 4;
-    public final static int kArmCANID = 3;
 
     //CANid/channel numbers
-    public final static int kRightMotorChannel = 2;
     public final static int kLeftMotorChannel = 1;
-    public final static int kIntakeChannel = 3;
+    public final static int kRightMotorChannel = 2;
+    public final static int kSuckerChannel = 3;
+    public final static int kStopperChannel = 4;
     public final static int kHopperChannel = 5;
-    public final static int kStopperChannel = 6;
-    public final static int kSuckerChannel = 7;
+    public final static int kIntakeChannel = 6;
+    public final static int kShooterMotorPort = 7;
+    public final static int kArmCANID = 8;
 
     //Timeouts
     final static double kMoveOneBallTimeOut = 1.0;
