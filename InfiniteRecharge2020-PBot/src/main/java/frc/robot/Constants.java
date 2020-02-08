@@ -31,6 +31,14 @@ public final class Constants {
     public final static double kShooterMotorSpeed = 1.0;
     public final static double kArmUpSpeed = 1.0;
     public final static double kArmDownSpeed = -1.0;
+
+    // Motor Ramp Rates (HOW LONG IN SECONDS FROM NEUTRAL TO FULL THROTTLE)
+    public final static double kHopperRampRate = 0.5;
+    public final static double kStopperRampRate = 0.5;
+    public final static double kSuckerRampRate = 0.5;
+    public final static double kIntakeRampRate = 0.5;
+    public final static double kShooterRampRate = 0.5;
+    public final static double kArmRampRate = 0.5;
     
     // Controller Ports
     public final static int kDriverControllerPort = 0;

@@ -19,6 +19,9 @@ public class ArmSubsystem extends SubsystemBase {
    */
   public ArmSubsystem() {
     m_armMotor = new WPI_TalonSRX(Constants.kArmCANID);
+
+    m_armMotor.configOpenloopRamp(Constants.kArmRampRate);
+
     SmartDashboard.putData("Arm Motor", m_armMotor);
     SmartDashboard.putData("Arm Subsystem", this);
   }

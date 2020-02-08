@@ -91,10 +91,10 @@ public class RobotContainer {
       .whenReleased(new IntakeStop(m_intakeSubsystem));
 
     // ---SHOOTER SECTION---
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kY) 
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kBack) 
       .whenPressed(new ShooterOn(m_shooterSubsystem));
 
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kY) 
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kBack) 
       .whenReleased(new ShooterStop(m_shooterSubsystem));
 
     // ---ARM---
