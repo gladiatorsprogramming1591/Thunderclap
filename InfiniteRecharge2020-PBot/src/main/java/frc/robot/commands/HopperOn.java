@@ -1,25 +1,25 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.HopperSubsystem;
 
-public class IntakeOn extends CommandBase {
+public class HopperOn extends CommandBase {
 
-    IntakeSubsystem m_intakeSubsystem;
+    HopperSubsystem m_hopperSubsystem;
 
-	public IntakeOn(IntakeSubsystem intakeSubsystem) {
-        m_intakeSubsystem = intakeSubsystem;
+	public HopperOn(HopperSubsystem hopperSubsystem) {
+        m_hopperSubsystem = hopperSubsystem;
         // This makes the command interruptible by other 
 		// commands that add this same subsystem as a requirement 
 		// which eliminates the need to implement the isFinished() method
-        addRequirements(m_intakeSubsystem);
+        addRequirements(m_hopperSubsystem);
 	}
 
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        System.out.println("IntakeSubsystem Calling IntakeOn");
-        m_intakeSubsystem.intakeOn();    
+        System.out.println("hopperSubsystem Calling hopperOn");
+        m_hopperSubsystem.hopperOn();    
     }
 
     // @Override
@@ -29,11 +29,11 @@ public class IntakeOn extends CommandBase {
 
     // public void end(boolean interrupted) {
     //     if ( interrupted == false) {
-    //         System.out.println("IntakeOn Calling IntakeStop");
-    //         m_intakeSubsystem.intakeStop();   
+    //         System.out.println("hopperOn Calling hopperStop");
+    //         m_hopperSubsystem.hopperStop();   
     //     }
     //     else {
-    //         System.out.println("IntakeOn interrupted");
+    //         System.out.println("hopperOn interrupted");
     //     }
     // }
 }
