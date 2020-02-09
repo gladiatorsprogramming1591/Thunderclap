@@ -19,7 +19,8 @@ public class HopperOn extends CommandBase {
     @Override
     public void initialize() {
         System.out.println("hopperSubsystem Calling hopperOn");
-        m_hopperSubsystem.hopperOn();    
+        m_hopperSubsystem.stopperOn();    
+        // m_hopperSubsystem.hopperOn();    
     }
 
     // @Override

@@ -20,7 +20,8 @@ public class HopperStop extends CommandBase {
 	@Override
 	public void initialize() {
 		System.out.println("HopperSubsystem Calling HopperStop");
-		m_hopperSubsystem.hopperStop();;    
+		m_hopperSubsystem.stopperOff();;    
+		// m_hopperSubsystem.hopperStop();;    
 	}
 
 	// Implement this if you want to act like an InstantCommand,
