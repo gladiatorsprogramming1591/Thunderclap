@@ -19,7 +19,6 @@ public final class Constants {
     // Speeds
     public final static int kELEVATOR_UP_SPEED = 1; 
 
-
     //Motor speed
     public final static double kHopperReverseSpeed = -0.6;
     public final static double kHopperForwardSpeed = 0.6;
@@ -27,11 +26,12 @@ public final class Constants {
     public final static double kStopperForwardSpeed = 0.6;
     public final static double kIntakeForwardSpeed = 0.6;
     public final static double kIntakeReverseSpeed = -0.6;
-    public final static double kSuckerFowardSpeed = .6;
-    public final static double kSuckerReverseSpeed = -.6;
-    public final static double kShooterMotorSpeed = 1;
+    public final static double kSuckerForwardSpeed = 0.6;
+    public final static double kSuckerReverseSpeed = -0.6;
+    public final static double kShooterMotorSpeed = 1.0;
     public final static double kArmUpSpeed = 1.0;
     public final static double kArmDownSpeed = -1.0;
+    
     // Controller Ports
     public final static int kDriverControllerPort = 0;
     public final static int kManipulatorControllerPort = 1;
