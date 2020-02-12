@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ArmDown;
 import frc.robot.commands.ArmStop;
 import frc.robot.commands.ArmUp;
+import frc.robot.commands.FastDrive;
 import frc.robot.commands.IntakeOn;
 import frc.robot.commands.IntakeReverse;
 import frc.robot.commands.IntakeStop;
@@ -36,11 +37,12 @@ import frc.robot.commands.HopperStop;
 import frc.robot.subsystems.HopperSubsystem;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.subsystems.JoystickButtonConstants;
+import frc.robot.JoystickButtonConstants;
 
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.DriveTrainC;
+// import frc.robot.subsystems.DriveTrainC;
 import frc.robot.subsystems.DriveTrainP;
+
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -56,14 +58,16 @@ public class RobotContainer {
   private final ArmSubsystem m_armSubsystem = new ArmSubsystem();
   
   
+  
   // The robot's commands are defined here...
   //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   
 
   // The manipulator's controller
   Joystick m_manipulatorStick = new Joystick(Constants.kManipulatorControllerPort);
+  Joystick m_driverStick = new Joystick(Constants.kDriverControllerPort);
 
-
+  private final DriveTrain m_driveTrain = new DriveTrainP(m_driverStick, new FastDrive());
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */

@@ -45,8 +45,16 @@ public final class Constants {
     public final static int kIntakeChannel = 6;
     public final static int kShooterMotorPort = 7;
     public final static int kArmCANID = 8;
+    public final static int kPbotLeftMotorCANID = 9;
+    public final static int kPbotRightMotorCANID = 10;
+
+
 
     //Timeouts
-    final static double kMoveOneBallTimeOut = 1.0;
-    final static double kMoveAllBallsTimeOut = 5.0;
+    public final static double kMoveOneBallTimeOut = 1.0;
+    public final static double kMoveAllBallsTimeOut = 5.0;
+
+    //Squared Inputs
+    public final static boolean kFastSquaredInputs = true;
+    public final static boolean kSlowSquaredInputs = false;
 }

@@ -8,10 +8,11 @@
 package frc.robot.subsystems;
 
 import frc.robot.Constants;
-
+import frc.robot.commands.FastDrive;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
+import frc.robot.commands.FastDrive;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class DriveTrain extends SubsystemBase {
@@ -19,21 +20,28 @@ public class DriveTrain extends SubsystemBase {
 
   private final DifferentialDrive m_differentialDrive;
 
-  private final Joystick m_leftJoystick  = new Joystick(Constants.kLeftControllerPort);
-  private final Joystick m_rightJoystick = new Joystick(Constants.kRightControllerPort);
+  private final Joystick m_driverJoystick;
 
-
-  public DriveTrain(DifferentialDrive differentialDrive) {
+  public DriveTrain(DifferentialDrive differentialDrive, Joystick driverJoystick, Command defaultCommand) {
     m_differentialDrive = differentialDrive;
+    m_driverJoystick = driverJoystick;
+    this.setDefaultCommand(defaultCommand);
   }
 
-  public void drive() {
-    double leftSpeed = m_leftJoystick.getY();
-    double rightSpeed = m_rightJoystick.getY();
+  public void drive(double xSpeed, double zRotation, boolean squareInputs) {
     // TODO: add a button for setting the squareInputs
-    boolean squareInputs = true;
-    m_differentialDrive.tankDrive(leftSpeed, rightSpeed, squareInputs);
+    m_differentialDrive.arcadeDrive(xSpeed, zRotation, squareInputs);;
   }
+
+  public double getAxisForward() {
+    return m_driverJoystick.getY();
+  }
+
+  public double getAxisTurning() {
+    return m_driverJoystick.getX();
+  }
+
+
 
   @Override
   public void periodic() {

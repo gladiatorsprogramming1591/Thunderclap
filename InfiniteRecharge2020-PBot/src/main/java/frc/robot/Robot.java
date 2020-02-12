@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.DriveTrainC;
+//import frc.robot.subsystems.DriveTrainC;
 import frc.robot.subsystems.DriveTrainP;
 
 /**
@@ -31,11 +31,6 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
-  private DifferentialDrive m_tankDrive;
-  private Joystick m_driverController;
-  // Only one drivetrian should ever be active at a time
-  // private final DriveTrain m_driveTrain = new DriveTrainC();
-  private final DriveTrain m_driveTrain = new DriveTrainP();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -45,13 +40,8 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-
-    m_rTalon = new WPI_TalonSRX(Constants.kRightMotorChannel);
-    m_lTalon = new WPI_TalonSRX(Constants.kLeftMotorChannel);
-
     m_robotContainer = new RobotContainer();
-    m_driverController = new Joystick(Constants.kDriverControllerPort);
-    m_tankDrive = new DifferentialDrive(m_lTalon, m_rTalon);
+
   }
 
   /**
@@ -68,8 +58,6 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-
-    m_tankDrive.arcadeDrive(m_driverController.getY(), m_driverController.getX());
   }
 
   /**
@@ -119,8 +107,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {    
-    m_driveTrain.drive();
-  }
+
+    }
 
   @Override
   public void testInit() {
