@@ -59,6 +59,7 @@ public class RobotContainer {
 
   // The manipulator's controller
   Joystick m_manipulatorStick = new Joystick(Constants.kManipulatorControllerPort);
+  Joystick m_driveStick = new Joystick(Constants.kDriverControllerPort);
 
 
   /**
