@@ -62,7 +62,7 @@ public class HopperSubsystem extends SubsystemBase {
         m_stopperMotor.set(Constants.kStopperReverseSpeed);
     }
     public void suckerOn() {
-        m_suckerMotor.set(Constants.kSuckerFowardSpeed);
+        m_suckerMotor.set(Constants.kSuckerForwardSpeed);
 
    }    
    public void suckerOff() {
