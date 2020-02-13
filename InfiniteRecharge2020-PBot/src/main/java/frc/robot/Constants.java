@@ -55,6 +55,6 @@ public final class Constants {
     public final static double kMoveAllBallsTimeOut = 5.0;
 
     //Squared Inputs
-    public final static boolean kFastSquaredInputs = true;
-    public final static boolean kSlowSquaredInputs = false;
+    public final static boolean kFastSquaredInputs = false;
+    public final static boolean kSlowSquaredInputs = true;
 }
