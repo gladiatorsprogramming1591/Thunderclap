@@ -14,6 +14,8 @@ import frc.robot.JoystickButtonConstants;
 import frc.robot.subsystems.DriveTrain;
 // import frc.robot.subsystems.DriveTrainC;
 import frc.robot.subsystems.DriveTrainP;
+import frc.robot.commands.SlowDrive;
+import frc.robot.commands.FastDrive;
 
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.commands.IntakeOn;
@@ -139,6 +141,12 @@ public class RobotContainer {
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL2)
       .whenReleased(new SuckerStop(m_hopperSubsystem));
+    // ---DRIVE TRAIN--- 
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL3)
+      .whenPressed(new SlowDrive(m_driveTrain));
+
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL3)
+      .whenReleased(new FastDrive(m_driveTrain));
   }
   
   /**

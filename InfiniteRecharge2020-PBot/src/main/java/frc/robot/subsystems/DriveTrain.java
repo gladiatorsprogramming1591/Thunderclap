@@ -34,11 +34,15 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public double getAxisForward() {
-    return m_driverJoystick.getY();
+
+      return m_driverJoystick.getY() / 2;
+
   }
 
   public double getAxisTurning() {
-    return m_driverJoystick.getX();
+
+      return m_driverJoystick.getX() / 2;
+
   }
 
 
