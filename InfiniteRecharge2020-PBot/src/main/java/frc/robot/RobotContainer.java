@@ -25,6 +25,9 @@ import frc.robot.subsystems.IntakeSubsystem;
 
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.commands.ShooterStop;
+import frc.robot.commands.StopperForward;
+import frc.robot.commands.StopperReverse;
+import frc.robot.commands.StopperStop;
 import frc.robot.commands.ShooterOn;
 
 import edu.wpi.first.wpilibj2.command.Command;
@@ -89,24 +92,24 @@ public class RobotContainer {
       .whenReleased(new IntakeStop(m_intakeSubsystem));
 
     // ---SHOOTER SECTION---
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kY) 
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kBack)
       .whenPressed(new ShooterOn(m_shooterSubsystem));
 
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kY) 
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kBack) 
       .whenReleased(new ShooterStop(m_shooterSubsystem));
 
     // ---ARM---
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kStart) 
       .whenPressed(new ArmUp(m_armSubsystem));
 
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kBack)
-      .whenPressed(new ArmDown(m_armSubsystem));
+    // new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kBack)
+    //   .whenPressed(new ArmDown(m_armSubsystem));
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kStart)
       .whenReleased(new ArmStop(m_armSubsystem));
       
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kBack)
-      .whenReleased(new ArmStop(m_armSubsystem));
+    // new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kBack)
+    //   .whenReleased(new ArmStop(m_armSubsystem));
 
     // ---HOPPER---
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kY) 
@@ -122,11 +125,11 @@ public class RobotContainer {
       .whenReleased(new HopperStop(m_hopperSubsystem));
 
     // ---MOVE BALL---
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR1)
-      .whenPressed(new MoveBall(m_hopperSubsystem).withTimeout(Constants.kMoveOneBallTimeOut));
+    // new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR1)
+    //   .whenPressed(new MoveBall(m_hopperSubsystem).withTimeout(Constants.kMoveOneBallTimeOut));
 
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR2)
-      .whenPressed(new MoveBall(m_hopperSubsystem).withTimeout(Constants.kMoveAllBallsTimeOut));
+    // new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR2)
+    //   .whenPressed(new MoveBall(m_hopperSubsystem).withTimeout(Constants.kMoveAllBallsTimeOut));
 
     // ---SUCKER---
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL1) 
@@ -141,6 +144,18 @@ public class RobotContainer {
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL2)
       .whenReleased(new SuckerStop(m_hopperSubsystem));
 
+    // ---STOPPER---
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR1)
+      .whenPressed(new StopperForward(m_hopperSubsystem));
+
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR1)
+      .whenReleased(new StopperStop(m_hopperSubsystem));
+
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR2)
+      .whenPressed(new StopperReverse(m_hopperSubsystem));
+
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR2)
+      .whenReleased(new StopperStop(m_hopperSubsystem));
 
 
       
