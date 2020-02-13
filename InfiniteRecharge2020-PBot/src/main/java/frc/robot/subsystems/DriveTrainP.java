@@ -16,19 +16,14 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 
 public class DriveTrainP extends DriveTrain {
-  
-   
-  public DriveTrainP(Joystick m_driverJoystick, Command defaultCommand) {
+  public DriveTrainP(Joystick m_driverJoystick) {
     super(
       new DifferentialDrive(
         new WPI_TalonSRX(Constants.kPbotLeftMotorCANID), 
         new WPI_TalonSRX(Constants.kPbotRightMotorCANID)
       ),
-      m_driverJoystick,
-      defaultCommand
-
+      m_driverJoystick
     );
-
   }
 
 }

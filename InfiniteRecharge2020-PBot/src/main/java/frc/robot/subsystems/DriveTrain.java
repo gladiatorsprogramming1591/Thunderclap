@@ -22,10 +22,10 @@ public class DriveTrain extends SubsystemBase {
 
   private final Joystick m_driverJoystick;
 
-  public DriveTrain(DifferentialDrive differentialDrive, Joystick driverJoystick, Command defaultCommand) {
+  public DriveTrain(DifferentialDrive differentialDrive, Joystick driverJoystick) {
     m_differentialDrive = differentialDrive;
     m_driverJoystick = driverJoystick;
-    this.setDefaultCommand(defaultCommand);
+    setDefaultCommand(new FastDrive(this));
   }
 
   public void drive(double xSpeed, double zRotation, boolean squareInputs) {
