@@ -10,12 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
-import frc.robot.subsystems.ShooterSubsystem;
 
 /**
  * A complex auto command that drives forward, releases a hatch, and then drives backward.
  */
-public class TurnOnAllMotors extends ParallelCommandGroup {
+public class IntakeandSuckerOn extends ParallelCommandGroup {
   /**
    * Creates a new Command Group.
    * There are 4 types of command groups:
@@ -27,24 +26,13 @@ public class TurnOnAllMotors extends ParallelCommandGroup {
    * @param subsystem1 The subsystem this command will run on
    * @param subsystem2 The subsystem this command will run on
    */
-  public TurnOnAllMotors(HopperSubsystem hopperSubsystem, IntakeSubsystem intakeSubsystem, ShooterSubsystem shooterSubsystem ) {
+  public IntakeandSuckerOn(IntakeSubsystem intakeSubsystem, HopperSubsystem hopperSubsystem) {
     addCommands(
         // Example 1
-        new HopperOn(hopperSubsystem),
-
-        // Example 2
-        new StopperForward(hopperSubsystem),
-
-        // Example 3
-        new SuckerForward(hopperSubsystem),
-
-        // Example 4
         new IntakeOn(intakeSubsystem),
 
-        // Example 5
-        new ShooterOn(shooterSubsystem)
-
-        
+        // Example 2
+        new SuckerForward(hopperSubsystem)
     );
   }
 
