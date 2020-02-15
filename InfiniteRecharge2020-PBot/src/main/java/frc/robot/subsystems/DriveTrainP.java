@@ -9,11 +9,9 @@ package frc.robot.subsystems;
 
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import frc.robot.Constants;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj2.command.Command;
 
 public class DriveTrainP extends DriveTrain {
   public DriveTrainP(Joystick m_driverJoystick) {

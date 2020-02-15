@@ -7,12 +7,9 @@
 
 package frc.robot.subsystems;
 
-import frc.robot.Constants;
 import frc.robot.commands.FastDrive;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.commands.FastDrive;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class DriveTrain extends SubsystemBase {
@@ -34,15 +31,11 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public double getAxisForward() {
-
-      return m_driverJoystick.getY() / 2;
-
+      return m_driverJoystick.getY();
   }
 
   public double getAxisTurning() {
-
-      return m_driverJoystick.getX() / 2;
-
+      return m_driverJoystick.getX();
   }
 
 

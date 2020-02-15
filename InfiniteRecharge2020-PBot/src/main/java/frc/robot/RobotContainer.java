@@ -10,11 +10,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.JoystickButtonConstants;
-
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import frc.robot.commands.BallLoadingCommandGroup;
 import frc.robot.commands.BallLoadingCommandGroupStop;
+
 import frc.robot.subsystems.DriveTrain;
 // import frc.robot.subsystems.DriveTrainC;
 import frc.robot.subsystems.DriveTrainP;
@@ -28,9 +28,6 @@ import frc.robot.commands.IntakeStop;
 
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.commands.ShooterStop;
-import frc.robot.commands.StopperForward;
-import frc.robot.commands.StopperReverse;
-import frc.robot.commands.StopperStop;
 import frc.robot.commands.ShooterOn;
 
 import frc.robot.subsystems.ArmSubsystem;
@@ -42,11 +39,17 @@ import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.commands.HopperOn;
 import frc.robot.commands.HopperReverse;
 import frc.robot.commands.HopperStop;
+import frc.robot.commands.HopperStopAll;
+
+import frc.robot.commands.StopperForward;
+import frc.robot.commands.StopperReverse;
+import frc.robot.commands.StopperStop;
+
 import frc.robot.commands.SuckerForward;
 import frc.robot.commands.SuckerReverse;
 import frc.robot.commands.SuckerStop;
+
 import frc.robot.commands.MoveBall;
-import frc.robot.commands.HopperStopAll;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -70,10 +73,6 @@ public class RobotContainer {
   
   // The robot's commands are defined here...
   //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-  
-
-  // The manipulator's controller
-  Joystick m_manipulatorStick = new Joystick(Constants.kManipulatorControllerPort);
 
 
   /**
