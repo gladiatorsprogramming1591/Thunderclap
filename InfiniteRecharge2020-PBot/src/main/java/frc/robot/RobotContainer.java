@@ -155,6 +155,20 @@ public class RobotContainer {
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL2)
       .whenReleased(new SuckerStop(m_hopperSubsystem));
+
+    // ---STOPPER---
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR1)
+      .whenPressed(new StopperForward(m_hopperSubsystem));
+
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR1)
+      .whenReleased(new StopperStop(m_hopperSubsystem));
+
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR2)
+      .whenPressed(new StopperReverse(m_hopperSubsystem));
+
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR2)
+      .whenReleased(new StopperStop(m_hopperSubsystem));
+
     // ---DRIVE TRAIN--- 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL3)
       .whenPressed(new SlowDrive(m_driveTrain));
