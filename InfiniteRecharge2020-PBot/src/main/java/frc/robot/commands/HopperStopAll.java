@@ -4,11 +4,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.HopperSubsystem;
 
-public class HopperStop extends CommandBase {
+public class HopperStopAll extends CommandBase {
 
 	HopperSubsystem m_hopperSubsystem;
 	 
-	public HopperStop(HopperSubsystem hopperSubsystem) {
+	public HopperStopAll(HopperSubsystem hopperSubsystem) {
 		m_hopperSubsystem = hopperSubsystem;	
 		// This makes the command interruptible by other 
 		// commands that add this same subsystem as a requirement 
@@ -19,9 +19,11 @@ public class HopperStop extends CommandBase {
 	// Called when the command is initially scheduled.
 	@Override
 	public void initialize() {
-		System.out.println("HopperSubsystem Calling HopperStop");
-		m_hopperSubsystem.stopperOff();;    
-		// m_hopperSubsystem.hopperStop();;    
+		System.out.println("HopperSubsystem Calling HopperStopAll");
+		m_hopperSubsystem.hopperStop();
+		m_hopperSubsystem.suckerOff();
+		m_hopperSubsystem.stopperOff();
+
 	}
 
 	// Implement this if you want to act like an InstantCommand,

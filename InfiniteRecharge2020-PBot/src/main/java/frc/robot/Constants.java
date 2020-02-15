@@ -22,8 +22,8 @@ public final class Constants {
     //Motor speed
     public final static double kHopperReverseSpeed = -0.6;
     public final static double kHopperForwardSpeed = 0.6;
-    public final static double kStopperReverseSpeed = -0.6;
-    public final static double kStopperForwardSpeed = 0.6;
+    public final static double kStopperReverseSpeed = -0.9;
+    public final static double kStopperForwardSpeed = 0.9;
     public final static double kIntakeForwardSpeed = 0.6;
     public final static double kIntakeReverseSpeed = -0.6;
     public final static double kSuckerForwardSpeed = 0.6;
@@ -31,14 +31,22 @@ public final class Constants {
     public final static double kShooterMotorSpeed = -1.0;
     public final static double kArmUpSpeed = 1.0;
     public final static double kArmDownSpeed = -1.0;
+
+    // Motor Ramp Rates (HOW LONG IN SECONDS FROM NEUTRAL TO FULL THROTTLE)
+    public final static double kHopperRampRate = 0.5;
+    public final static double kStopperRampRate = 0.5;
+    public final static double kSuckerRampRate = 0.5;
+    public final static double kIntakeRampRate = 0.5;
+    public final static double kShooterRampRate = 0.5;
+    public final static double kArmRampRate = 0.5;
     
     // Controller Ports
     public final static int kDriverControllerPort = 0;
     public final static int kManipulatorControllerPort = 1;
 
     //CANid/channel numbers
-    public final static int kLeftMotorChannel = 1;
-    public final static int kRightMotorChannel = 2;
+    public final static int kRightMotorChannel = 1;
+    public final static int kLeftMotorChannel = 2;
     public final static int kSuckerChannel = 3;
     public final static int kStopperChannel = 4;
     public final static int kHopperChannel = 5;

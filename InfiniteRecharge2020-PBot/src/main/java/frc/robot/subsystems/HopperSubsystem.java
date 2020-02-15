@@ -30,6 +30,10 @@ public class HopperSubsystem extends SubsystemBase {
         m_stopperMotor = new WPI_TalonSRX(Constants.kStopperChannel);
         m_suckerMotor = new WPI_TalonSRX(Constants.kSuckerChannel);
 
+        m_hopperMotor.setOpenLoopRampRate(Constants.kHopperRampRate);
+        m_stopperMotor.configOpenloopRamp(Constants.kStopperRampRate);
+        m_suckerMotor.configOpenloopRamp(Constants.kSuckerRampRate);
+
         SmartDashboard.putData("Stopper Motor", m_stopperMotor);
         SmartDashboard.putData("Sucker Motor", m_suckerMotor);
         SmartDashboard.putData("Hopper Subsystem", this);

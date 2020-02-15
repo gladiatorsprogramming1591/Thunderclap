@@ -19,7 +19,8 @@ import frc.robot.subsystems.HopperSubsystem;
      @Override
      public void initialize() {
         System.out.println("HopperSubsystem Calling HopperReverse");
-         m_hopperSubsystem.hopperReverse();  
+      // m_hopperSubsystem.hopperReverse();
+      m_hopperSubsystem.stopperReverse();
     }
      
     //  @Override
