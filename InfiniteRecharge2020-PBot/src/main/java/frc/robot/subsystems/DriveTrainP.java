@@ -14,14 +14,21 @@ import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class DriveTrainP extends DriveTrain {
+  static WPI_TalonSRX m_leftMotor;
+  static WPI_TalonSRX m_rightMotor;
+
   public DriveTrainP(Joystick m_driverJoystick) {
     super(
       new DifferentialDrive(
-        new WPI_TalonSRX(Constants.kPbotLeftMotorCANID), 
-        new WPI_TalonSRX(Constants.kPbotRightMotorCANID)
+        m_leftMotor = new WPI_TalonSRX(Constants.kPbotLeftMotorCANID), 
+        m_rightMotor = new WPI_TalonSRX(Constants.kPbotRightMotorCANID)
       ),
       m_driverJoystick
     );
+   
+    m_leftMotor.configOpenloopRamp(Constants.kDriveRampRate);
+    m_rightMotor.configOpenloopRamp(Constants.kDriveRampRate);
+
   }
 
 }

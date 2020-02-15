@@ -39,25 +39,27 @@ public final class Constants {
     public final static double kIntakeRampRate = 0.5;
     public final static double kShooterRampRate = 0.5;
     public final static double kArmRampRate = 0.5;
+    public final static double kDriveRampRate = 0.5;
     
     // Controller Ports
     public final static int kDriverControllerPort = 0;
     public final static int kManipulatorControllerPort = 1;
 
     //CANid/channel numbers
-    public final static int kRightMotorChannel = 1;
-    public final static int kLeftMotorChannel = 2;
-    public final static int kSuckerChannel = 3;
-    public final static int kStopperChannel = 4;
-    public final static int kHopperChannel = 5;
-    public final static int kIntakeChannel = 6;
-    public final static int kShooterMotorPort = 7;
-    public final static int kArmCANID = 8;
-    public final static int kPbotLeftMotorCANID = 9;
-    public final static int kPbotRightMotorCANID = 10;
-
-
-
+    public final static int kPbotLeftMotorCANID = 1;
+    public final static int kPbotRightMotorCANID = 2;
+    public final static int kCbotFrontLeftMotorCANID = 1;
+    public final static int kCbotFrontRightMotorCANID = 2;
+    public final static int kCbotRearLeftMotorCANID = 3;
+    public final static int kCbotRearRightMotorCANID = 4;
+   
+    public final static int kSuckerChannel = 5;
+    public final static int kStopperChannel = 6;
+    public final static int kHopperChannel = 7;
+    public final static int kIntakeChannel = 8;
+    public final static int kShooterMotorPort = 9;
+    public final static int kArmCANID = 10;
+    
     //Timeouts
     public final static double kMoveOneBallTimeOut = 1.0;
     public final static double kMoveAllBallsTimeOut = 5.0;
