@@ -16,8 +16,6 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    // Speeds
-    public final static int kELEVATOR_UP_SPEED = 1; 
 
     //Motor speed
     public final static double kHopperReverseSpeed = -0.6;

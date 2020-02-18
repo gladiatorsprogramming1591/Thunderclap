@@ -25,10 +25,8 @@ public class DriveTrainP extends DriveTrain {
       ),
       m_driverJoystick
     );
-   
     m_leftMotor.configOpenloopRamp(Constants.kDriveRampRate);
     m_rightMotor.configOpenloopRamp(Constants.kDriveRampRate);
-
   }
 
 }

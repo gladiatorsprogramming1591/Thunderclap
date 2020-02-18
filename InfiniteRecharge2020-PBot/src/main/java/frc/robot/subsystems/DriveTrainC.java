@@ -37,7 +37,6 @@ public class DriveTrainC extends DriveTrain {
         ),
         m_driverJoystick
     );
-
     m_frontLeftMotor.setOpenLoopRampRate(Constants.kDriveRampRate);
     m_rearLeftMotor.setOpenLoopRampRate(Constants.kDriveRampRate);
     m_frontRightMotor.setOpenLoopRampRate(Constants.kDriveRampRate);

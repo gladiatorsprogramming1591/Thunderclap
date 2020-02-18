@@ -18,7 +18,7 @@ public class TurnOffAllHopperMotors extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        System.out.println("hopperSubsystem Calling stopperOff, hopperStop, suckerOff");
+        System.out.println("HopperSubsystem Calling StopperOff, HopperStop, SuckerOff");
         m_hopperSubsystem.stopperOff();    
         m_hopperSubsystem.hopperStop();    
         m_hopperSubsystem.suckerOff();    
