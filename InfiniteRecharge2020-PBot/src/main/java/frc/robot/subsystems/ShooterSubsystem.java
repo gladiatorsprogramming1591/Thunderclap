@@ -35,13 +35,11 @@ public class ShooterSubsystem extends SubsystemBase {
   public void shooterOn() {
     //Turns on the shooter motor
     m_shooterMotor.set(Constants.kShooterMotorSpeed);
-
   }
 
   public void shooterOff() {
     //Turns off the shooter motor
     m_shooterMotor.set(0);
-    
   }
 
 }
