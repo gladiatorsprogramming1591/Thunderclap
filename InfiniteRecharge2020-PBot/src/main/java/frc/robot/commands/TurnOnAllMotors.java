@@ -29,7 +29,7 @@ public class TurnOnAllMotors extends ParallelCommandGroup {
    */
   public TurnOnAllMotors(HopperSubsystem hopperSubsystem, IntakeSubsystem intakeSubsystem, ShooterSubsystem shooterSubsystem) {
     addCommands(
-        new TurnOnAllHopperMotors(hopperSubsystem),
+        new HopperOn(hopperSubsystem),
         new IntakeOn(intakeSubsystem),
         new ShooterOn(shooterSubsystem)
     );

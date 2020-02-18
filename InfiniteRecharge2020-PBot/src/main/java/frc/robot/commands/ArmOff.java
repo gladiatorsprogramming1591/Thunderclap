@@ -14,8 +14,8 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 /**
  * An example command that uses an example subsystem.
  */
-public class ArmStop extends CommandBase {
-  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
+public class ArmOff extends CommandBase {
+  @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
   private final ArmSubsystem m_armSubsystem;
 
   /**
@@ -23,7 +23,7 @@ public class ArmStop extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ArmStop(ArmSubsystem subsystem) {
+  public ArmOff(ArmSubsystem subsystem) {
     m_armSubsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
