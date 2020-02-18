@@ -12,9 +12,6 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.JoystickButtonConstants;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import frc.robot.commands.BallLoadingCommandGroup;
-import frc.robot.commands.BallLoadingCommandGroupStop;
-
 import frc.robot.subsystems.DriveTrain;
 // import frc.robot.subsystems.DriveTrainC;
 import frc.robot.subsystems.DriveTrainP;
@@ -24,10 +21,10 @@ import frc.robot.commands.FastDrive;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.commands.IntakeOn;
 import frc.robot.commands.IntakeReverse;
-import frc.robot.commands.IntakeStop;
+import frc.robot.commands.IntakeOff;
 
 import frc.robot.subsystems.ShooterSubsystem;
-import frc.robot.commands.ShooterStop;
+import frc.robot.commands.ShooterOff;
 import frc.robot.commands.ShooterOn;
 
 import frc.robot.subsystems.ArmSubsystem;
@@ -49,6 +46,13 @@ import frc.robot.commands.SuckerForward;
 import frc.robot.commands.SuckerReverse;
 import frc.robot.commands.SuckerStop;
 
+import frc.robot.commands.TurnOnAllMotors;
+import frc.robot.commands.TurnOffAllMotors;
+import frc.robot.commands.IntakeandSuckerOn;
+import frc.robot.commands.IntakeandSuckerOff;
+
+import frc.robot.commands.BallLoadingCommandGroup;
+import frc.robot.commands.BallLoadingCommandGroupStop;
 import frc.robot.commands.MoveBall;
 
 /**
@@ -175,6 +179,16 @@ public class RobotContainer {
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL3)
       .whenReleased(new FastDrive(m_driveTrain));
+
+    // ---COMBINATION BUTTONS---
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kA)
+      .whenPressed(new TurnOnAllMotors(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem));
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kA)
+      .whenReleased(new TurnOffAllMotors(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem));
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kB)
+      .whenPressed(new IntakeandSuckerOn(m_intakeSubsystem, m_hopperSubsystem));
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kB)
+      .whenReleased(new IntakeandSuckerOff(m_intakeSubsystem, m_hopperSubsystem));
   }
   
   /**

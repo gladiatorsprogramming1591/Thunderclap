@@ -31,7 +31,7 @@ public class MoveBall extends CommandBase {
 
      public void end(boolean interrupted) {
         System.out.println("MoveBall Calling hopperStop and stopperOff and suckerStop");
-        m_hopperSubsystem.hopperStop();
+        m_hopperSubsystem.hopperOff();
         //m_hopperSubsystem.stopperOff();
         m_hopperSubsystem.suckerOff();
      }

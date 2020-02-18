@@ -37,7 +37,7 @@ public class ShooterOn extends CommandBase {
   @Override
   public void execute() {
     System.out.println("ShooterSubsystem Calling ShooterOn");
-    m_subsystem.on();
+    m_subsystem.shooterOn();
  }
 
   // Called once the command ends or is interrupted.

@@ -2,7 +2,7 @@
 /* Copyright (c) 2018-2019 FIRST. All Rights Reserved.                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project. Squidward                                                     */
+/* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
@@ -13,17 +13,17 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 /**
  * An example command that uses an example subsystem.
  */
-public class SuckerForward extends CommandBase {
-  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final HopperSubsystem m_hopperSubsystem;
+public class StopperOff extends CommandBase {
+  @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
+  private final HopperSubsystem m_subsystem;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public SuckerForward(HopperSubsystem subsystem) {
-    m_hopperSubsystem = subsystem;
+  public StopperOff(HopperSubsystem subsystem) {
+    m_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -31,13 +31,12 @@ public class SuckerForward extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("HopperSubsystem Calling SuckerForward");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-  m_hopperSubsystem.suckerOn();
+    m_subsystem.stopperOff();
   }
 
   // Called once the command ends or is interrupted.

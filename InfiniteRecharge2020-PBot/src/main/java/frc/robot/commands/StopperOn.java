@@ -13,8 +13,8 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 /**
  * An example command that uses an example subsystem.
  */
-public class StopperForward extends CommandBase {
-  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
+public class StopperOn extends CommandBase {
+  @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
   private final HopperSubsystem m_subsystem;
 
   /**
@@ -22,7 +22,7 @@ public class StopperForward extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public StopperForward(HopperSubsystem subsystem) {
+  public StopperOn(HopperSubsystem subsystem) {
     m_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);

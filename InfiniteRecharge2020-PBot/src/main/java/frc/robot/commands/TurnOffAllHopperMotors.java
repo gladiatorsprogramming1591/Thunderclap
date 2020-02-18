@@ -20,7 +20,7 @@ public class TurnOffAllHopperMotors extends CommandBase {
     public void initialize() {
         System.out.println("HopperSubsystem Calling StopperOff, HopperStop, SuckerOff");
         m_hopperSubsystem.stopperOff();    
-        m_hopperSubsystem.hopperStop();    
+        m_hopperSubsystem.hopperOff();    
         m_hopperSubsystem.suckerOff();    
     }
 

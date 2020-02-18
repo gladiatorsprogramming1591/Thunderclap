@@ -32,7 +32,7 @@ public class IntakeandSuckerOn extends ParallelCommandGroup {
         new IntakeOn(intakeSubsystem),
 
         // Example 2
-        new SuckerForward(hopperSubsystem)
+        new SuckerOn(hopperSubsystem)
     );
   }
 

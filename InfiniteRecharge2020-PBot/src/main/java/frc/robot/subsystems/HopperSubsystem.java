@@ -46,7 +46,7 @@ public class HopperSubsystem extends SubsystemBase {
         m_hopperMotor.set(Constants.kHopperReverseSpeed);
     }
 
-    public void hopperStop() {
+    public void hopperOff() {
         m_hopperMotor.set(0);
     }
 

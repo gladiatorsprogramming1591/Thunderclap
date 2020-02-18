@@ -30,8 +30,8 @@ public class TurnOffAllMotors extends ParallelCommandGroup {
   public TurnOffAllMotors(HopperSubsystem hopperSubsystem, IntakeSubsystem intakeSubsystem, ShooterSubsystem shooterSubsystem ) {
     addCommands(
         new TurnOffAllHopperMotors(hopperSubsystem),
-        new IntakeStop(intakeSubsystem),
-        new ShooterStop(shooterSubsystem)       
+        new IntakeOff(intakeSubsystem),
+        new ShooterOff(shooterSubsystem)
     );
   }
 
