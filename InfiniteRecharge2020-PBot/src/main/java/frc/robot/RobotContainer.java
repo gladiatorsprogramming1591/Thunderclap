@@ -49,6 +49,8 @@ import frc.robot.commands.TurnOnAllMotors;
 import frc.robot.commands.TurnOffAllMotors;
 import frc.robot.commands.IntakeandSuckerOn;
 import frc.robot.commands.IntakeandSuckerOff;
+import frc.robot.commands.StopperandShooterOn;
+import frc.robot.commands.StopperandShooterOff;
 
 import frc.robot.commands.BallLoadingCommandGroup;
 import frc.robot.commands.BallLoadingCommandGroupStop;
@@ -191,6 +193,12 @@ public class RobotContainer {
 
     new JoystickButton(m_driverStick, JoystickButtonConstants.kB)
       .whenReleased(new IntakeandSuckerOff(m_intakeSubsystem, m_hopperSubsystem));
+
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kB)
+      .whenPressed(new StopperandShooterOn(m_hopperSubsystem, m_shooterSubsystem));
+
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kB)
+      .whenReleased(new StopperandShooterOff(m_hopperSubsystem, m_shooterSubsystem));
 
   }
   
