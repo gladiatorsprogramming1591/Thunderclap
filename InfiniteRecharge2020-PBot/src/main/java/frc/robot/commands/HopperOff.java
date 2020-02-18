@@ -19,7 +19,18 @@ public class HopperOff extends CommandBase {
     @Override
     public void initialize() {
         System.out.println("HopperSubsystem Calling HopperOff");
-        m_hopperSubsystem.hopperOff();    
+    }
+
+    // Called every time the scheduler runs while the command is scheduled.
+    @Override
+    public void execute() {
+        m_hopperSubsystem.hopperOff();
+    }
+
+    // Called once the command ends or is interrupted.
+    @Override
+    public void end(boolean interrupted) {
+    
     }
 
     @Override

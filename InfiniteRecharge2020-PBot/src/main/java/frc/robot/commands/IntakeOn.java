@@ -4,11 +4,11 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.IntakeSubsystem;
 
-public class IntakeReverse extends CommandBase {
+public class IntakeOn extends CommandBase {
 
    IntakeSubsystem m_intakeSubsystem;
 
- 	public IntakeReverse(IntakeSubsystem intakeSubsystem) {
+   public IntakeOn(IntakeSubsystem intakeSubsystem) {
       m_intakeSubsystem = intakeSubsystem;
       addRequirements(m_intakeSubsystem);
    }
