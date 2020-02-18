@@ -23,16 +23,16 @@ public class ArmOff extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ArmOff(ArmSubsystem subsystem) {
-    m_armSubsystem = subsystem;
+  public ArmOff(ArmSubsystem armSubsystem) {
+    m_armSubsystem = armSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
+    addRequirements(armSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("Arm subsystem Calling armStop");
+    System.out.println("Arm subsystem Calling ArmStop");
   }
 
   // Called every time the scheduler runs while the command is scheduled.

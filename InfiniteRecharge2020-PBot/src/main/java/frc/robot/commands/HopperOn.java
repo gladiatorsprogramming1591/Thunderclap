@@ -18,10 +18,19 @@ public class HopperOn extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        System.out.println("hopperSubsystem Calling stopperOn, hopperOn, suckerOn");
-        m_hopperSubsystem.stopperOn();    
-        m_hopperSubsystem.hopperOn();    
-        m_hopperSubsystem.suckerOn();    
+        System.out.println("HopperSubsystem Calling HopperOn");  
+    }
+
+    // Called every time the scheduler runs while the command is scheduled.
+    @Override
+    public void execute() {
+        m_hopperSubsystem.hopperOn();
+    }
+
+    // Called once the command ends or is interrupted.
+    @Override
+    public void end(boolean interrupted) {
+  
     }
 
     @Override

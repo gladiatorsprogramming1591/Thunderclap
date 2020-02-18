@@ -4,23 +4,26 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.IntakeSubsystem;
 
+public class IntakeReverse extends CommandBase {
 
-
- public class IntakeReverse extends CommandBase {
-
-     IntakeSubsystem m_intakeSubsystem;
+   IntakeSubsystem m_intakeSubsystem;
 
  	public IntakeReverse(IntakeSubsystem intakeSubsystem) {
-         m_intakeSubsystem = intakeSubsystem;
-         addRequirements(m_intakeSubsystem);
-        }
+      m_intakeSubsystem = intakeSubsystem;
+      addRequirements(m_intakeSubsystem);
+   }
     
-     // Called when the command is initially scheduled.
-     @Override
-     public void initialize() {
-        System.out.println("IntakeSubsystem Calling IntakeReverse");
-         m_intakeSubsystem.intakeReverse();  
-    }
+   // Called when the command is initially scheduled.
+   @Override
+   public void initialize() {
+      System.out.println("IntakeSubsystem Calling IntakeReverse");
+   }
+
+   // Called every time the scheduler runs while the command is scheduled.
+   @Override
+   public void execute() {
+      m_intakeSubsystem.intakeReverse();
+   }
      
     //  @Override
     //  public boolean isFinished(){
@@ -33,31 +36,5 @@ import frc.robot.subsystems.IntakeSubsystem;
     //          m_intakeSubsystem.intakeStop();   
     //      }
     //  }
- }
+}
 
-
-// public class IntakeReverse extends CommandBase {
-//     IntakeSubsystem m_intakeSubsystem;
-
-// 	public IntakeReverse(IntakeSubsystem intakeSubsystem, boolean intakeReverseBool) {
-//         m_intakeSubsystem = intakeSubsystem;	
-//         if (intakeReverseBool == true) {
-//             initialize();
-//         }
-
-//         if (intakeReverseBool == false) {
-//             end(intakeReverseBool);
-//         }
-//     }
-    
-//     // Called when the command is initially scheduled.
-//     @Override
-//     public void initialize() {
-//         m_intakeSubsystem.intakeReverse();  
-//     }
-//     public void end(boolean interrupted) {
-//         if ( interrupted == false) {
-//             m_intakeSubsystem.intakeStop();   
-//         }
-//     }
-// }

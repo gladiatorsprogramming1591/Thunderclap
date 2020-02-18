@@ -18,10 +18,8 @@ public class HopperOff extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        System.out.println("HopperSubsystem Calling StopperOff, HopperStop, SuckerOff");
-        m_hopperSubsystem.stopperOff();    
+        System.out.println("HopperSubsystem Calling HopperOff");
         m_hopperSubsystem.hopperOff();    
-        m_hopperSubsystem.suckerOff();    
     }
 
     @Override

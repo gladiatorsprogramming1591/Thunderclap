@@ -31,19 +31,18 @@ public class SuckerOff extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("HopperSubsystem Calling SuckerStop");
-
+    System.out.println("HopperSubsystem Calling SuckerOff");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    m_hopperSubsystem.suckerOff();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_hopperSubsystem.suckerOff();
   }
 
   // Returns true when the command should end.

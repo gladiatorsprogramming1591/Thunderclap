@@ -31,14 +31,14 @@ public class ShooterOn extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    System.out.println("ShooterSubsystem Calling ShooterOn");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("ShooterSubsystem Calling ShooterOn");
     m_subsystem.shooterOn();
- }
+  }
 
   // Called once the command ends or is interrupted.
   @Override

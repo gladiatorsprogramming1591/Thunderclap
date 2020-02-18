@@ -3,11 +3,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.HopperSubsystem;
 
-public class HopperReverse extends CommandBase {
+public class TurnOnAllHopperMotors extends CommandBase {
 
     HopperSubsystem m_hopperSubsystem;
 
-    public HopperReverse(HopperSubsystem hopperSubsystem) {
+    public TurnOnAllHopperMotors(HopperSubsystem hopperSubsystem) {
         m_hopperSubsystem = hopperSubsystem;
         // This makes the command interruptible by other 
 		// commands that add this same subsystem as a requirement 
@@ -18,19 +18,10 @@ public class HopperReverse extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        System.out.println("HopperSubsystem Calling HopperReverse");  
-    }
-
-    // Called every time the scheduler runs while the command is scheduled.
-    @Override
-    public void execute() {
-        m_hopperSubsystem.hopperReverse();
-    }
-
-    // Called once the command ends or is interrupted.
-    @Override
-    public void end(boolean interrupted) {
-  
+        System.out.println("hopperSubsystem Calling stopperOn, hopperOn, suckerOn");
+        m_hopperSubsystem.stopperOn();    
+        m_hopperSubsystem.hopperOn();    
+        m_hopperSubsystem.suckerOn();    
     }
 
     @Override

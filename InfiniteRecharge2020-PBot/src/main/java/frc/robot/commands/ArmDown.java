@@ -22,16 +22,16 @@ public class ArmDown extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ArmDown(ArmSubsystem subsystem) {
-    m_armSubsystem = subsystem;
+  public ArmDown(ArmSubsystem armSubsystem) {
+    m_armSubsystem = armSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
+    addRequirements(armSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("Arm subsystem Calling armDown");
+    System.out.println("Arm subsystem Calling ArmDown");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
