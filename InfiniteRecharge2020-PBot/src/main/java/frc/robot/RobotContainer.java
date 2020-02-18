@@ -195,7 +195,7 @@ public class RobotContainer {
       .whenReleased(new IntakeandSuckerOff(m_intakeSubsystem, m_hopperSubsystem));
 
     new JoystickButton(m_driverStick, JoystickButtonConstants.kB)
-      .whenPressed(new StopperandShooterOn(m_hopperSubsystem, m_shooterSubsystem));
+      .whenPressed(new StopperandShooterOn(m_hopperSubsystem, m_shooterSubsystem).withTimeout(Constants.kStoppertoShooter));
 
     new JoystickButton(m_driverStick, JoystickButtonConstants.kB)
       .whenReleased(new StopperandShooterOff(m_hopperSubsystem, m_shooterSubsystem));
