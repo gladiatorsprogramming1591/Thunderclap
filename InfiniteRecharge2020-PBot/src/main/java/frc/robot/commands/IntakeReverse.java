@@ -10,6 +10,7 @@ public class IntakeReverse extends CommandBase {
 
  	public IntakeReverse(IntakeSubsystem intakeSubsystem) {
       m_intakeSubsystem = intakeSubsystem;
+      // Use addRequirements() here to declare subsystem dependencies.
       addRequirements(m_intakeSubsystem);
    }
     
@@ -24,17 +25,16 @@ public class IntakeReverse extends CommandBase {
    public void execute() {
       m_intakeSubsystem.intakeReverse();
    }
-     
-    //  @Override
-    //  public boolean isFinished(){
-    //      return true;
-    //  }
-     
-    //  public void end(boolean interrupted) {
-    //      if ( interrupted == false) {
-    //          System.out.println("IntakeReverse Calling IntakeStop");
-    //          m_intakeSubsystem.intakeStop();   
-    //      }
-    //  }
+    
+   // Called once the command ends or is interrupted.
+   public void end(boolean interrupted) {
+   }
+
+   // Returns true when the command should end.
+   @Override
+   public boolean isFinished(){
+      return true;
+   }
+
 }
 

@@ -9,9 +9,7 @@ public class MoveBall extends CommandBase {
 
 	public MoveBall(HopperSubsystem hopperSubsystem) {
         m_hopperSubsystem = hopperSubsystem;
-        // This makes the command interruptible by other 
-		// commands that add this same subsystem as a requirement 
-		// which eliminates the need to implement the isFinished() method
+        // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(m_hopperSubsystem);
 	}
 
@@ -29,15 +27,18 @@ public class MoveBall extends CommandBase {
         m_hopperSubsystem.suckerOn();
     }
 
-    // @Override
-    // public boolean isFinished() {
-    //     return true;
-    // }
-
+    // Called once the command ends or is interrupted.
     public void end(boolean interrupted) {
         System.out.println("MoveBall Calling HopperStop and StopperOff and SuckerOff");
         m_hopperSubsystem.hopperOff();
         //m_hopperSubsystem.stopperOff();
         m_hopperSubsystem.suckerOff();
     }
+
+    // Returns true when the command should end.
+    @Override
+    public boolean isFinished() {
+        return true;
+    }
+
 }

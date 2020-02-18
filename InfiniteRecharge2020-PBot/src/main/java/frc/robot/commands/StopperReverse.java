@@ -22,10 +22,10 @@ public class StopperReverse extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public StopperReverse(HopperSubsystem subsystem) {
-    m_subsystem = subsystem;
+  public StopperReverse(HopperSubsystem hopperSubsystem) {
+    m_subsystem = hopperSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
+    addRequirements(hopperSubsystem);
   }
 
   // Called when the command is initially scheduled.

@@ -22,10 +22,10 @@ public class StopperOn extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public StopperOn(HopperSubsystem subsystem) {
-    m_subsystem = subsystem;
+  public StopperOn(HopperSubsystem hopperSubsystem) {
+    m_subsystem = hopperSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
+    addRequirements(hopperSubsystem);
   }
 
   // Called when the command is initially scheduled.

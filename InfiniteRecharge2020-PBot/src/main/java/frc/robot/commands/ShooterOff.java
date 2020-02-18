@@ -22,10 +22,10 @@ public class ShooterOff extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ShooterOff(ShooterSubsystem subsystem) {
-    m_subsystem = subsystem;
+  public ShooterOff(ShooterSubsystem shooterSubsystem) {
+    m_subsystem = shooterSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
+    addRequirements(shooterSubsystem);
   }
 
   // Called when the command is initially scheduled.

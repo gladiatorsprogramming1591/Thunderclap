@@ -9,9 +9,7 @@ public class HopperOn extends CommandBase {
 
     public HopperOn(HopperSubsystem hopperSubsystem) {
         m_hopperSubsystem = hopperSubsystem;
-        // This makes the command interruptible by other 
-		// commands that add this same subsystem as a requirement 
-		// which eliminates the need to implement the isFinished() method
+        // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(m_hopperSubsystem);
 	}
 

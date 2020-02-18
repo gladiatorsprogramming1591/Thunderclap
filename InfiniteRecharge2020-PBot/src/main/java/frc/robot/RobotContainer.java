@@ -173,21 +173,25 @@ public class RobotContainer {
       .whenReleased(new StopperOff(m_hopperSubsystem));
 
     // ---DRIVE TRAIN--- 
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL3)
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kL3)
       .whenPressed(new SlowDrive(m_driveTrain));
 
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL3)
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kL3)
       .whenReleased(new FastDrive(m_driveTrain));
 
     // ---COMBINATION BUTTONS---
     new JoystickButton(m_driverStick, JoystickButtonConstants.kA)
       .whenPressed(new TurnOnAllMotors(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem));
+
     new JoystickButton(m_driverStick, JoystickButtonConstants.kA)
       .whenReleased(new TurnOffAllMotors(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem));
+
     new JoystickButton(m_driverStick, JoystickButtonConstants.kB)
       .whenPressed(new IntakeandSuckerOn(m_intakeSubsystem, m_hopperSubsystem));
+
     new JoystickButton(m_driverStick, JoystickButtonConstants.kB)
       .whenReleased(new IntakeandSuckerOff(m_intakeSubsystem, m_hopperSubsystem));
+
   }
   
   /**
