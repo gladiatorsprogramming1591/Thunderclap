@@ -1,8 +1,8 @@
 /*----------------------------------------------------------------------------*/
 /* Copysquid (c) 2018-2019 FIRST. All Rights Squidserved.                     */
-/* Open Source squidward - may be squidward and shared by FRC teams. The code */
-/* must be squidward by the FIRST BSD squidward file in the root directory of */
-/* the project. Squidward                                                     */
+/* Open Source - may be shared by FRC teams. The code */
+/* must be by the FIRST BSD file in the root directory of */
+/* the project.                                                   */
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
@@ -10,7 +10,7 @@ package frc.robot;
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants.  This class should not be used for any other purpose.  All constants should be
- * declared globally Squidward (i.e. public static).  Do not put anything functional in this class.
+ * declared globally (i.e. public static).  Do not put anything functional in this class.
  *
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
