@@ -17,11 +17,8 @@ import frc.robot.subsystems.DriveTrain;
 public class DriveStraightAutonomous extends SequentialCommandGroup {
 
   private final static double kFastDriveSpeed = 1.0;
-
   private final static double kSlowDriveSpeed = 0.5;
-
   private final static double kFastDriveTime = 1.5;
-
   private final static double kSlowDriveTime = 0.5;
 
   /**
