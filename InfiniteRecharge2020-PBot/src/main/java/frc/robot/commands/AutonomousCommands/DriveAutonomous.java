@@ -7,7 +7,6 @@
 
 package frc.robot.commands.AutonomousCommands;
 
-import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -37,7 +36,7 @@ public class DriveAutonomous extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
+    m_driveTrain.setBrakeMode();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -49,6 +48,7 @@ public class DriveAutonomous extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    m_driveTrain.setCoastMode();
   }
 
   // Returns true when the command should end.

@@ -16,10 +16,12 @@ import frc.robot.subsystems.DriveTrain;
  */
 public class DriveStraightAutonomous extends SequentialCommandGroup {
 
-  private final static double kFastDriveSpeed = 1.0;
-  private final static double kSlowDriveSpeed = 0.5;
-  private final static double kFastDriveTime = 1.5;
-  private final static double kSlowDriveTime = 0.5;
+  private final static double kFastDriveSpeed = 0.8;
+  // private final static double kSlowDriveSpeed = 0.3;
+  private final static double kStopSpeed = -0.5;
+  private final static double kFastDriveTime = 1.0;
+  // private final static double kSlowDriveTime = 0.3;
+  private final static double kStopTime = 0.2;
 
   /**
    * Creates a new Command Group. There are 4 types of command groups:
@@ -37,8 +39,7 @@ public class DriveStraightAutonomous extends SequentialCommandGroup {
         new DriveTimed(driveTrain, kFastDriveSpeed, 0, kFastDriveTime),
 
         // Drive straight slow and park at shooter spot
-        new DriveTimed(driveTrain, kSlowDriveSpeed, 0, kSlowDriveTime)
-        
+        new DriveTimed(driveTrain, kStopSpeed, 0, kStopTime)       
     );
   }
 
