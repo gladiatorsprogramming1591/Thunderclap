@@ -7,36 +7,55 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.GenericHID;
-
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.ArmDown;
-import frc.robot.commands.ArmStop;
-import frc.robot.commands.ArmUp;
-import frc.robot.commands.IntakeOn;
-import frc.robot.commands.IntakeReverse;
-import frc.robot.commands.IntakeStop;
-import frc.robot.commands.MoveBall;
-import frc.robot.commands.SuckerForward;
-import frc.robot.commands.SuckerReverse;
-import frc.robot.commands.SuckerStop;
-import frc.robot.subsystems.IntakeSubsystem;
-
-import frc.robot.subsystems.ShooterSubsystem;
-import frc.robot.commands.ShooterStop;
-import frc.robot.commands.ShooterOn;
-
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.subsystems.ArmSubsystem;
-import frc.robot.commands.HopperOn;
-import frc.robot.commands.HopperReverse;
-import frc.robot.commands.HopperStop;
-import frc.robot.subsystems.HopperSubsystem;
-
 import frc.robot.JoystickButtonConstants;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import frc.robot.subsystems.DriveTrain;
+// import frc.robot.subsystems.DriveTrainC;
+import frc.robot.subsystems.DriveTrainP;
+import frc.robot.commands.SlowDrive;
+import frc.robot.commands.FastDrive;
+
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.commands.IntakeOn;
+import frc.robot.commands.IntakeReverse;
+import frc.robot.commands.IntakeOff;
+
+import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.commands.ShooterOff;
+import frc.robot.commands.ShooterOn;
+
+import frc.robot.subsystems.ArmSubsystem;
+import frc.robot.commands.ArmDown;
+import frc.robot.commands.ArmOff;
+import frc.robot.commands.ArmUp;
+
+import frc.robot.subsystems.HopperSubsystem;
+import frc.robot.commands.HopperOn;
+import frc.robot.commands.HopperReverse;
+import frc.robot.commands.HopperOff;
+
+import frc.robot.commands.StopperOn;
+import frc.robot.commands.StopperReverse;
+import frc.robot.commands.StopperOff;
+
+import frc.robot.commands.SuckerOn;
+import frc.robot.commands.SuckerReverse;
+import frc.robot.commands.SuckerOff;
+
+import frc.robot.commands.TurnOnAllMotors;
+import frc.robot.commands.TurnOffAllMotors;
+import frc.robot.commands.IntakeandSuckerOn;
+import frc.robot.commands.IntakeandSuckerOff;
+import frc.robot.commands.StopperandShooterOn;
+import frc.robot.commands.StopperandShooterOff;
+
+import frc.robot.commands.BallLoadingCommandGroup;
+import frc.robot.commands.BallLoadingCommandGroupStop;
+import frc.robot.commands.MoveBall;
+
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -44,19 +63,21 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems are defined here...
+  // ---CONTROLLERS---
+  Joystick m_manipulatorStick = new Joystick(Constants.kManipulatorControllerPort);
+  Joystick m_driverStick = new Joystick(Constants.kDriverControllerPort);
+
+  // ---SUBSYSTEMS---
   private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
   private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
-  private final HopperSubsystem m_hopperSubsystem = new HopperSubsystem();
   private final ArmSubsystem m_armSubsystem = new ArmSubsystem();
+  private final HopperSubsystem m_hopperSubsystem = new HopperSubsystem(Constants.kPbotStopperForwardSpeed, Constants.kPbotStopperReverseSpeed);
+  // private final HopperSubsystem m_hopperSubsystem = new HopperSubsystem(Constants.kCbotStopperForwardSpeed, Constants.kCbotStopperReverseSpeed);
+  private final DriveTrain m_driveTrain = new DriveTrainP(m_driverStick);
+  // private final DriveTrain m_driveTrain = new DriveTrainC(m_driverStick);
   
   // The robot's commands are defined here...
   //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-  
-
-  // The manipulator's controller
-  Joystick m_manipulatorStick = new Joystick(Constants.kManipulatorControllerPort);
-
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -64,7 +85,6 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    SmartDashboard.putData("intakeMotor", m_intakeSubsystem);
   }
 
   /**
@@ -74,7 +94,6 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    
     // ---INTAKE SECTION---
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kA) 
       .whenPressed(new IntakeOn(m_intakeSubsystem));
@@ -83,30 +102,30 @@ public class RobotContainer {
       .whenPressed(new IntakeReverse(m_intakeSubsystem));
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kA) 
-      .whenReleased(new IntakeStop(m_intakeSubsystem));
+      .whenReleased(new IntakeOff(m_intakeSubsystem));
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kB)
-      .whenReleased(new IntakeStop(m_intakeSubsystem));
+      .whenReleased(new IntakeOff(m_intakeSubsystem));
 
     // ---SHOOTER SECTION---
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kY) 
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kBack) 
       .whenPressed(new ShooterOn(m_shooterSubsystem));
 
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kY) 
-      .whenReleased(new ShooterStop(m_shooterSubsystem));
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kBack) 
+      .whenReleased(new ShooterOff(m_shooterSubsystem));
 
     // ---ARM---
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kStart) 
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL3) 
       .whenPressed(new ArmUp(m_armSubsystem));
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kBack)
       .whenPressed(new ArmDown(m_armSubsystem));
 
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kStart)
-      .whenReleased(new ArmStop(m_armSubsystem));
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL3)
+      .whenReleased(new ArmOff(m_armSubsystem));
       
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kBack)
-      .whenReleased(new ArmStop(m_armSubsystem));
+      .whenReleased(new ArmOff(m_armSubsystem));
 
     // ---HOPPER---
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kY) 
@@ -116,38 +135,72 @@ public class RobotContainer {
       .whenPressed(new HopperReverse(m_hopperSubsystem));
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kY) 
-      .whenReleased(new HopperStop(m_hopperSubsystem));
+      .whenReleased(new HopperOff(m_hopperSubsystem));
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kX)
-      .whenReleased(new HopperStop(m_hopperSubsystem));
+      .whenReleased(new HopperOff(m_hopperSubsystem));
 
     // ---MOVE BALL---
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR1)
-      .whenPressed(new MoveBall(m_hopperSubsystem).withTimeout(Constants.kMoveOneBallTimeOut));
+    // new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR1)
+    //   .whenPressed(new MoveBall(m_hopperSubsystem).withTimeout(Constants.kMoveOneBallTimeOut));
 
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR2)
-      .whenPressed(new MoveBall(m_hopperSubsystem).withTimeout(Constants.kMoveAllBallsTimeOut));
+    // new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR2)
+    //   .whenPressed(new MoveBall(m_hopperSubsystem).withTimeout(Constants.kMoveAllBallsTimeOut));
 
-    // ---SUCKER---
+    // ---SUCKER(SUCKS BALLS INTO HOPPER)---
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL1) 
-      .whenPressed(new SuckerForward(m_hopperSubsystem));
+      .whenPressed(new SuckerOn(m_hopperSubsystem));
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL2)
       .whenPressed(new SuckerReverse(m_hopperSubsystem));
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL1) 
-      .whenReleased(new SuckerStop(m_hopperSubsystem));
+      .whenReleased(new SuckerOff(m_hopperSubsystem));
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL2)
-      .whenReleased(new SuckerStop(m_hopperSubsystem));
+      .whenReleased(new SuckerOff(m_hopperSubsystem));
 
+    // ---STOPPER---
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR1)
+      .whenPressed(new StopperOn(m_hopperSubsystem));
 
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR1)
+      .whenReleased(new StopperOff(m_hopperSubsystem));
 
-      
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR2)
+      .whenPressed(new StopperReverse(m_hopperSubsystem));
+
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR2)
+      .whenReleased(new StopperOff(m_hopperSubsystem));
+
+    // ---DRIVE TRAIN--- 
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kL3)
+      .whenPressed(new SlowDrive(m_driveTrain));
+
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kL3)
+      .whenReleased(new FastDrive(m_driveTrain));
+
+    // ---COMBINATION BUTTONS---
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kA)
+      .whenPressed(new TurnOnAllMotors(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem));
+
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kA)
+      .whenReleased(new TurnOffAllMotors(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem));
+
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kB)
+      .whenPressed(new IntakeandSuckerOn(m_intakeSubsystem, m_hopperSubsystem));
+
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kB)
+      .whenReleased(new IntakeandSuckerOff(m_intakeSubsystem, m_hopperSubsystem));
+
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kY)
+      .whenPressed(new StopperandShooterOn(m_hopperSubsystem, m_shooterSubsystem));
+
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kY)
+      .whenReleased(new StopperandShooterOff(m_hopperSubsystem, m_shooterSubsystem));
+
   }
   
-
-
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *

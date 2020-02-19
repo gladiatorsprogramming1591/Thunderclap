@@ -22,10 +22,10 @@ public class SuckerReverse extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public SuckerReverse(HopperSubsystem subsystem) {
-    m_hopperSubsystem = subsystem;
+  public SuckerReverse(HopperSubsystem hopperSubsystem) {
+    m_hopperSubsystem = hopperSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
+    addRequirements(hopperSubsystem);
   }
 
   // Called when the command is initially scheduled.

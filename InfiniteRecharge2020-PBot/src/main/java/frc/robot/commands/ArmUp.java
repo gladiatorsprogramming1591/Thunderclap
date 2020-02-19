@@ -16,22 +16,22 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class ArmUp extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final ArmSubsystem m_armSubsystem;
-  boolean isFinished;
+  
   /**
    * Creates a new ArmCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ArmUp(ArmSubsystem subsystem) {
-    m_armSubsystem = subsystem;
+  public ArmUp(ArmSubsystem armSubsystem) {
+    m_armSubsystem = armSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
+    addRequirements(armSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("Arm subsystem Calling armUp");
+    System.out.println("Arm subsystem Calling ArmUp");
   }
 
   // Called every time the scheduler runs while the command is scheduled.

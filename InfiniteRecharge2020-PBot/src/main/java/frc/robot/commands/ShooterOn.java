@@ -22,10 +22,10 @@ public class ShooterOn extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ShooterOn(ShooterSubsystem subsystem) {
-    m_subsystem = subsystem;
+  public ShooterOn(ShooterSubsystem shooterSubsystem) {
+    m_subsystem = shooterSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
+    addRequirements(shooterSubsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -37,6 +37,7 @@ public class ShooterOn extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    m_subsystem.shooterOn();
   }
 
   // Called once the command ends or is interrupted.
@@ -47,6 +48,6 @@ public class ShooterOn extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

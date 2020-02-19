@@ -7,38 +7,37 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.ArmSubsystem;
-
+import frc.robot.subsystems.HopperSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
  * An example command that uses an example subsystem.
  */
-public class ArmStop extends CommandBase {
-  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final ArmSubsystem m_armSubsystem;
+public class StopperOn extends CommandBase {
+  @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
+  private final HopperSubsystem m_subsystem;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ArmStop(ArmSubsystem subsystem) {
-    m_armSubsystem = subsystem;
+  public StopperOn(HopperSubsystem hopperSubsystem) {
+    m_subsystem = hopperSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
+    addRequirements(hopperSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("Arm subsystem Calling armStop");
+    System.out.println("HopperSubsystem Calling SuckerOn");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_armSubsystem.armStop();
+    m_subsystem.stopperOn();
   }
 
   // Called once the command ends or is interrupted.

@@ -7,33 +7,32 @@ public class HopperOn extends CommandBase {
 
     HopperSubsystem m_hopperSubsystem;
 
-	public HopperOn(HopperSubsystem hopperSubsystem) {
+    public HopperOn(HopperSubsystem hopperSubsystem) {
         m_hopperSubsystem = hopperSubsystem;
-        // This makes the command interruptible by other 
-		// commands that add this same subsystem as a requirement 
-		// which eliminates the need to implement the isFinished() method
+        // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(m_hopperSubsystem);
 	}
 
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        System.out.println("hopperSubsystem Calling hopperOn");
-        m_hopperSubsystem.hopperOn();    
+        System.out.println("HopperSubsystem Calling HopperOn");  
     }
 
-    // @Override
-    // public boolean isFinished() {
-    //     return true;
-    // }
+    // Called every time the scheduler runs while the command is scheduled.
+    @Override
+    public void execute() {
+        m_hopperSubsystem.hopperOn();
+    }
 
-    // public void end(boolean interrupted) {
-    //     if ( interrupted == false) {
-    //         System.out.println("hopperOn Calling hopperStop");
-    //         m_hopperSubsystem.hopperStop();   
-    //     }
-    //     else {
-    //         System.out.println("hopperOn interrupted");
-    //     }
-    // }
+    // Called once the command ends or is interrupted.
+    @Override
+    public void end(boolean interrupted) {
+  
+    }
+
+    @Override
+    public boolean isFinished() {
+        return true;
+    }
 }

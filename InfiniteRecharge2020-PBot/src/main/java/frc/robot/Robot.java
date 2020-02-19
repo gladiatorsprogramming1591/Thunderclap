@@ -7,11 +7,7 @@
 
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
@@ -27,12 +23,6 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
-  private DifferentialDrive m_tankDrive;
-  private Joystick m_driverController;
-
-  private WPI_TalonSRX m_rTalon;
-  private WPI_TalonSRX m_lTalon;
-
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -41,13 +31,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-
-    m_rTalon = new WPI_TalonSRX(Constants.kRightMotorChannel);
-    m_lTalon = new WPI_TalonSRX(Constants.kLeftMotorChannel);
-
     m_robotContainer = new RobotContainer();
-    m_driverController = new Joystick(Constants.kDriverControllerPort);
-    m_tankDrive = new DifferentialDrive(m_lTalon, m_rTalon);
   }
 
   /**
@@ -64,8 +48,6 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-
-    m_tankDrive.arcadeDrive(m_driverController.getY(), m_driverController.getX());
   }
 
   /**
@@ -114,8 +96,9 @@ public class Robot extends TimedRobot {
    * This function is called periodically during operator control.
    */
   @Override
-  public void teleopPeriodic() {
-  }
+  public void teleopPeriodic() {    
+
+    }
 
   @Override
   public void testInit() {

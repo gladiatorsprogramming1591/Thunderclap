@@ -24,6 +24,9 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public IntakeSubsystem() {
         m_intakeMotor = new CANSparkMax(Constants.kIntakeChannel, MotorType.kBrushless);
+
+        m_intakeMotor.setOpenLoopRampRate(Constants.kIntakeRampRate);
+
         SmartDashboard.putData("Intake Subsystem", this);
     }
     public void intakeOn() {
@@ -34,7 +37,7 @@ public class IntakeSubsystem extends SubsystemBase {
         m_intakeMotor.set(Constants.kIntakeReverseSpeed);
     }
 
-    public void intakeStop() {
+    public void intakeOff() {
         m_intakeMotor.set(0);
     }
 

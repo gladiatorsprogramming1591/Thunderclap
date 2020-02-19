@@ -24,11 +24,20 @@ public class HopperSubsystem extends SubsystemBase {
     private final CANSparkMax m_hopperMotor;
     private final WPI_TalonSRX m_stopperMotor;
     private final WPI_TalonSRX m_suckerMotor;
+    private double m_stopperForwardSpeed;
+    private double m_stopperReverseSpeed;
 
-    public HopperSubsystem() {
+    public HopperSubsystem(double stopperForwardSpeed, double stopperReverseSpeed) {
+        m_stopperForwardSpeed = stopperForwardSpeed;
+        m_stopperReverseSpeed = stopperReverseSpeed;
+    
         m_hopperMotor = new CANSparkMax(Constants.kHopperChannel, MotorType.kBrushless);
         m_stopperMotor = new WPI_TalonSRX(Constants.kStopperChannel);
         m_suckerMotor = new WPI_TalonSRX(Constants.kSuckerChannel);
+
+        m_hopperMotor.setOpenLoopRampRate(Constants.kHopperRampRate);
+        m_stopperMotor.configOpenloopRamp(Constants.kStopperRampRate);
+        m_suckerMotor.configOpenloopRamp(Constants.kSuckerRampRate);
 
         SmartDashboard.putData("Stopper Motor", m_stopperMotor);
         SmartDashboard.putData("Sucker Motor", m_suckerMotor);
@@ -42,12 +51,12 @@ public class HopperSubsystem extends SubsystemBase {
         m_hopperMotor.set(Constants.kHopperReverseSpeed);
     }
 
-    public void hopperStop() {
+    public void hopperOff() {
         m_hopperMotor.set(0);
     }
 
     public void stopperOn() {
-        m_stopperMotor.set(Constants.kStopperForwardSpeed);
+        m_stopperMotor.set(m_stopperForwardSpeed);
     }
 
     public void stopperOff() {
@@ -55,18 +64,18 @@ public class HopperSubsystem extends SubsystemBase {
     }
 
     public void stopperReverse() {
-        m_stopperMotor.set(Constants.kStopperReverseSpeed);
+        m_stopperMotor.set(m_stopperReverseSpeed);
     }
+
     public void suckerOn() {
-        m_suckerMotor.set(Constants.kSuckerFowardSpeed);
-
-   }    
-   public void suckerOff() {
-        m_suckerMotor.set(0);
-
+        m_suckerMotor.set(Constants.kSuckerForwardSpeed);
     }   
+
+    public void suckerOff() {
+        m_suckerMotor.set(0);
+    }   
+
     public void suckerReverse() {
         m_suckerMotor.set(Constants.kSuckerReverseSpeed);
-
     }
 }
