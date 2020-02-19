@@ -26,8 +26,7 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void drive(double xSpeed, double zRotation, boolean squareInputs) {
-    // TODO: add a button for setting the squareInputs
-    m_differentialDrive.arcadeDrive(xSpeed, zRotation, squareInputs);;
+    m_differentialDrive.arcadeDrive(xSpeed, zRotation, squareInputs);
   }
 
   public double getAxisForward() {

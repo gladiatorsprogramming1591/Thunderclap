@@ -8,6 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.JoystickButtonConstants;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -56,6 +57,8 @@ import frc.robot.commands.BallLoadingCommandGroup;
 import frc.robot.commands.BallLoadingCommandGroupStop;
 import frc.robot.commands.MoveBall;
 
+import frc.robot.commands.AutonomousCommands.DriveStraightAutonomous;
+
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -77,7 +80,8 @@ public class RobotContainer {
   // private final DriveTrain m_driveTrain = new DriveTrainC(m_driverStick);
   
   // The robot's commands are defined here...
-  //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  // private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  private final DriveStraightAutonomous m_driveStraightAutonomous = new DriveStraightAutonomous(m_driveTrain);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -206,8 +210,8 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  // public Command getAutonomousCommand() {
-  //   // An ExampleCommand will run in autonomous
-  //   return m_autoCommand;
-  // }
+  public Command getAutonomousCommand() {
+    // An ExampleCommand will run in autonomous
+    return m_driveStraightAutonomous;
+  }
 }
