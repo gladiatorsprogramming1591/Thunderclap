@@ -28,7 +28,7 @@ public final class Constants {
     public final static double kIntakeReverseSpeed = 0.5;
     public final static double kSuckerForwardSpeed = -0.6;
     public final static double kSuckerReverseSpeed = 0.6;
-    public final static double kShooterMotorSpeed = -1.0;
+    public final static double kShooterMotorSpeed = -0.5;
     public final static double kArmUpSpeed = 1.0;
     public final static double kArmDownSpeed = -1.0;
 
