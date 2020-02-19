@@ -61,7 +61,7 @@ public final class Constants {
     //Timeouts
     public final static double kMoveOneBallTimeOut = 1.0;
     public final static double kMoveAllBallsTimeOut = 5.0;
-    public final static double kStoppertoShooter = 0.5;
+    public final static double kStoppertoShooterTimeout = 0.5;
 
     //Squared Inputs
     public final static boolean kFastSquaredInputs = false;
