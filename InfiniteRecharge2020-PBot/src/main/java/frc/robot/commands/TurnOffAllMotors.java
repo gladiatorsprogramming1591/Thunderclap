@@ -22,7 +22,7 @@ public class TurnOffAllMotors extends ParallelCommandGroup {
    * SequentialCommandGroup - first command is executed, then the second, etc. and so on until the list finishes
    * ParallelCommandGroup - ends commands when they finish
    * ParallelRaceGroup - ends as soon as any command in the group ends
-   * ParallelDeadlineGroup - ends when a specific command (the “deadline”) ends
+   * ParallelDeadlineGroup - ends when a specific command (the "deadline") ends
    *
    * @param subsystem1 The subsystem this command will run on
    * @param subsystem2 The subsystem this command will run on

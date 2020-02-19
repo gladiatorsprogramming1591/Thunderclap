@@ -30,14 +30,14 @@ public class StopperandShooterOn extends SequentialCommandGroup {
    */
   public StopperandShooterOn(HopperSubsystem m_hopperSubsystem, ShooterSubsystem m_shooterSubsystem) {
     addCommands(
-        // Turns on stopper
-        new StopperOn(m_hopperSubsystem),
+        // Turns on shooter
+        new ShooterOn(m_shooterSubsystem),
 
         // Sets delay
         new WaitCommand(Constants.kStoppertoShooterTimeout),
 
-        // Turns on shooter
-        new ShooterOn(m_shooterSubsystem)
+        // Turns on stopper
+        new StopperOn(m_hopperSubsystem)
     );
   }
 
