@@ -8,6 +8,8 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.Constants;
 import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
@@ -27,10 +29,13 @@ public class StopperandShooterOn extends ParallelCommandGroup {
    */
   public StopperandShooterOn(HopperSubsystem m_hopperSubsystem, ShooterSubsystem m_shooterSubsystem) {
     addCommands(
-        // Example 1
+        // Turns on stopper
         new StopperOn(m_hopperSubsystem),
 
-        // Example 2
+        //Sets delays
+        new WaitCommand(Constants.kStoppertoShooterTimeout),
+
+        // Turns on shooter
         new ShooterOn(m_shooterSubsystem)
     );
   }
