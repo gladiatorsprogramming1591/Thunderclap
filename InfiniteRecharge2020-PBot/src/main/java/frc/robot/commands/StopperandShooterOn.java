@@ -32,7 +32,7 @@ public class StopperandShooterOn extends ParallelCommandGroup {
         // Turns on stopper
         new StopperOn(m_hopperSubsystem),
 
-        //Sets delays
+        // Sets delay
         new WaitCommand(Constants.kStoppertoShooterTimeout),
 
         // Turns on shooter

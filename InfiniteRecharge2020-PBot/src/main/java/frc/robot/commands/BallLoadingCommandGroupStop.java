@@ -29,18 +29,12 @@ public class BallLoadingCommandGroupStop extends ParallelCommandGroup {
    */
   public BallLoadingCommandGroupStop(HopperSubsystem hopper, IntakeSubsystem intake) {
     addCommands(
-        // Example 1
+        // Turns off intake
         new IntakeOff(intake),
 
-        // Example 2
+        // Turns off hopper motor
         new HopperOff(hopper)
     );
   }
-  // @Override
-  // public void end(boolean interrupted){
-  //   if (interrupted){
-  //     intake
-  //   }
-  //
-  //}
+
 }

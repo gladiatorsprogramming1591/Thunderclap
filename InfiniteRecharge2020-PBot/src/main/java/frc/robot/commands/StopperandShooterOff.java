@@ -27,10 +27,10 @@ public class StopperandShooterOff extends SequentialCommandGroup {
    */
   public StopperandShooterOff(HopperSubsystem hopperSubsystem, ShooterSubsystem shooterSubsystem) {
     addCommands(
-        // Example 1
+        // Turns off stopper
         new StopperOff(hopperSubsystem),
 
-        // Example 2
+        // Turns off shooter
         new ShooterOff(shooterSubsystem)
     );
   }

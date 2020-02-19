@@ -29,8 +29,13 @@ public class TurnOffAllMotors extends ParallelCommandGroup {
    */
   public TurnOffAllMotors(HopperSubsystem hopperSubsystem, IntakeSubsystem intakeSubsystem, ShooterSubsystem shooterSubsystem ) {
     addCommands(
+        // Turns off hopper
         new TurnOffAllHopperMotors(hopperSubsystem),
+        
+        // Turns off intake
         new IntakeOff(intakeSubsystem),
+
+        // Turns off shooter
         new ShooterOff(shooterSubsystem)
     );
   }

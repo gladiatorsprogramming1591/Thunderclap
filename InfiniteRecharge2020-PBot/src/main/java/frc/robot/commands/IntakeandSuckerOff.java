@@ -28,10 +28,10 @@ public class IntakeandSuckerOff extends ParallelCommandGroup {
    */
   public IntakeandSuckerOff(IntakeSubsystem intakeSubsystem, HopperSubsystem hopperSubsystem) {
     addCommands(
-        // Example 1
+        // Turns off intake
         new IntakeOff(intakeSubsystem),
 
-        // Example 2
+        // Turns off sucker
         new SuckerOff(hopperSubsystem)
     );
   }

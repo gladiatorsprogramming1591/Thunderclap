@@ -29,18 +29,12 @@ public class BallLoadingCommandGroup extends ParallelCommandGroup {
    */
   public BallLoadingCommandGroup(HopperSubsystem hopper, IntakeSubsystem intake) {
     addCommands(
-        // Example 1
+        // Turns on intake
         new IntakeOn(intake),
 
-        // Example 2
+        // Does move ball command 
         new MoveBall(hopper)
     );
   }
-  // @Override
-  // public void end(boolean interrupted){
-  //   if (interrupted){
-  //     intake
-  //   }
-  //
-  //}
+
 }
