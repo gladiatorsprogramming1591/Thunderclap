@@ -24,8 +24,13 @@ public class HopperSubsystem extends SubsystemBase {
     private final CANSparkMax m_hopperMotor;
     private final WPI_TalonSRX m_stopperMotor;
     private final WPI_TalonSRX m_suckerMotor;
+    private double m_stopperForwardSpeed;
+    private double m_stopperReverseSpeed;
 
-    public HopperSubsystem() {
+    public HopperSubsystem(double stopperForwardSpeed, double stopperReverseSpeed) {
+        m_stopperForwardSpeed = stopperForwardSpeed;
+        m_stopperReverseSpeed = stopperReverseSpeed;
+    
         m_hopperMotor = new CANSparkMax(Constants.kHopperChannel, MotorType.kBrushless);
         m_stopperMotor = new WPI_TalonSRX(Constants.kStopperChannel);
         m_suckerMotor = new WPI_TalonSRX(Constants.kSuckerChannel);
@@ -51,7 +56,7 @@ public class HopperSubsystem extends SubsystemBase {
     }
 
     public void stopperOn() {
-        m_stopperMotor.set(Constants.kStopperForwardSpeed);
+        m_stopperMotor.set(m_stopperForwardSpeed);
     }
 
     public void stopperOff() {
@@ -59,7 +64,7 @@ public class HopperSubsystem extends SubsystemBase {
     }
 
     public void stopperReverse() {
-        m_stopperMotor.set(Constants.kStopperReverseSpeed);
+        m_stopperMotor.set(m_stopperReverseSpeed);
     }
 
     public void suckerOn() {

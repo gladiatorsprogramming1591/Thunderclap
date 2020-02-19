@@ -7,16 +7,17 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
 /**
- * A complex auto command that drives forward, releases a hatch, and then drives backward.
+ * A complex auto command that drives forward, releases a hatch, and then drives
+ * backward.
  */
-public class StopperandShooterOn extends ParallelCommandGroup {
+public class StopperandShooterOn extends SequentialCommandGroup {
   /**
    * Creates a new Command Group. There are 4 types of command groups:
    * SequentialCommandGroup - first command is executed, then the second, etc. and
