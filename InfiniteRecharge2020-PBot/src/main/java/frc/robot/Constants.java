@@ -20,8 +20,10 @@ public final class Constants {
     //Motor speed
     public final static double kHopperReverseSpeed = -0.6;
     public final static double kHopperForwardSpeed = 0.6;
-    public final static double kStopperReverseSpeed = 0.9;
-    public final static double kStopperForwardSpeed = -0.9;
+    public final static double kCbotStopperReverseSpeed = 0.6;
+    public final static double kPbotStopperReverseSpeed = 1.0;
+    public final static double kCbotStopperForwardSpeed = -0.6;
+    public final static double kPbotStopperForwardSpeed = -1.0;
     public final static double kIntakeForwardSpeed = -0.5;
     public final static double kIntakeReverseSpeed = 0.5;
     public final static double kSuckerForwardSpeed = -0.6;

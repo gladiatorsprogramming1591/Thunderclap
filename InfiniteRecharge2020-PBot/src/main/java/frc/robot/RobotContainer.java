@@ -70,15 +70,14 @@ public class RobotContainer {
   // ---SUBSYSTEMS---
   private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
   private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
-  private final HopperSubsystem m_hopperSubsystem = new HopperSubsystem();
   private final ArmSubsystem m_armSubsystem = new ArmSubsystem();
+  private final HopperSubsystem m_hopperSubsystem = new HopperSubsystem(Constants.kPbotStopperForwardSpeed, Constants.kPbotStopperReverseSpeed);
+  // private final HopperSubsystem m_hopperSubsystem = new HopperSubsystem(Constants.kCbotStopperForwardSpeed, Constants.kCbotStopperReverseSpeed);
   private final DriveTrain m_driveTrain = new DriveTrainP(m_driverStick);
   // private final DriveTrain m_driveTrain = new DriveTrainC(m_driverStick);
   
-  
   // The robot's commands are defined here...
   //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
