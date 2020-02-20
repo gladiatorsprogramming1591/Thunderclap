@@ -10,7 +10,7 @@ public class IntakeOff extends CommandBase {
 
    public IntakeOff(IntakeSubsystem intakeSubsystem) {
       m_intakeSubsystem = intakeSubsystem;
-      // Use addRequirements() here to declare subsystem dependencies.
+      // Use addRequirements() here to declare subsystem dependencies. ][\]
       addRequirements(m_intakeSubsystem);
    }
     

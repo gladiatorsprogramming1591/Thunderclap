@@ -42,6 +42,7 @@ public class DriveAutonomous extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    System.out.println("DriveAuto Calling Drive. Fwdspeed = " + m_AxisForward + "; TurnSpeed = " + m_AxisTurning);
     m_driveTrain.drive(m_AxisForward, m_AxisTurning, false);
   }
 
