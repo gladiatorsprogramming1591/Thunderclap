@@ -21,7 +21,7 @@ public class DriveStraightAutonomous extends SequentialCommandGroup {
   private final static double kStopSpeed = -0.5;
   private final static double kFastDriveTime = 1.0;
   // private final static double kSlowDriveTime = 0.3;
-  private final static double kStopTime = 0.2;
+  private final static double kStopTime = 0.5;
 
   /**
    * Creates a new Command Group. There are 4 types of command groups:
