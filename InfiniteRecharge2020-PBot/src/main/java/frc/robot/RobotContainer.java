@@ -128,7 +128,7 @@ public class RobotContainer {
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL3) 
       .whenPressed(new ArmUp(m_armSubsystem));
 
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kBack)
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR3)
       .whenPressed(new ArmDown(m_armSubsystem));
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL3)

@@ -29,8 +29,8 @@ public final class JoystickButtonConstants {        // MANIPULATOR  CONTROLLER  
     public static final int kR1 = 6;                // stopperOn                //
     public static final int kR2 = 8;                // stopperReverse           //
     //Right joystick when clicked 
-    public static final int kR3 = 12;               // This *should* be armDown //
+    public static final int kR3 = 12;               // armDown                  //
 
-    public static final int kBack = 9;              // shooterOn and armDown    //
-    public static final int kStart = 10;            // ballLoadingCommandGroup  // slowdrive
+    public static final int kBack = 9;              // shooterOn                //
+    public static final int kStart = 10;            // ballLoadingCommandGroup  // 
 }
