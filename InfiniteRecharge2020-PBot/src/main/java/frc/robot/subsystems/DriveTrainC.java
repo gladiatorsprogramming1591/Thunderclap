@@ -43,4 +43,20 @@ public class DriveTrainC extends DriveTrain {
     m_rearRightMotor.setOpenLoopRampRate(Constants.kDriveRampRate);
   }
 
+  @Override
+  public void setBrakeMode() {
+    m_frontLeftMotor.setIdleMode(CANSparkMax.IdleMode.kBrake);
+    m_frontRightMotor.setIdleMode(CANSparkMax.IdleMode.kBrake);
+    m_rearLeftMotor.setIdleMode(CANSparkMax.IdleMode.kBrake);
+    m_rearRightMotor.setIdleMode(CANSparkMax.IdleMode.kBrake);
+  }
+
+  @Override
+  public void setCoastMode() {
+    System.out.println("Calling DriveTrainP.setCoastMode");
+    m_frontLeftMotor.setIdleMode(CANSparkMax.IdleMode.kCoast);
+    m_frontRightMotor.setIdleMode(CANSparkMax.IdleMode.kCoast);
+    m_rearLeftMotor.setIdleMode(CANSparkMax.IdleMode.kCoast);
+    m_rearRightMotor.setIdleMode(CANSparkMax.IdleMode.kCoast);
+  }
 }

@@ -8,9 +8,10 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.JoystickButtonConstants;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.robot.subsystems.DriveTrain;
 // import frc.robot.subsystems.DriveTrainC;
@@ -46,15 +47,20 @@ import frc.robot.commands.SuckerReverse;
 import frc.robot.commands.SuckerOff;
 
 import frc.robot.commands.TurnOnAllMotors;
+import frc.robot.commands.ReverseAllMotorsExceptShooter;
 import frc.robot.commands.TurnOffAllMotors;
 import frc.robot.commands.IntakeandSuckerOn;
 import frc.robot.commands.IntakeandSuckerOff;
 import frc.robot.commands.StopperandShooterOn;
 import frc.robot.commands.StopperandShooterOff;
 
-import frc.robot.commands.BallLoadingCommandGroup;
-import frc.robot.commands.BallLoadingCommandGroupStop;
-import frc.robot.commands.MoveBall;
+// import frc.robot.commands.BallLoadingCommandGroup;
+// import frc.robot.commands.BallLoadingCommandGroupStop;
+// import frc.robot.commands.MoveBall;
+
+import frc.robot.commands.AutonomousCommands.DriveStraightAutonomous;
+import frc.robot.commands.AutonomousCommands.DriveLeftAutonomous;
+import frc.robot.commands.AutonomousCommands.DriveRightAutonomous;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -77,7 +83,11 @@ public class RobotContainer {
   // private final DriveTrain m_driveTrain = new DriveTrainC(m_driverStick);
   
   // The robot's commands are defined here...
-  //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  // private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  private final DriveStraightAutonomous m_driveStraightAutonomous = new DriveStraightAutonomous(m_driveTrain);
+  private final DriveLeftAutonomous m_driveLeftAutonomous = new DriveLeftAutonomous(m_driveTrain);
+  private final DriveRightAutonomous m_driveRightAutonomous = new DriveRightAutonomous(m_driveTrain);
+
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -118,7 +128,7 @@ public class RobotContainer {
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL3) 
       .whenPressed(new ArmUp(m_armSubsystem));
 
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kBack)
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR3)
       .whenPressed(new ArmDown(m_armSubsystem));
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL3)
@@ -199,6 +209,12 @@ public class RobotContainer {
     new JoystickButton(m_driverStick, JoystickButtonConstants.kY)
       .whenReleased(new StopperandShooterOff(m_hopperSubsystem, m_shooterSubsystem));
 
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kX)
+      .whenPressed(new ReverseAllMotorsExceptShooter(m_hopperSubsystem, m_intakeSubsystem));
+    
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kX)
+      .whenReleased(new TurnOffAllMotors(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem));
+
   }
   
   /**
@@ -206,8 +222,10 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  // public Command getAutonomousCommand() {
-  //   // An ExampleCommand will run in autonomous
-  //   return m_autoCommand;
-  // }
+  public Command getAutonomousCommand() {
+    // An ExampleCommand will run in autonomous
+    // return m_driveStraightAutonomous;
+    return m_driveLeftAutonomous;
+    // return m_driveRightAutonomous;
+  }
 }

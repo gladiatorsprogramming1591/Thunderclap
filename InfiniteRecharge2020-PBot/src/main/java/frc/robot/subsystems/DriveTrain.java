@@ -26,19 +26,24 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void drive(double xSpeed, double zRotation, boolean squareInputs) {
-    // TODO: add a button for setting the squareInputs
-    m_differentialDrive.arcadeDrive(xSpeed, zRotation, squareInputs);;
+    m_differentialDrive.arcadeDrive(xSpeed, zRotation, squareInputs);
   }
 
   public double getAxisForward() {
-      return m_driverJoystick.getY();
+      return -m_driverJoystick.getY();
   }
 
   public double getAxisTurning() {
       return m_driverJoystick.getX();
   }
 
+  public void setBrakeMode() {
+    System.out.println("Override me!!!");
+  }
 
+  public void setCoastMode() {
+    System.out.println("Override me!!!");
+  }
 
   @Override
   public void periodic() {
