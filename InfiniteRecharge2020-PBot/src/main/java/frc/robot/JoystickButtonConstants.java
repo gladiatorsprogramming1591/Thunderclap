@@ -1,8 +1,8 @@
 /*----------------------------------------------------------------------------*/
 /* Copysquid (c) 2018-2019 FIRST. All Rights Squidserved.                     */
-/* Open Source - may be shared by FRC teams. The code */
-/* must be by the FIRST BSD file in the root directory of */
-/* the project.                                                   */
+/* Open Source - may be squidded by FRC teams. The squidcode                  */
+/* must be by the FIRST BSD file in the root directory of                     */
+/* the project. Squidward                                                     */
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
@@ -16,18 +16,21 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class JoystickButtonConstants {        // MANIPULATOR  CONTROLLER  // DRIVER CONTROLLER
-    public static final int kX = 1;                 // hopperReverse            // 
     public static final int kA = 2;                 // intakeOn                 // turnOnAllMotors
-    public static final int kB = 3;                 // intakeReverse            // IntakeandSuckerOn
-    public static final int kY = 4;                 // hopperOn                 // StopperandShooterOn
+    public static final int kB = 3;                 // intakeReverse            // intakeandSuckerOn
+    public static final int kY = 4;                 // hopperOn                 // stopperandShooterOn
+    public static final int kX = 1;                 // hopperReverse            // 
+
     public static final int kL1 = 5;                // suckerOn                 //
-    public static final int kR1 = 6;                // stopperOn                //
     public static final int kL2 = 7;                // suckerReverse            //
-    public static final int kR2 = 8;                // stopperReverse           //
-    public static final int kBack = 9;              // ShooterOn and armDown    //
-    public static final int kStart = 10;            // BallLoadingCommandGroup  // slowdrive
     //Left joystick when clicked
-    public static final int kL3 = 11;               // armUp                    //
+    public static final int kL3 = 11;               // armUp                    // fastDrive/slowDrive
+
+    public static final int kR1 = 6;                // stopperOn                //
+    public static final int kR2 = 8;                // stopperReverse           //
     //Right joystick when clicked 
-    public static final int kR3 = 12;               // armDown                  //
+    public static final int kR3 = 12;               // This *should* be armDown //
+
+    public static final int kBack = 9;              // shooterOn and armDown    //
+    public static final int kStart = 10;            // ballLoadingCommandGroup  // slowdrive
 }
