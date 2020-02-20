@@ -6,9 +6,13 @@ import frc.robot.subsystems.HopperSubsystem;
 public class MoveBall extends CommandBase {
 
     HopperSubsystem m_hopperSubsystem;
+    boolean m_suckerOn;
+    boolean m_stopperOn;
 
-	public MoveBall(HopperSubsystem hopperSubsystem) {
+	public MoveBall(HopperSubsystem hopperSubsystem, boolean suckerOn, boolean stopperOn) {
         m_hopperSubsystem = hopperSubsystem;
+        m_suckerOn = suckerOn;
+        m_stopperOn = stopperOn;
         // Use addRequirements() here to declare subsystem dependencies.
         addRequirements(m_hopperSubsystem);
 	}
@@ -23,16 +27,24 @@ public class MoveBall extends CommandBase {
     @Override
     public void execute() {
         m_hopperSubsystem.hopperOn();   
-        //m_hopperSubsystem.stopperOn();
-        m_hopperSubsystem.suckerOn();
+        if(m_stopperOn) {
+            m_hopperSubsystem.stopperOn();
+        }
+        if(m_suckerOn) {
+            m_hopperSubsystem.suckerOn();
+        }
     }
 
     // Called once the command ends or is interrupted.
     public void end(boolean interrupted) {
         System.out.println("MoveBall Calling HopperStop and StopperOff and SuckerOff");
         m_hopperSubsystem.hopperOff();
-        //m_hopperSubsystem.stopperOff();
-        m_hopperSubsystem.suckerOff();
+        if(!m_stopperOn) {
+            m_hopperSubsystem.stopperOff();
+        }
+        if(!m_suckerOn) {
+            m_hopperSubsystem.suckerOff(); 
+        }
     }
 
     // Returns true when the command should end.
