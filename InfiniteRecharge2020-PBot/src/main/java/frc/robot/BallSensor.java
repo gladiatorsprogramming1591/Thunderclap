@@ -46,6 +46,10 @@ public class BallSensor{
    */
   private final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
 
+  public BallSensor() {
+    m_colorMatcher.addColorMatch(kYellowTarget);  
+  }
+
   public void SenseColor() {
     /**
      * The method GetColor() returns a normalized color value from the sensor and can be
