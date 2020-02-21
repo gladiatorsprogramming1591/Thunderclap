@@ -27,10 +27,10 @@ public class MoveBall extends CommandBase {
     @Override
     public void execute() {
         m_hopperSubsystem.hopperOn();   
-        if(m_stopperOn) {
+        if(m_stopperOn == true) {
             m_hopperSubsystem.stopperOn();
         }
-        if(m_suckerOn) {
+        if(m_suckerOn == true) {
             m_hopperSubsystem.suckerOn();
         }
     }
@@ -39,10 +39,10 @@ public class MoveBall extends CommandBase {
     public void end(boolean interrupted) {
         System.out.println("MoveBall Calling HopperStop and StopperOff and SuckerOff");
         m_hopperSubsystem.hopperOff();
-        if(!m_stopperOn) {
+        if(!m_stopperOn == true) {
             m_hopperSubsystem.stopperOff();
         }
-        if(!m_suckerOn) {
+        if(!m_suckerOn == true) {
             m_hopperSubsystem.suckerOff(); 
         }
     }

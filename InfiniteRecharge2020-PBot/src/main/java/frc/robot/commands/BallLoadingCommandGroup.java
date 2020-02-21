@@ -27,13 +27,13 @@ public class BallLoadingCommandGroup extends ParallelCommandGroup {
    * @param subsystem1 The subsystem this command will run on
    * @param subsystem2 The subsystem this command will run on
    */
-  public BallLoadingCommandGroup(HopperSubsystem hopper, IntakeSubsystem intake) {
+  public BallLoadingCommandGroup(HopperSubsystem hopperSubsystem, IntakeSubsystem intakeSubsystem) {
     addCommands(
         // Turns on intake
-        new IntakeOn(intake),
+        new IntakeOn(intakeSubsystem),
 
         // Does move ball command 
-        new MoveBall(hopper)
+        new MoveBall(hopperSubsystem, true, true)
     );
   }
 
