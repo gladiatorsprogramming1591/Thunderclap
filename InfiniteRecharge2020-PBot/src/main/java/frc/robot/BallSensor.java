@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 
+import com.revrobotics.ColorMatch;
+import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorSensorV3;
 
 /**
@@ -29,6 +31,20 @@ public class BallSensor{
    * parameters.
    */
   private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
+
+  /**
+   * A Rev Color Match object is used to register and detect known colors. This can 
+   * be calibrated ahead of time or during operation.
+   * 
+   * This object uses a simple euclidian distance to estimate the closest match
+   * with given confidence range.
+   */
+  private final ColorMatch m_colorMatcher = new ColorMatch();
+
+  /**
+   * Color of ball 
+   */
+  private final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
 
   public void SenseColor() {
     /**
@@ -64,9 +80,23 @@ public class BallSensor{
      */
 
     int proximity = m_colorSensor.getProximity();
-    
+
     SmartDashboard.putNumber("Proximity", proximity);
 
+    /**
+     * Run the color match algorithm on our detected color
+     */
+    String colorString;
+    ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
+
+    if (match.color == kYellowTarget) {
+      colorString = "Yellow";
+    } else {
+      colorString = "Unknown";
+    }
+    
+    SmartDashboard.putString("Detected Color", colorString);
+    SmartDashboard.putNumber("Confidence", match.confidence);
+
   }
- 
 }
