@@ -47,14 +47,6 @@ public class BallSensor{
    */
   private final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
 
-  /**
-   * Ultrasonic sensors are analog inputs
-   */
-  private final AnalogInput ai0 = new AnalogInput(0);
-  private final AnalogInput ai1 = new AnalogInput(1);
-  private final AnalogInput ai2 = new AnalogInput(2);
-  private final AnalogInput ai3 = new AnalogInput(3);
-
   public BallSensor() {
     m_colorMatcher.addColorMatch(kYellowTarget);  
   }
