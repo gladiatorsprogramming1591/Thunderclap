@@ -15,7 +15,6 @@ import frc.robot.Constants;
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-
 /**
  * The hopper subsystem
  */
