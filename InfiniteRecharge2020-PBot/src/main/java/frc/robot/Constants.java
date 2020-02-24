@@ -68,4 +68,7 @@ public final class Constants {
     //Squared Inputs
     public final static boolean kFastSquaredInputs = false;
     public final static boolean kSlowSquaredInputs = true;
+
+    //Encoder 
+    public final static int kEncoderResolution = 42;
 }
