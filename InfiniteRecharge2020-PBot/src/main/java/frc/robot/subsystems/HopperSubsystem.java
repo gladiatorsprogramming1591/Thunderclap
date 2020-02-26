@@ -6,7 +6,9 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.BallSensor;
 import frc.robot.Constants;
+import frc.robot.commands.HopperOff;
 
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2017-2019 FIRST. All Rights Reserved.                        */
@@ -25,6 +27,9 @@ public class HopperSubsystem extends SubsystemBase {
     private final WPI_TalonSRX m_suckerMotor;
     private double m_stopperForwardSpeed;
     private double m_stopperReverseSpeed;
+    private BallSensor m_ballSensor;
+    private int m_ballCount;
+    private boolean m_isHopperOn;
 
     public HopperSubsystem(double stopperForwardSpeed, double stopperReverseSpeed) {
         m_stopperForwardSpeed = stopperForwardSpeed;
@@ -37,6 +42,9 @@ public class HopperSubsystem extends SubsystemBase {
         m_hopperMotor.setOpenLoopRampRate(Constants.kHopperRampRate);
         m_stopperMotor.configOpenloopRamp(Constants.kStopperRampRate);
         m_suckerMotor.configOpenloopRamp(Constants.kSuckerRampRate);
+
+        m_ballSensor = new BallSensor();
+        m_ballCount = 0;
 
         SmartDashboard.putData("Stopper Motor", m_stopperMotor);
         SmartDashboard.putData("Sucker Motor", m_suckerMotor);
@@ -76,5 +84,16 @@ public class HopperSubsystem extends SubsystemBase {
 
     public void suckerReverse() {
         m_suckerMotor.set(Constants.kSuckerReverseSpeed);
+    }
+
+    public void intakeOneBall() {
+        if ( m_ballCount < 5 ) {
+            if ( m_ballSensor.IsBallPresent() ) {
+                hopperOn();
+            }
+            else {
+                hopperOff();
+            }
+        }
     }
 }
