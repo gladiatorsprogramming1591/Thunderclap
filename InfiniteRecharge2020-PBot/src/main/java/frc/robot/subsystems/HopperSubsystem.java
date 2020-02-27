@@ -55,6 +55,7 @@ public class HopperSubsystem extends SubsystemBase {
         SmartDashboard.putData("Stopper Motor", m_stopperMotor);
         SmartDashboard.putData("Sucker Motor", m_suckerMotor);
         SmartDashboard.putData("Hopper Subsystem", this);
+        SmartDashboard.putNumber("Hopper Subsystem", m_ballCount);
     }
     public void hopperOn() {
         m_hopperMotor.set(Constants.kHopperForwardSpeed);
@@ -94,6 +95,21 @@ public class HopperSubsystem extends SubsystemBase {
         m_suckerMotor.set(Constants.kSuckerReverseSpeed);
     }
 
+    public void intakeOneBallNoCountCheck() {
+        if ( m_ballSensor.IsBallPresent() ) {
+            if (!m_isHopperOn) {
+                hopperOn();
+                m_ballCount++;
+                SmartDashboard.putNumber("Hopper Subsystem", m_ballCount);
+            }
+        }
+        else {
+            hopperOff();
+        }
+
+        SmartDashboard.putBoolean("Hopper active", m_isHopperOn);
+    }
+
     /**
      * This method assumes that the ball sensor is located right behind the sucker
      * and that once the ball is no longer detected, it will turn off since it is done moving the ball.
@@ -104,15 +120,7 @@ public class HopperSubsystem extends SubsystemBase {
      */
     public boolean intakeOneBall() {
         if ( m_ballCount < 5 ) {
-            if ( m_ballSensor.IsBallPresent() ) {
-                if (!m_isHopperOn) {
-                    hopperOn();
-                    m_ballCount++;
-                }
-            }
-            else {
-                hopperOff();
-            }
+            intakeOneBallNoCountCheck();
         }
         else {
             // If we get to ball 5, we will still go through this else, but we need to turn the
@@ -122,7 +130,7 @@ public class HopperSubsystem extends SubsystemBase {
             }
         }
 
-        SmartDashboard.putBoolean("intakeOneBall active", m_isHopperOn);
+        SmartDashboard.putBoolean("Hopper active", m_isHopperOn);
         return m_isHopperOn;
     }
 
@@ -136,15 +144,21 @@ public class HopperSubsystem extends SubsystemBase {
     public void setIntakeMode() {
         m_hopperMode = HopperMode.intakeMode;
         SmartDashboard.putString("Hopper Mode", "Intake");     
+        suckerOn();
+        stopperOff();
     }
 
     public void setShootingMode() {
         m_hopperMode = HopperMode.shootingMode;
         SmartDashboard.putString("Hopper Mode", "Shooting");
+        suckerOff();
+        stopperOn();
     }
 
     public void setOffMode() {
         m_hopperMode = HopperMode.offMode;
-        SmartDashboard.putString("Hopper Mode", "Off");     
+        SmartDashboard.putString("Hopper Mode", "Off");  
+        suckerOff();
+        stopperOff();   
     }
 }

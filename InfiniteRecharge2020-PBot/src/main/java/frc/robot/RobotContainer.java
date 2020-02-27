@@ -192,9 +192,9 @@ public class RobotContainer {
     final int LEFT = 270; 
     final int RIGHT = 90; 
     final int DOWN = 180; 
-    new POVButton(m_manipulatorStick, LEFT).whenPressed(new SetShootingMode(m_hopperSubsystem));
-    new POVButton(m_manipulatorStick, RIGHT).whenPressed(new SetIntakeMode(m_hopperSubsystem));
-    new POVButton(m_manipulatorStick, DOWN).whenPressed(new SetOffMode(m_hopperSubsystem));
+    new POVButton(m_manipulatorStick, LEFT).whenPressed(new SetShootingMode(m_hopperSubsystem, m_shooterSubsystem));
+    new POVButton(m_manipulatorStick, RIGHT).whenPressed(new SetIntakeMode(m_hopperSubsystem, m_intakeSubsystem));
+    new POVButton(m_manipulatorStick, DOWN).whenPressed(new SetOffMode(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem));
     // new POVButton(m_manipulatorStick, LEFT).whenPressed(new SetShootingMode(m_hopperSubsystem));
     // new POVButton(m_manipulatorStick, LEFT).whenPressed(new SetShootingMode(m_hopperSubsystem));
 
