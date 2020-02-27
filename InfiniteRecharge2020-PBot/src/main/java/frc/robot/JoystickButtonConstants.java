@@ -33,4 +33,6 @@ public final class JoystickButtonConstants {        // MANIPULATOR  CONTROLLER  
 
     public static final int kBack = 9;              // shooterOn                //
     public static final int kStart = 10;            // ballLoadingCommandGroup  // 
+
+    // Manipulator POV will be used by the hopper subsystem
 }

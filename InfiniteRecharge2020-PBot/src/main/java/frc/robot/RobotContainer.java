@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.JoystickButtonConstants;
 // import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -27,6 +28,10 @@ import frc.robot.commands.IntakeOff;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.commands.ShooterOff;
 import frc.robot.commands.ShooterOn;
+
+import frc.robot.commands.SetOffMode;
+import frc.robot.commands.SetShootingMode;
+import frc.robot.commands.SetIntakeMode;
 
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.commands.ArmDown;
@@ -70,8 +75,8 @@ import frc.robot.commands.AutonomousCommands.DriveRightAutonomous;
  */
 public class RobotContainer {
   // ---CONTROLLERS---
-  Joystick m_manipulatorStick = new Joystick(Constants.kManipulatorControllerPort);
-  Joystick m_driverStick = new Joystick(Constants.kDriverControllerPort);
+  public final static Joystick m_manipulatorStick = new Joystick(Constants.kManipulatorControllerPort);
+  public final static Joystick m_driverStick = new Joystick(Constants.kDriverControllerPort);
 
   // ---SUBSYSTEMS---
   private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
@@ -182,6 +187,16 @@ public class RobotContainer {
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR2)
       .whenReleased(new StopperOff(m_hopperSubsystem));
+
+    // ---HOPPER MODES---
+    final int LEFT = 270; 
+    final int RIGHT = 90; 
+    final int DOWN = 180; 
+    new POVButton(m_manipulatorStick, LEFT).whenPressed(new SetShootingMode(m_hopperSubsystem));
+    new POVButton(m_manipulatorStick, RIGHT).whenPressed(new SetIntakeMode(m_hopperSubsystem));
+    new POVButton(m_manipulatorStick, DOWN).whenPressed(new SetOffMode(m_hopperSubsystem));
+    // new POVButton(m_manipulatorStick, LEFT).whenPressed(new SetShootingMode(m_hopperSubsystem));
+    // new POVButton(m_manipulatorStick, LEFT).whenPressed(new SetShootingMode(m_hopperSubsystem));
 
     // ---DRIVE TRAIN--- 
     new JoystickButton(m_driverStick, JoystickButtonConstants.kL3)

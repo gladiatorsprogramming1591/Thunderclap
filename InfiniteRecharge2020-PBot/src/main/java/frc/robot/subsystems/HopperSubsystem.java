@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.BallSensor;
 import frc.robot.Constants;
 import frc.robot.commands.HopperOff;
+import frc.robot.RobotContainer;
 
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2017-2019 FIRST. All Rights Reserved.                        */
@@ -22,16 +23,19 @@ import frc.robot.commands.HopperOff;
  */
 public class HopperSubsystem extends SubsystemBase {
 
+    enum HopperMode {intakeMode, shootingMode, advancingMode, offMode}
+
     private final CANSparkMax m_hopperMotor;
     private final WPI_TalonSRX m_stopperMotor;
     private final WPI_TalonSRX m_suckerMotor;
-    private double m_stopperForwardSpeed;
-    private double m_stopperReverseSpeed;
-    private BallSensor m_ballSensor;
+    private final double m_stopperForwardSpeed;
+    private final double m_stopperReverseSpeed;
+    private final BallSensor m_ballSensor;
     private int m_ballCount;
     private boolean m_isHopperOn;
+    private HopperMode m_hopperMode = HopperMode.offMode;
 
-    public HopperSubsystem(double stopperForwardSpeed, double stopperReverseSpeed) {
+    public HopperSubsystem(final double stopperForwardSpeed, final double stopperReverseSpeed) {
         m_stopperForwardSpeed = stopperForwardSpeed;
         m_stopperReverseSpeed = stopperReverseSpeed;
     
@@ -101,12 +105,19 @@ public class HopperSubsystem extends SubsystemBase {
     public boolean intakeOneBall() {
         if ( m_ballCount < 5 ) {
             if ( m_ballSensor.IsBallPresent() ) {
-                if (m_isHopperOn) {
+                if (!m_isHopperOn) {
                     hopperOn();
                     m_ballCount++;
                 }
             }
             else {
+                hopperOff();
+            }
+        }
+        else {
+            // If we get to ball 5, we will still go through this else, but we need to turn the
+            // hopper off once it has moved past the sensor.
+            if ( !m_ballSensor.IsBallPresent() ) {
                 hopperOff();
             }
         }
@@ -117,8 +128,23 @@ public class HopperSubsystem extends SubsystemBase {
 
     @Override
     public void periodic() {
-        // if (m_mode = intakeMode) {
-        //     intakeOneBall();
-        // }
+        // TODO: Remove after done testing
+        m_ballSensor.SenseColor();
+        m_ballSensor.IsBallPresent();
+    }
+
+    public void setIntakeMode() {
+        m_hopperMode = HopperMode.intakeMode;
+        SmartDashboard.putString("Hopper Mode", "Intake");     
+    }
+
+    public void setShootingMode() {
+        m_hopperMode = HopperMode.shootingMode;
+        SmartDashboard.putString("Hopper Mode", "Shooting");
+    }
+
+    public void setOffMode() {
+        m_hopperMode = HopperMode.offMode;
+        SmartDashboard.putString("Hopper Mode", "Off");     
     }
 }
