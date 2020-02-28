@@ -8,7 +8,6 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.HopperSubsystem;
-import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -18,7 +17,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class ShootOneBall extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final HopperSubsystem m_hopper;
-  private IntakeSubsystem m_intake;
   private ShooterSubsystem m_shooter;
 
   /**
