@@ -9,8 +9,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.BallOutputSensor;
 import frc.robot.BallSensor;
 import frc.robot.Constants;
-import frc.robot.commands.HopperOff;
-import frc.robot.RobotContainer;
 
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2017-2019 FIRST. All Rights Reserved.                        */
