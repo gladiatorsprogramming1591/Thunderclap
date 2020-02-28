@@ -15,6 +15,7 @@ import frc.robot.JoystickButtonConstants;
 // import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.DriveTrainC;
 // import frc.robot.subsystems.DriveTrainC;
 import frc.robot.subsystems.DriveTrainP;
 import frc.robot.commands.SlowDrive;
@@ -27,6 +28,7 @@ import frc.robot.commands.IntakeReverse;
 import frc.robot.commands.IntakeOff;
 
 import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.intakeArm;
 import frc.robot.commands.ShooterOff;
 import frc.robot.commands.ShooterOn;
 
@@ -58,6 +60,7 @@ import frc.robot.commands.TurnOnAllMotors;
 import frc.robot.commands.ReverseAllMotorsExceptShooter;
 import frc.robot.commands.TurnOffAllMotors;
 import frc.robot.commands.IntakeandSuckerOn;
+import frc.robot.commands.RaiseOrLowerArm;
 import frc.robot.commands.IntakeandSuckerOff;
 import frc.robot.commands.StopperandShooterOn;
 import frc.robot.commands.StopperandShooterOff;
@@ -83,12 +86,13 @@ public class RobotContainer {
 
   // ---SUBSYSTEMS---
   private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
+  private final intakeArm m_intakeArmSubsystem = new intakeArm();
   private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
   private final ArmSubsystem m_armSubsystem = new ArmSubsystem();
-  private final HopperSubsystem m_hopperSubsystem = new HopperSubsystem(Constants.kPbotStopperForwardSpeed, Constants.kPbotStopperReverseSpeed);
-  // private final HopperSubsystem m_hopperSubsystem = new HopperSubsystem(Constants.kCbotStopperForwardSpeed, Constants.kCbotStopperReverseSpeed);
-  private final DriveTrain m_driveTrain = new DriveTrainP(m_driverStick);
-  // private final DriveTrain m_driveTrain = new DriveTrainC(m_driverStick);
+  // private final HopperSubsystem m_hopperSubsystem = new HopperSubsystem(Constants.kPbotStopperForwardSpeed, Constants.kPbotStopperReverseSpeed);
+  private final HopperSubsystem m_hopperSubsystem = new HopperSubsystem(Constants.kCbotStopperForwardSpeed, Constants.kCbotStopperReverseSpeed);
+  // private final DriveTrain m_driveTrain = new DriveTrainP(m_driverStick);
+  private final DriveTrain m_driveTrain = new DriveTrainC(m_driverStick);
   
   // The robot's commands are defined here...
   // private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
@@ -125,6 +129,10 @@ public class RobotContainer {
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kB)
       .whenReleased(new IntakeOff(m_intakeSubsystem));
 
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kR3) 
+      .whenPressed(new RaiseOrLowerArm(m_intakeArmSubsystem));
+
+      
     // ---SHOOTER SECTION---
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kBack) 
       .whenPressed(new ShooterOn(m_shooterSubsystem));

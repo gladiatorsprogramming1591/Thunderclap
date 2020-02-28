@@ -59,6 +59,17 @@ public final class Constants {
     public final static int kSuckerChannel = 8;
     public final static int kStopperChannel = 9;
     public final static int kArmCANID = 10;
+    public final static int kPCM_CANID = 11;
+
+    //Solenoids
+    public final static int kArmSolenoidRightForwardChannel = 0;
+    public final static int kArmSolenoidRightReverseChannel = 1;
+    public final static int kArmSolenoidLeftForwardChannel = 2;
+    public final static int kArmSolenoidLeftReverseChannel = 3;
+
+    //Relays
+    public final static int kCompressorRelay = 0;
+
     
     //Timeouts
     public final static double kMoveOneBallTimeOut = 1.0;
