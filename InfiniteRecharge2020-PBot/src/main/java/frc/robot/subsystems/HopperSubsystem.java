@@ -95,7 +95,15 @@ public class HopperSubsystem extends SubsystemBase {
         m_suckerMotor.set(Constants.kSuckerReverseSpeed);
     }
 
-    public void intakeOneBallNoCountCheck() {
+    /**
+     * This method assumes that the ball sensor is located right behind the sucker
+     * and that once the ball is no longer detected, it will turn off since it is done moving the ball.
+     * This method also assumes tha the caller will call it repeatedly while it is intaking.
+     * Returns:
+     *   - True if intaking a ball
+     *   - False if not intaking a ball
+     */
+    public boolean intakeOneBallNoCountCheck() {
         if ( m_ballSensor.IsBallPresent() ) {
             if (!m_isHopperOn) {
                 hopperOn();
@@ -108,6 +116,7 @@ public class HopperSubsystem extends SubsystemBase {
         }
 
         SmartDashboard.putBoolean("Hopper active", m_isHopperOn);
+        return m_isHopperOn;
     }
 
     /**

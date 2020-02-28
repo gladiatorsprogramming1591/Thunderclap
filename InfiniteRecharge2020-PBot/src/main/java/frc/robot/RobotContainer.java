@@ -22,6 +22,7 @@ import frc.robot.commands.FastDrive;
 
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.commands.IntakeOn;
+import frc.robot.commands.IntakeOneExtraBall;
 import frc.robot.commands.IntakeReverse;
 import frc.robot.commands.IntakeOff;
 
@@ -195,8 +196,8 @@ public class RobotContainer {
     new POVButton(m_manipulatorStick, LEFT).whenPressed(new SetShootingMode(m_hopperSubsystem, m_shooterSubsystem));
     new POVButton(m_manipulatorStick, RIGHT).whenPressed(new SetIntakeMode(m_hopperSubsystem, m_intakeSubsystem));
     new POVButton(m_manipulatorStick, DOWN).whenPressed(new SetOffMode(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem));
-    // new POVButton(m_manipulatorStick, LEFT).whenPressed(new SetShootingMode(m_hopperSubsystem));
-    // new POVButton(m_manipulatorStick, LEFT).whenPressed(new SetShootingMode(m_hopperSubsystem));
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kX)
+      .whenPressed(new IntakeOneExtraBall(m_hopperSubsystem, m_intakeSubsystem));
 
     // ---DRIVE TRAIN--- 
     new JoystickButton(m_driverStick, JoystickButtonConstants.kL3)
