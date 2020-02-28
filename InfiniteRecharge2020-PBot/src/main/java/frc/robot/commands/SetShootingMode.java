@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import frc.robot.subsystems.HopperSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
@@ -18,19 +19,22 @@ public class SetShootingMode extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final HopperSubsystem m_hopper;
   private final ShooterSubsystem m_shooter;
+  private IntakeSubsystem m_intake;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public SetShootingMode(HopperSubsystem hopper, ShooterSubsystem shooter) {
+  public SetShootingMode(HopperSubsystem hopper, ShooterSubsystem shooter, IntakeSubsystem intake) {
     m_hopper = hopper;
     m_shooter = shooter;
+    m_intake = intake;
     
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(hopper);
     addRequirements(shooter);
+    addRequirements(intake);
   }
 
   // Called when the command is initially scheduled.
@@ -44,6 +48,7 @@ public class SetShootingMode extends CommandBase {
   public void execute() {
     m_hopper.setShootingMode();
     m_shooter.shooterOn();
+    m_intake.intakeOff();
   }
 
   // Called once the command ends or is interrupted.

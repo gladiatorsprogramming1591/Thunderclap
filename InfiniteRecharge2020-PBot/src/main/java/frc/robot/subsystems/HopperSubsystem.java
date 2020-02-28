@@ -191,4 +191,9 @@ public class HopperSubsystem extends SubsystemBase {
 
         SmartDashboard.putBoolean("Hopper active", m_isHopperOn);
     }
+
+    public void outputAllBalls() {
+        hopperOn();
+        m_ballCount = 0;
+    }
 }

@@ -32,6 +32,7 @@ import frc.robot.commands.ShooterOn;
 
 import frc.robot.commands.SetOffMode;
 import frc.robot.commands.SetShootingMode;
+import frc.robot.commands.ShootAllBalls;
 import frc.robot.commands.ShootOneBall;
 import frc.robot.commands.SetIntakeMode;
 
@@ -191,11 +192,11 @@ public class RobotContainer {
       .whenReleased(new StopperOff(m_hopperSubsystem));
 
     // ---HOPPER MODES---
-    final int LEFT = 270; 
-    final int RIGHT = 90; 
-    final int DOWN = 180; 
-    new POVButton(m_manipulatorStick, LEFT).whenPressed(new SetShootingMode(m_hopperSubsystem, m_shooterSubsystem));
-    new POVButton(m_manipulatorStick, RIGHT).whenPressed(new SetIntakeMode(m_hopperSubsystem, m_intakeSubsystem));
+    final int LEFT = 270;
+    final int RIGHT = 90;
+    final int DOWN = 180;
+    new POVButton(m_manipulatorStick, LEFT).whenPressed(new SetShootingMode(m_hopperSubsystem, m_shooterSubsystem, m_intakeSubsystem));
+    new POVButton(m_manipulatorStick, RIGHT).whenPressed(new SetIntakeMode(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem));
     new POVButton(m_manipulatorStick, DOWN).whenPressed(new SetOffMode(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem));
 
     // ---DRIVE TRAIN--- 
@@ -234,6 +235,9 @@ public class RobotContainer {
       .whenPressed(new ShootOneBall(m_hopperSubsystem, m_shooterSubsystem));
 
     new JoystickButton(m_driverStick, JoystickButtonConstants.kL2)
+      .whenPressed(new ShootAllBalls(m_hopperSubsystem, m_shooterSubsystem));
+
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kR2)
       .whenPressed(new IntakeOneExtraBall(m_hopperSubsystem, m_intakeSubsystem));    
   }
   
