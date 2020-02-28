@@ -6,6 +6,7 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.BallOutputSensor;
 import frc.robot.BallSensor;
 import frc.robot.Constants;
 import frc.robot.commands.HopperOff;
@@ -31,8 +32,10 @@ public class HopperSubsystem extends SubsystemBase {
     private final double m_stopperForwardSpeed;
     private final double m_stopperReverseSpeed;
     private final BallSensor m_ballSensor;
-    private int m_ballCount;
-    private boolean m_isHopperOn;
+    private final BallOutputSensor m_ballOutputSensor;
+    private int m_ballCount = 0;
+    private boolean m_isHopperOn = false;
+    private boolean m_ballOutputSensorTriggered = false;
     private HopperMode m_hopperMode = HopperMode.offMode;
 
     public HopperSubsystem(final double stopperForwardSpeed, final double stopperReverseSpeed) {
@@ -48,9 +51,7 @@ public class HopperSubsystem extends SubsystemBase {
         m_suckerMotor.configOpenloopRamp(Constants.kSuckerRampRate);
 
         m_ballSensor = new BallSensor();
-        m_ballCount = 0;
-
-        m_isHopperOn = false;
+        m_ballOutputSensor = new BallOutputSensor();
 
         SmartDashboard.putData("Stopper Motor", m_stopperMotor);
         SmartDashboard.putData("Sucker Motor", m_suckerMotor);
@@ -148,6 +149,8 @@ public class HopperSubsystem extends SubsystemBase {
         // TODO: Remove after done testing
         m_ballSensor.SenseColor();
         m_ballSensor.IsBallPresent();
+        m_ballOutputSensor.SenseColor();
+        m_ballOutputSensor.IsBallPresent();
     }
 
     public void setIntakeMode() {
@@ -169,5 +172,23 @@ public class HopperSubsystem extends SubsystemBase {
         SmartDashboard.putString("Hopper Mode", "Off");  
         suckerOff();
         stopperOff();   
+    }
+
+    public void outputOneBall() {
+        // If we are just starting and the ball hasn't triggered the sensor, turn on the hopper and wait for trigger
+        if ( !m_ballOutputSensorTriggered ) {
+            hopperOn();  // Make sure hopper is on
+            if( m_ballOutputSensor.IsBallPresent() ) {
+                m_ballOutputSensorTriggered = true;
+            }
+        }
+        // Once the ouptut sensor has been triggered, when we can't sense a ball anymore, turn the hopper off and decrement ball count
+        if ( m_ballOutputSensorTriggered && !m_ballOutputSensor.IsBallPresent() ) {
+            hopperOff();
+            m_ballCount--;
+            SmartDashboard.putNumber("Hopper Subsystem", m_ballCount);
+        }
+
+        SmartDashboard.putBoolean("Hopper active", m_isHopperOn);
     }
 }

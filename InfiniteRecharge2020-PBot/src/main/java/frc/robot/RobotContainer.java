@@ -32,6 +32,7 @@ import frc.robot.commands.ShooterOn;
 
 import frc.robot.commands.SetOffMode;
 import frc.robot.commands.SetShootingMode;
+import frc.robot.commands.ShootOneBall;
 import frc.robot.commands.SetIntakeMode;
 
 import frc.robot.subsystems.ArmSubsystem;
@@ -196,8 +197,6 @@ public class RobotContainer {
     new POVButton(m_manipulatorStick, LEFT).whenPressed(new SetShootingMode(m_hopperSubsystem, m_shooterSubsystem));
     new POVButton(m_manipulatorStick, RIGHT).whenPressed(new SetIntakeMode(m_hopperSubsystem, m_intakeSubsystem));
     new POVButton(m_manipulatorStick, DOWN).whenPressed(new SetOffMode(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem));
-    new JoystickButton(m_driverStick, JoystickButtonConstants.kX)
-      .whenPressed(new IntakeOneExtraBall(m_hopperSubsystem, m_intakeSubsystem));
 
     // ---DRIVE TRAIN--- 
     new JoystickButton(m_driverStick, JoystickButtonConstants.kL3)
@@ -228,9 +227,14 @@ public class RobotContainer {
     new JoystickButton(m_driverStick, JoystickButtonConstants.kX)
       .whenPressed(new ReverseAllMotorsExceptShooter(m_hopperSubsystem, m_intakeSubsystem));
     
-    new JoystickButton(m_driverStick, JoystickButtonConstants.kX)
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kR1)
       .whenReleased(new TurnOffAllMotors(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem));
 
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kL1)
+      .whenPressed(new ShootOneBall(m_hopperSubsystem, m_shooterSubsystem));
+
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kL2)
+      .whenPressed(new IntakeOneExtraBall(m_hopperSubsystem, m_intakeSubsystem));    
   }
   
   /**

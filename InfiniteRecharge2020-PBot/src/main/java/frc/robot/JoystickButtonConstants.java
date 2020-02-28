@@ -19,14 +19,14 @@ public final class JoystickButtonConstants {        // MANIPULATOR  CONTROLLER  
     public static final int kA = 2;                 // intakeOn                 // turnOnAllMotors
     public static final int kB = 3;                 // intakeReverse            // intakeandSuckerOn
     public static final int kY = 4;                 // hopperOn                 // stopperandShooterOn
-    public static final int kX = 1;                 // hopperReverse            // IntakeOneExtraBall
+    public static final int kX = 1;                 // hopperReverse            // Reverse all motors except shooter
 
-    public static final int kL1 = 5;                // suckerOn                 //
-    public static final int kL2 = 7;                // suckerReverse            //
+    public static final int kL1 = 5;                // suckerOn                 // Shoot one ball
+    public static final int kL2 = 7;                // suckerReverse            // IntakeOneExtraBall
     //Left joystick when clicked
     public static final int kL3 = 11;               // armUp                    // fastDrive/slowDrive
 
-    public static final int kR1 = 6;                // stopperOn                //
+    public static final int kR1 = 6;                // stopperOn                // Turn off all motors
     public static final int kR2 = 8;                // stopperReverse           //
     //Right joystick when clicked 
     public static final int kR3 = 12;               // armDown                  //
