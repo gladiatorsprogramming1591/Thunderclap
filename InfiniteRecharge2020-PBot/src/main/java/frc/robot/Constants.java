@@ -58,8 +58,8 @@ public final class Constants {
     public final static int kShooterMotorPort = 7;
     public final static int kSuckerChannel = 8;
     public final static int kStopperChannel = 9;
-    public final static int kArmCANID = 10;
     public final static int kPCM_CANID = 11;
+    public final static int kArmCANID = 12;
 
     //Solenoids
     public final static int kArmSolenoidRightForwardChannel = 0;
