@@ -88,7 +88,7 @@ public class RobotContainer {
 
   // ---SUBSYSTEMS---
   private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
-  private final IntakeArm m_intakeArmSubsystem = new IntakeArm();
+  // private final IntakeArm m_intakeArmSubsystem = new IntakeArm();
   private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
   private final ArmSubsystem m_armSubsystem = new ArmSubsystem();
   // private final HopperSubsystem m_hopperSubsystem = new HopperSubsystem(Constants.kPbotStopperForwardSpeed, Constants.kPbotStopperReverseSpeed);
