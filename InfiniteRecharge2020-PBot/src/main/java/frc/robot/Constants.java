@@ -20,14 +20,14 @@ public final class Constants {
     //Motor speed
     public final static double kHopperReverseSpeed = -0.6;
     public final static double kHopperForwardSpeed = 0.6;
-    public final static double kCbotStopperReverseSpeed = 0.6;
+    public final static double kCbotStopperReverseSpeed = -0.6;
     public final static double kPbotStopperReverseSpeed = 1.0;
-    public final static double kCbotStopperForwardSpeed = -0.6;
+    public final static double kCbotStopperForwardSpeed = 0.6;
     public final static double kPbotStopperForwardSpeed = -1.0;
     public final static double kIntakeForwardSpeed = -0.5;
     public final static double kIntakeReverseSpeed = 0.5;
-    public final static double kSuckerForwardSpeed = -0.6;
-    public final static double kSuckerReverseSpeed = 0.6;
+    public final static double kSuckerForwardSpeed = 0.6;
+    public final static double kSuckerReverseSpeed = -0.6;
     public final static double kShooterMotorSpeed = -0.5;
     public final static double kArmUpSpeed = 1.0;
     public final static double kArmDownSpeed = -1.0;
@@ -54,11 +54,22 @@ public final class Constants {
     public final static int kCbotRearRightMotorCANID = 4;
    
     public final static int kHopperChannel = 5;
-    public final static int kIntakeChannel = 6;
-    public final static int kShooterMotorPort = 7;
+    public final static int kShooterMotorPort = 6;
+    public final static int kIntakeChannel = 7;
     public final static int kSuckerChannel = 8;
     public final static int kStopperChannel = 9;
-    public final static int kArmCANID = 10;
+    public final static int kPCM_CANID = 11;
+    public final static int kArmCANID = 12;
+
+    //Solenoids
+    public final static int kArmSolenoidRightForwardChannel = 0;
+    public final static int kArmSolenoidRightReverseChannel = 1;
+    public final static int kArmSolenoidLeftForwardChannel = 2;
+    public final static int kArmSolenoidLeftReverseChannel = 3;
+
+    //Relays
+    public final static int kCompressorRelay = 0;
+
     
     //Timeouts
     public final static double kMoveOneBallTimeOut = 1.0;
@@ -68,4 +79,7 @@ public final class Constants {
     //Squared Inputs
     public final static boolean kFastSquaredInputs = false;
     public final static boolean kSlowSquaredInputs = true;
+
+    //Encoder 
+    public final static int kEncoderResolution = 42;
 }

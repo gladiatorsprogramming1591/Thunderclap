@@ -10,10 +10,12 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.JoystickButtonConstants;
 // import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.DriveTrainC;
 // import frc.robot.subsystems.DriveTrainC;
 import frc.robot.subsystems.DriveTrainP;
 import frc.robot.commands.SlowDrive;
@@ -21,12 +23,20 @@ import frc.robot.commands.FastDrive;
 
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.commands.IntakeOn;
+import frc.robot.commands.IntakeOneExtraBall;
 import frc.robot.commands.IntakeReverse;
 import frc.robot.commands.IntakeOff;
 
 import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.intakeArm;
 import frc.robot.commands.ShooterOff;
 import frc.robot.commands.ShooterOn;
+
+import frc.robot.commands.SetOffMode;
+import frc.robot.commands.SetShootingMode;
+import frc.robot.commands.ShootAllBalls;
+import frc.robot.commands.ShootOneBall;
+import frc.robot.commands.SetIntakeMode;
 
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.commands.ArmDown;
@@ -50,6 +60,7 @@ import frc.robot.commands.TurnOnAllMotors;
 import frc.robot.commands.ReverseAllMotorsExceptShooter;
 import frc.robot.commands.TurnOffAllMotors;
 import frc.robot.commands.IntakeandSuckerOn;
+import frc.robot.commands.RaiseOrLowerArm;
 import frc.robot.commands.IntakeandSuckerOff;
 import frc.robot.commands.StopperandShooterOn;
 import frc.robot.commands.StopperandShooterOff;
@@ -70,17 +81,18 @@ import frc.robot.commands.AutonomousCommands.DriveRightAutonomous;
  */
 public class RobotContainer {
   // ---CONTROLLERS---
-  Joystick m_manipulatorStick = new Joystick(Constants.kManipulatorControllerPort);
-  Joystick m_driverStick = new Joystick(Constants.kDriverControllerPort);
+  public final static Joystick m_manipulatorStick = new Joystick(Constants.kManipulatorControllerPort);
+  public final static Joystick m_driverStick = new Joystick(Constants.kDriverControllerPort);
 
   // ---SUBSYSTEMS---
   private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
+  // private final intakeArm m_intakeArmSubsystem = new intakeArm();
   private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
   private final ArmSubsystem m_armSubsystem = new ArmSubsystem();
-  private final HopperSubsystem m_hopperSubsystem = new HopperSubsystem(Constants.kPbotStopperForwardSpeed, Constants.kPbotStopperReverseSpeed);
-  // private final HopperSubsystem m_hopperSubsystem = new HopperSubsystem(Constants.kCbotStopperForwardSpeed, Constants.kCbotStopperReverseSpeed);
-  private final DriveTrain m_driveTrain = new DriveTrainP(m_driverStick);
-  // private final DriveTrain m_driveTrain = new DriveTrainC(m_driverStick);
+  // private final HopperSubsystem m_hopperSubsystem = new HopperSubsystem(Constants.kPbotStopperForwardSpeed, Constants.kPbotStopperReverseSpeed);
+  private final HopperSubsystem m_hopperSubsystem = new HopperSubsystem(Constants.kCbotStopperForwardSpeed, Constants.kCbotStopperReverseSpeed);
+  // private final DriveTrain m_driveTrain = new DriveTrainP(m_driverStick);
+  private final DriveTrain m_driveTrain = new DriveTrainC(m_driverStick);
   
   // The robot's commands are defined here...
   // private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
@@ -117,6 +129,10 @@ public class RobotContainer {
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kB)
       .whenReleased(new IntakeOff(m_intakeSubsystem));
 
+    // new JoystickButton(m_driverStick, JoystickButtonConstants.kR3) 
+    //   .whenPressed(new RaiseOrLowerArm(m_intakeArmSubsystem));
+
+      
     // ---SHOOTER SECTION---
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kBack) 
       .whenPressed(new ShooterOn(m_shooterSubsystem));
@@ -134,8 +150,8 @@ public class RobotContainer {
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL3)
       .whenReleased(new ArmOff(m_armSubsystem));
       
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kBack)
-      .whenReleased(new ArmOff(m_armSubsystem));
+    // new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kBack)
+    //   .whenReleased(new ArmOff(m_armSubsystem));
 
     // ---HOPPER---
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kY) 
@@ -183,6 +199,14 @@ public class RobotContainer {
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR2)
       .whenReleased(new StopperOff(m_hopperSubsystem));
 
+    // ---HOPPER MODES---
+    final int LEFT = 270;
+    final int RIGHT = 90;
+    final int DOWN = 180;
+    new POVButton(m_manipulatorStick, LEFT).whenPressed(new SetShootingMode(m_hopperSubsystem, m_shooterSubsystem, m_intakeSubsystem));
+    new POVButton(m_manipulatorStick, RIGHT).whenPressed(new SetIntakeMode(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem));
+    new POVButton(m_manipulatorStick, DOWN).whenPressed(new SetOffMode(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem));
+
     // ---DRIVE TRAIN--- 
     new JoystickButton(m_driverStick, JoystickButtonConstants.kL3)
       .whenPressed(new SlowDrive(m_driveTrain));
@@ -212,9 +236,17 @@ public class RobotContainer {
     new JoystickButton(m_driverStick, JoystickButtonConstants.kX)
       .whenPressed(new ReverseAllMotorsExceptShooter(m_hopperSubsystem, m_intakeSubsystem));
     
-    new JoystickButton(m_driverStick, JoystickButtonConstants.kX)
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kR1)
       .whenReleased(new TurnOffAllMotors(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem));
 
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kL1)
+      .whenPressed(new ShootOneBall(m_hopperSubsystem, m_shooterSubsystem));
+
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kL2)
+      .whenPressed(new ShootAllBalls(m_hopperSubsystem, m_shooterSubsystem));
+
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kR2)
+      .whenPressed(new IntakeOneExtraBall(m_hopperSubsystem, m_intakeSubsystem));    
   }
   
   /**

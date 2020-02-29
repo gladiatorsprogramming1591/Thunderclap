@@ -6,6 +6,8 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.BallOutputSensor;
+import frc.robot.BallSensor;
 import frc.robot.Constants;
 
 /*----------------------------------------------------------------------------*/
@@ -20,13 +22,21 @@ import frc.robot.Constants;
  */
 public class HopperSubsystem extends SubsystemBase {
 
+    enum HopperMode {intakeMode, shootingMode, advancingMode, offMode}
+
     private final CANSparkMax m_hopperMotor;
     private final WPI_TalonSRX m_stopperMotor;
     private final WPI_TalonSRX m_suckerMotor;
-    private double m_stopperForwardSpeed;
-    private double m_stopperReverseSpeed;
+    private final double m_stopperForwardSpeed;
+    private final double m_stopperReverseSpeed;
+    private final BallSensor m_ballSensor;
+    private final BallOutputSensor m_ballOutputSensor;
+    private int m_ballCount = 0;
+    private boolean m_isHopperOn = false;
+    private boolean m_ballOutputSensorTriggered = false;
+    private HopperMode m_hopperMode = HopperMode.offMode;
 
-    public HopperSubsystem(double stopperForwardSpeed, double stopperReverseSpeed) {
+    public HopperSubsystem(final double stopperForwardSpeed, final double stopperReverseSpeed) {
         m_stopperForwardSpeed = stopperForwardSpeed;
         m_stopperReverseSpeed = stopperReverseSpeed;
     
@@ -38,12 +48,17 @@ public class HopperSubsystem extends SubsystemBase {
         m_stopperMotor.configOpenloopRamp(Constants.kStopperRampRate);
         m_suckerMotor.configOpenloopRamp(Constants.kSuckerRampRate);
 
+        m_ballSensor = new BallSensor();
+        m_ballOutputSensor = new BallOutputSensor();
+
         SmartDashboard.putData("Stopper Motor", m_stopperMotor);
         SmartDashboard.putData("Sucker Motor", m_suckerMotor);
         SmartDashboard.putData("Hopper Subsystem", this);
+        SmartDashboard.putNumber("Hopper Subsystem", m_ballCount);
     }
     public void hopperOn() {
         m_hopperMotor.set(Constants.kHopperForwardSpeed);
+        m_isHopperOn = true;
     }
 
     public void hopperReverse() {
@@ -52,6 +67,7 @@ public class HopperSubsystem extends SubsystemBase {
 
     public void hopperOff() {
         m_hopperMotor.set(0);
+        m_isHopperOn = false;
     }
 
     public void stopperOn() {
@@ -76,5 +92,107 @@ public class HopperSubsystem extends SubsystemBase {
 
     public void suckerReverse() {
         m_suckerMotor.set(Constants.kSuckerReverseSpeed);
+    }
+
+    /**
+     * This method assumes that the ball sensor is located right behind the sucker
+     * and that once the ball is no longer detected, it will turn off since it is done moving the ball.
+     * This method also assumes tha the caller will call it repeatedly while it is intaking.
+     * Returns:
+     *   - True if intaking a ball
+     *   - False if not intaking a ball
+     */
+    public boolean intakeOneBallNoCountCheck() {
+        if ( m_ballSensor.IsBallPresent() ) {
+            if (!m_isHopperOn) {
+                hopperOn();
+                m_ballCount++;
+                SmartDashboard.putNumber("Hopper Subsystem", m_ballCount);
+            }
+        }
+        else {
+            hopperOff();
+        }
+
+        SmartDashboard.putBoolean("Hopper active", m_isHopperOn);
+        return m_isHopperOn;
+    }
+
+    /**
+     * This method assumes that the ball sensor is located right behind the sucker
+     * and that once the ball is no longer detected, it will turn off since it is done moving the ball.
+     * This method also assumes tha the caller will call it repeatedly while it is intaking.
+     * Returns:
+     *   - True if intaking a ball
+     *   - False if not intaking a ball
+     */
+    public boolean intakeOneBall() {
+        if ( m_ballCount < 5 ) {
+            intakeOneBallNoCountCheck();
+        }
+        else {
+            // If we get to ball 5, we will still go through this else, but we need to turn the
+            // hopper off once it has moved past the sensor.
+            if ( !m_ballSensor.IsBallPresent() ) {
+                hopperOff();
+            }
+        }
+
+        SmartDashboard.putBoolean("Hopper active", m_isHopperOn);
+        return m_isHopperOn;
+    }
+
+    @Override
+    public void periodic() {
+        // TODO: Remove after done testing
+        m_ballSensor.SenseColor();
+        m_ballSensor.IsBallPresent();
+        m_ballOutputSensor.SenseColor();
+        m_ballOutputSensor.IsBallPresent();
+    }
+
+    public void setIntakeMode() {
+        m_hopperMode = HopperMode.intakeMode;
+        SmartDashboard.putString("Hopper Mode", "Intake");     
+        suckerOn();
+        stopperOff();
+    }
+
+    public void setShootingMode() {
+        m_hopperMode = HopperMode.shootingMode;
+        SmartDashboard.putString("Hopper Mode", "Shooting");
+        suckerOff();
+        stopperOn();
+    }
+
+    public void setOffMode() {
+        m_hopperMode = HopperMode.offMode;
+        SmartDashboard.putString("Hopper Mode", "Off");  
+        suckerOff();
+        stopperOff();   
+        hopperOff();
+    }
+
+    public void outputOneBall() {
+        // If we are just starting and the ball hasn't triggered the sensor, turn on the hopper and wait for trigger
+        if ( !m_ballOutputSensorTriggered ) {
+            hopperOn();  // Make sure hopper is on
+            if( m_ballOutputSensor.IsBallPresent() ) {
+                m_ballOutputSensorTriggered = true;
+            }
+        }
+        // Once the ouptut sensor has been triggered, when we can't sense a ball anymore, turn the hopper off and decrement ball count
+        if ( m_ballOutputSensorTriggered && !m_ballOutputSensor.IsBallPresent() ) {
+            hopperOff();
+            m_ballCount--;
+            SmartDashboard.putNumber("Hopper Subsystem", m_ballCount);
+        }
+
+        SmartDashboard.putBoolean("Hopper active", m_isHopperOn);
+    }
+
+    public void outputAllBalls() {
+        hopperOn();
+        m_ballCount = 0;
     }
 }
