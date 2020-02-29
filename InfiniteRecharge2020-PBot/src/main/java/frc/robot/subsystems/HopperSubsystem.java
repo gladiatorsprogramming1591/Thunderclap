@@ -170,6 +170,7 @@ public class HopperSubsystem extends SubsystemBase {
         SmartDashboard.putString("Hopper Mode", "Off");  
         suckerOff();
         stopperOff();   
+        hopperOff();
     }
 
     public void outputOneBall() {

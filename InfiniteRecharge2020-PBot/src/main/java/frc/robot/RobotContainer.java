@@ -131,8 +131,8 @@ public class RobotContainer {
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kB)
       .whenReleased(new IntakeOff(m_intakeSubsystem));
 
-    new JoystickButton(m_driverStick, JoystickButtonConstants.kR3) 
-      .whenPressed(new RaiseOrLowerArm(m_intakeArmSubsystem));
+    // new JoystickButton(m_driverStick, JoystickButtonConstants.kR3) 
+    //   .whenPressed(new RaiseOrLowerArm(m_intakeArmSubsystem));
 
       
     // ---SHOOTER SECTION---
