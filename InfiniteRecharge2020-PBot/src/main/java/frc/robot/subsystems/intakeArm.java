@@ -17,12 +17,12 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 /**
  *
  */
-public class intakeArm extends SubsystemBase {
+public class IntakeArm extends SubsystemBase {
 
     private DoubleSolenoid rightPiston;
     private DoubleSolenoid leftPiston;
 
-    public intakeArm() {
+    public IntakeArm() {
        
         rightPiston = new DoubleSolenoid(Constants.kPCM_CANID, Constants.kArmSolenoidRightForwardChannel,
             Constants.kArmSolenoidRightReverseChannel);

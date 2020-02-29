@@ -5,20 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.RobotModeCommands;
+package frc.robot.commands.UseHopperModeCommands;
 
 import frc.robot.subsystems.HopperSubsystem;
-import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
  * An example command that uses an example subsystem.
  */
-public class SetIntakeMode extends CommandBase {
+public class ShootAllBalls extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final HopperSubsystem m_hopper;
-  private final IntakeSubsystem m_intake;
   private final ShooterSubsystem m_shooter;
 
   /**
@@ -26,30 +24,29 @@ public class SetIntakeMode extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public SetIntakeMode(HopperSubsystem hopper, IntakeSubsystem intake, ShooterSubsystem shooter) {
+  public ShootAllBalls(HopperSubsystem hopper, ShooterSubsystem shooter) {
     m_hopper = hopper;
-    m_intake = intake;
     m_shooter = shooter;
 
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(hopper);
-    addRequirements(intake);
     addRequirements(shooter);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("Setting Intake Mode");
+    System.out.println("Shooting one ball");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_hopper.setIntakeMode();
-    m_hopper.intakeOneBall();
-    m_intake.intakeOn();
-    m_shooter.shooterOff();
+    m_shooter.shooterOn();
+    m_hopper.setShootingMode();  // Make sure we are in shooting mode
+    m_hopper.outputAllBalls();  // Now feed all of the ball through the hopper 
+    // Note that this command does not end. Assumption is that once balls stop coming out, operator
+    // will change modes to intake mode which will turn off the shooter
   }
 
   // Called once the command ends or is interrupted.

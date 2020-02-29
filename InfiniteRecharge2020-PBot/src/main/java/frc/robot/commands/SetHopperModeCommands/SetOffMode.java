@@ -5,46 +5,50 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.SetHopperModeCommands;
 
 import frc.robot.subsystems.HopperSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
  * An example command that uses an example subsystem.
  */
-public class ShootOneBall extends CommandBase {
+public class SetOffMode extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final HopperSubsystem m_hopper;
-  private ShooterSubsystem m_shooter;
+  private final IntakeSubsystem m_intake;
+  private final ShooterSubsystem m_shooter;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ShootOneBall(HopperSubsystem hopper, ShooterSubsystem shooter) {
+  public SetOffMode(HopperSubsystem hopper, IntakeSubsystem intake, ShooterSubsystem shooter) {
     m_hopper = hopper;
+    m_intake = intake;
     m_shooter = shooter;
-
+    
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(hopper);
+    addRequirements(intake);
     addRequirements(shooter);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("Shooting one ball");
+    System.out.println("Setting Hopper Off Mode");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_shooter.shooterOn();
-    m_hopper.setShootingMode();  // Make sure we are in shooting mode
-    m_hopper.outputOneBall();  // Now feed the ball through the hopper while it is still sensed
+    m_hopper.setOffMode();
+    m_intake.intakeOff();
+    m_shooter.shooterOff();
   }
 
   // Called once the command ends or is interrupted.
@@ -55,6 +59,6 @@ public class ShootOneBall extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

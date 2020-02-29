@@ -5,18 +5,15 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.CommandGroups;
+package frc.robot.commands.ExampleCommands;
 
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import frc.robot.commands.HopperCommands.HopperOff;
-import frc.robot.commands.IntakeCommands.IntakeOff;
-import frc.robot.subsystems.HopperSubsystem;
-import frc.robot.subsystems.IntakeSubsystem;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.subsystems.ExampleSubsystem;
 
 /**
  * A complex auto command that drives forward, releases a hatch, and then drives backward.
  */
-public class BallLoadingCommandGroupStop extends ParallelCommandGroup {
+public class ExampleCommandGroup extends SequentialCommandGroup {
   /**
    * Creates a new Command Group.
    * There are 4 types of command groups:
@@ -28,13 +25,13 @@ public class BallLoadingCommandGroupStop extends ParallelCommandGroup {
    * @param subsystem1 The subsystem this command will run on
    * @param subsystem2 The subsystem this command will run on
    */
-  public BallLoadingCommandGroupStop(HopperSubsystem hopper, IntakeSubsystem intake) {
+  public ExampleCommandGroup(ExampleSubsystem subsystem1, ExampleSubsystem subsystem2) {
     addCommands(
-        // Turns off intake
-        new IntakeOff(intake),
+        // Example 1
+        new ExampleCommand(subsystem1),
 
-        // Turns off hopper motor
-        new HopperOff(hopper)
+        // Example 2
+        new ExampleCommand(subsystem2)
     );
   }
 

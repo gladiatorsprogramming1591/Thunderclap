@@ -5,20 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.RobotModeCommands;
+package frc.robot.commands.UseHopperModeCommands;
 
 import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
-import frc.robot.subsystems.ShooterSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
  * An example command that uses an example subsystem.
  */
-public class SetShootingMode extends CommandBase {
+public class IntakeOneExtraBall extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final HopperSubsystem m_hopper;
-  private final ShooterSubsystem m_shooter;
   private IntakeSubsystem m_intake;
 
   /**
@@ -26,29 +24,27 @@ public class SetShootingMode extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public SetShootingMode(HopperSubsystem hopper, ShooterSubsystem shooter, IntakeSubsystem intake) {
+  public IntakeOneExtraBall(HopperSubsystem hopper, IntakeSubsystem intake) {
     m_hopper = hopper;
-    m_shooter = shooter;
     m_intake = intake;
-    
+
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(hopper);
-    addRequirements(shooter);
     addRequirements(intake);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("Setting Shooter Mode");
+    System.out.println("Intaking one extra ball");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_hopper.setShootingMode();
-    m_shooter.shooterOn();
-    m_intake.intakeOff();
+    m_intake.intakeOn();   // Make sure intake is on
+    m_hopper.setIntakeMode();  // Make sure we are in intake mode
+    m_hopper.intakeOneBallNoCountCheck();  // Now feed the ball through the hopper while it is still sensed
   }
 
   // Called once the command ends or is interrupted.

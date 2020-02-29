@@ -23,20 +23,14 @@ import frc.robot.commands.DriveTrainCommands.FastDrive;
 
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.commands.IntakeCommands.IntakeOn;
-import frc.robot.commands.IntakeOneExtraBall;
 import frc.robot.commands.IntakeCommands.IntakeReverse;
 import frc.robot.commands.IntakeCommands.IntakeOff;
 
+import frc.robot.subsystems.IntakeArm;
+
 import frc.robot.subsystems.ShooterSubsystem;
-import frc.robot.subsystems.intakeArm;
 import frc.robot.commands.ShooterCommands.ShooterOff;
 import frc.robot.commands.ShooterCommands.ShooterOn;
-
-import frc.robot.commands.RobotModeCommands.SetOffMode;
-import frc.robot.commands.RobotModeCommands.SetShootingMode;
-import frc.robot.commands.ShootAllBalls;
-import frc.robot.commands.ShootOneBall;
-import frc.robot.commands.RobotModeCommands.SetIntakeMode;
 
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.commands.ArmCommands.ArmDown;
@@ -56,14 +50,22 @@ import frc.robot.commands.HopperCommands.SuckerOn;
 import frc.robot.commands.HopperCommands.SuckerReverse;
 import frc.robot.commands.HopperCommands.SuckerOff;
 
-import frc.robot.commands.CommandGroups.TurnOnAllMotors;
-import frc.robot.commands.CommandGroups.ReverseAllMotorsExceptShooter;
-import frc.robot.commands.CommandGroups.TurnOffAllMotors;
-import frc.robot.commands.CommandGroups.IntakeandSuckerOn;
+import frc.robot.commands.CombinationCommandGroups.TurnOnAllMotors;
+import frc.robot.commands.CombinationCommandGroups.ReverseAllMotorsExceptShooter;
+import frc.robot.commands.CombinationCommandGroups.TurnOffAllMotors;
+import frc.robot.commands.CombinationCommandGroups.IntakeandSuckerOn;
 import frc.robot.commands.IntakeArmCommands.RaiseOrLowerArm;
-import frc.robot.commands.CommandGroups.IntakeandSuckerOff;
-import frc.robot.commands.CommandGroups.StopperandShooterOn;
-import frc.robot.commands.CommandGroups.StopperandShooterOff;
+import frc.robot.commands.CombinationCommandGroups.IntakeandSuckerOff;
+import frc.robot.commands.CombinationCommandGroups.StopperandShooterOn;
+import frc.robot.commands.CombinationCommandGroups.StopperandShooterOff;
+
+import frc.robot.commands.SetHopperModeCommands.SetIntakeMode;
+import frc.robot.commands.SetHopperModeCommands.SetOffMode;
+import frc.robot.commands.SetHopperModeCommands.SetShootingMode;
+
+import frc.robot.commands.UseHopperModeCommands.ShootAllBalls;
+import frc.robot.commands.UseHopperModeCommands.ShootOneBall;
+import frc.robot.commands.UseHopperModeCommands.IntakeOneExtraBall;
 
 // import frc.robot.commands.BallLoadingCommandGroup;
 // import frc.robot.commands.BallLoadingCommandGroupStop;
@@ -86,7 +88,7 @@ public class RobotContainer {
 
   // ---SUBSYSTEMS---
   private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
-  private final intakeArm m_intakeArmSubsystem = new intakeArm();
+  private final IntakeArm m_intakeArmSubsystem = new IntakeArm();
   private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
   private final ArmSubsystem m_armSubsystem = new ArmSubsystem();
   // private final HopperSubsystem m_hopperSubsystem = new HopperSubsystem(Constants.kPbotStopperForwardSpeed, Constants.kPbotStopperReverseSpeed);

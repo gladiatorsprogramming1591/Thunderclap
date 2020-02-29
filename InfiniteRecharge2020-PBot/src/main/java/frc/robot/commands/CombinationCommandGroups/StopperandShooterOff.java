@@ -5,21 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.CommandGroups;
+package frc.robot.commands.CombinationCommandGroups;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.Constants;
-import frc.robot.commands.HopperCommands.StopperOn;
-import frc.robot.commands.ShooterCommands.ShooterOn;
+import frc.robot.commands.HopperCommands.StopperOff;
+import frc.robot.commands.ShooterCommands.ShooterOff;
 import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
 /**
- * A complex auto command that drives forward, releases a hatch, and then drives
- * backward.
+ * A complex auto command that drives forward, releases a hatch, and then drives backward.
  */
-public class StopperandShooterOn extends SequentialCommandGroup {
+public class StopperandShooterOff extends SequentialCommandGroup {
   /**
    * Creates a new Command Group. There are 4 types of command groups:
    * SequentialCommandGroup - first command is executed, then the second, etc. and
@@ -30,16 +27,13 @@ public class StopperandShooterOn extends SequentialCommandGroup {
    * @param subsystem1 The subsystem this command will run on
    * @param subsystem2 The subsystem this command will run on
    */
-  public StopperandShooterOn(HopperSubsystem m_hopperSubsystem, ShooterSubsystem m_shooterSubsystem) {
+  public StopperandShooterOff(HopperSubsystem hopperSubsystem, ShooterSubsystem shooterSubsystem) {
     addCommands(
-        // Turns on shooter
-        new ShooterOn(m_shooterSubsystem),
+        // Turns off stopper
+        new StopperOff(hopperSubsystem),
 
-        // Sets delay
-        new WaitCommand(Constants.kStoppertoShooterTimeout),
-
-        // Turns on stopper
-        new StopperOn(m_hopperSubsystem)
+        // Turns off shooter
+        new ShooterOff(shooterSubsystem)
     );
   }
 

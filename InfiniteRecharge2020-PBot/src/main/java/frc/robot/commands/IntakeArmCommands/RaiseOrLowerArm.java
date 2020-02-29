@@ -7,7 +7,7 @@
 
 package frc.robot.commands.IntakeArmCommands;
 
-import frc.robot.subsystems.intakeArm;
+import frc.robot.subsystems.IntakeArm;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
@@ -15,14 +15,14 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
  */
 public class RaiseOrLowerArm extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final intakeArm m_subsystem;
+  private final IntakeArm m_subsystem;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public RaiseOrLowerArm(intakeArm subsystem) {
+  public RaiseOrLowerArm(IntakeArm subsystem) {
     m_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
