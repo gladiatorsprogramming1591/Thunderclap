@@ -23,7 +23,6 @@ public class ArmSubsystem extends SubsystemBase {
     m_armMotor.configOpenloopRamp(Constants.kArmRampRate);
 
     SmartDashboard.putData("Arm Motor", m_armMotor);
-    SmartDashboard.putData("Arm Subsystem", this);
   }
 
   @Override

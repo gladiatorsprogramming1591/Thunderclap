@@ -53,8 +53,7 @@ public class HopperSubsystem extends SubsystemBase {
 
         SmartDashboard.putData("Stopper Motor", m_stopperMotor);
         SmartDashboard.putData("Sucker Motor", m_suckerMotor);
-        SmartDashboard.putData("Hopper Subsystem", this);
-        SmartDashboard.putNumber("Hopper Subsystem", m_ballCount);
+        SmartDashboard.putNumber("Ball Count", m_ballCount);
     }
     public void hopperOn() {
         m_hopperMotor.set(Constants.kHopperForwardSpeed);
@@ -107,7 +106,7 @@ public class HopperSubsystem extends SubsystemBase {
             if (!m_isHopperOn) {
                 hopperOn();
                 m_ballCount++;
-                SmartDashboard.putNumber("Hopper Subsystem", m_ballCount);
+                SmartDashboard.putNumber("Ball Count", m_ballCount);
             }
         }
         else {
@@ -156,6 +155,7 @@ public class HopperSubsystem extends SubsystemBase {
         SmartDashboard.putString("Hopper Mode", "Intake");     
         suckerOn();
         stopperOff();
+        resetBallCount();
     }
 
     public void setShootingMode() {
@@ -185,7 +185,7 @@ public class HopperSubsystem extends SubsystemBase {
         if ( m_ballOutputSensorTriggered && !m_ballOutputSensor.IsBallPresent() ) {
             hopperOff();
             m_ballCount--;
-            SmartDashboard.putNumber("Hopper Subsystem", m_ballCount);
+            SmartDashboard.putNumber("Ball Count", m_ballCount);
         }
 
         SmartDashboard.putBoolean("Hopper active", m_isHopperOn);
@@ -194,5 +194,12 @@ public class HopperSubsystem extends SubsystemBase {
     public void outputAllBalls() {
         hopperOn();
         m_ballCount = 0;
+        SmartDashboard.putNumber("Ball Count", m_ballCount);
     }
+
+    public void resetBallCount() {
+        m_ballCount = 0;
+        SmartDashboard.putNumber("Ball Count", m_ballCount);
+    }
+
 }

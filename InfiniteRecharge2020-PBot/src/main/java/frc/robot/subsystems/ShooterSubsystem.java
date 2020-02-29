@@ -23,8 +23,6 @@ public class ShooterSubsystem extends SubsystemBase {
     m_shooterMotor = new CANSparkMax(Constants.kShooterMotorPort, MotorType.kBrushless);
 
     m_shooterMotor.setOpenLoopRampRate(Constants.kShooterRampRate);
-
-    SmartDashboard.putData("Shooter Subsystem", this);
   }
 
   @Override

@@ -40,6 +40,7 @@ import frc.robot.commands.ArmCommands.ArmUp;
 import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.commands.HopperCommands.HopperOn;
 import frc.robot.commands.HopperCommands.HopperReverse;
+import frc.robot.commands.HopperCommands.ResetBallCount;
 import frc.robot.commands.HopperCommands.HopperOff;
 
 import frc.robot.commands.HopperCommands.StopperOn;
@@ -248,8 +249,11 @@ public class RobotContainer {
       .whenPressed(new ShootAllBalls(m_hopperSubsystem, m_shooterSubsystem));
 
     new JoystickButton(m_driverStick, JoystickButtonConstants.kR2)
-      .whenPressed(new IntakeOneExtraBall(m_hopperSubsystem, m_intakeSubsystem));    
-  }
+      .whenPressed(new IntakeOneExtraBall(m_hopperSubsystem, m_intakeSubsystem)); 
+      
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kStart)
+      .whenPressed(new ResetBallCount(m_hopperSubsystem)); 
+    }
   
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
