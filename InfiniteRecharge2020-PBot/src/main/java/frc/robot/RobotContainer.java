@@ -86,7 +86,7 @@ public class RobotContainer {
 
   // ---SUBSYSTEMS---
   private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
-  private final intakeArm m_intakeArmSubsystem = new intakeArm();
+  // private final intakeArm m_intakeArmSubsystem = new intakeArm();
   private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
   private final ArmSubsystem m_armSubsystem = new ArmSubsystem();
   // private final HopperSubsystem m_hopperSubsystem = new HopperSubsystem(Constants.kPbotStopperForwardSpeed, Constants.kPbotStopperReverseSpeed);
@@ -129,8 +129,8 @@ public class RobotContainer {
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kB)
       .whenReleased(new IntakeOff(m_intakeSubsystem));
 
-    new JoystickButton(m_driverStick, JoystickButtonConstants.kR3) 
-      .whenPressed(new RaiseOrLowerArm(m_intakeArmSubsystem));
+    // new JoystickButton(m_driverStick, JoystickButtonConstants.kR3) 
+    //   .whenPressed(new RaiseOrLowerArm(m_intakeArmSubsystem));
 
       
     // ---SHOOTER SECTION---
