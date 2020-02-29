@@ -150,8 +150,8 @@ public class RobotContainer {
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL3)
       .whenReleased(new ArmOff(m_armSubsystem));
       
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kBack)
-      .whenReleased(new ArmOff(m_armSubsystem));
+    // new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kBack)
+    //   .whenReleased(new ArmOff(m_armSubsystem));
 
     // ---HOPPER---
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kY) 
