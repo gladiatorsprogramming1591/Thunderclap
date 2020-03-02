@@ -162,7 +162,7 @@ public class HopperSubsystem extends SubsystemBase {
         m_hopperMode = HopperMode.shootingMode;
         SmartDashboard.putString("Hopper Mode", "Shooting");
         suckerOff();
-        stopperOn();
+        // stopperOn();
     }
 
     public void setOffMode() {
@@ -174,6 +174,10 @@ public class HopperSubsystem extends SubsystemBase {
     }
 
     public void outputOneBall() {
+        // Until sensor is in place, assume ball is at stopper and just turn stopper on to advance ball to shooter
+        stopperOn(); 
+
+        /* Temp remove until sensor is hooked up
         // If we are just starting and the ball hasn't triggered the sensor, turn on the hopper and wait for trigger
         if ( !m_ballOutputSensorTriggered ) {
             hopperOn();  // Make sure hopper is on
@@ -187,12 +191,14 @@ public class HopperSubsystem extends SubsystemBase {
             m_ballCount--;
             SmartDashboard.putNumber("Ball Count", m_ballCount);
         }
+        */
 
         SmartDashboard.putBoolean("Hopper active", m_isHopperOn);
     }
 
     public void outputAllBalls() {
-        hopperOn();
+        stopperOn();  // Make sure stopper is on first so balls don't get wedged
+        hopperOn();  // Now turn on hopper to advance all balls
         m_ballCount = 0;
         SmartDashboard.putNumber("Ball Count", m_ballCount);
     }
