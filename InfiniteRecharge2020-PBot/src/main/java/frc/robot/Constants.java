@@ -49,9 +49,9 @@ public final class Constants {
     public final static int kPbotLeftMotorCANID = 1;
     public final static int kPbotRightMotorCANID = 2;
     public final static int kCbotFrontLeftMotorCANID = 1;
-    public final static int kCbotFrontRightMotorCANID = 2;
-    public final static int kCbotRearLeftMotorCANID = 3;
-    public final static int kCbotRearRightMotorCANID = 4;
+    public final static int kCbotRearLeftMotorCANID = 2;
+    public final static int kCbotRearRightMotorCANID = 3;
+    public final static int kCbotFrontRightMotorCANID = 4;
    
     public final static int kHopperChannel = 5;
     public final static int kShooterMotorPort = 6;
