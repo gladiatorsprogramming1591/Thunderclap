@@ -8,9 +8,6 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
-
-
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -18,21 +15,15 @@ import frc.robot.Constants;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Relay;
 
-
-public class compressorSS extends SubsystemBase {
-
+public class CompressorSS extends SubsystemBase {
     
     private Compressor compressor;
     private Relay relay;
 
-    
-
-    public compressorSS() {
+    public CompressorSS() {
         compressor = new Compressor(Constants.kPCM_CANID);
         relay = new Relay(Constants.kCompressorRelay);
     }
-
-   
 
     // public void turnOnCompressor() {
     //     System.out.println("Starting compressor");
@@ -54,7 +45,7 @@ public class compressorSS extends SubsystemBase {
         // if true set the Relay to kForward else kOff
         if (compressor.getPressureSwitchValue() == false) {
             relay.set(Relay.Value.kForward);
-             System.out.println("Turning compressor on");
+            System.out.println("Turning compressor on");
         }
         else {
             relay.set(Relay.Value.kOff);
