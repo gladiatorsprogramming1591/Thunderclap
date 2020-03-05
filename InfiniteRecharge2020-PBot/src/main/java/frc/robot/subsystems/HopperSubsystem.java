@@ -4,9 +4,11 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.BallOutputSensor;
+import frc.robot.BallOutputSensor2m;
 import frc.robot.BallSensor;
 import frc.robot.Constants;
 
@@ -30,7 +32,9 @@ public class HopperSubsystem extends SubsystemBase {
     private final double m_stopperForwardSpeed;
     private final double m_stopperReverseSpeed;
     private final BallSensor m_ballSensor;
-    private final BallOutputSensor m_ballOutputSensor;
+    // private final BallOutputSensor m_ballOutputSensor;
+    // private final BallOutputSensor2m m_ballOutputSensor;
+    private final DigitalInput m_bumperSwitch;
     private int m_ballCount = 0;
     private boolean m_isHopperOn = false;
     private boolean m_ballOutputSensorTriggered = false;
@@ -49,7 +53,9 @@ public class HopperSubsystem extends SubsystemBase {
         m_suckerMotor.configOpenloopRamp(Constants.kSuckerRampRate);
 
         m_ballSensor = new BallSensor();
-        m_ballOutputSensor = new BallOutputSensor();
+        // m_ballOutputSensor = new BallOutputSensor();
+        // m_ballOutputSensor = new BallOutputSensor2m();
+        m_bumperSwitch = new DigitalInput(Constants.kBumperSwitchChannel);
 
         SmartDashboard.putData("Stopper Motor", m_stopperMotor);
         SmartDashboard.putData("Sucker Motor", m_suckerMotor);
@@ -144,10 +150,10 @@ public class HopperSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
         // TODO: Remove after done testing
-        m_ballSensor.SenseColor();
+        // m_ballSensor.SenseColor();
         m_ballSensor.IsBallPresent();
-        m_ballOutputSensor.SenseColor();
-        m_ballOutputSensor.IsBallPresent();
+        // m_ballOutputSensor.IsBallPresent();
+        SmartDashboard.putBoolean("Bumper Switch", m_bumperSwitch.get());
     }
 
     public void setIntakeMode() {

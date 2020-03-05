@@ -24,11 +24,11 @@ public final class Constants {
     public final static double kPbotStopperReverseSpeed = 1.0;
     public final static double kCbotStopperForwardSpeed = 0.6;
     public final static double kPbotStopperForwardSpeed = -1.0;
-    public final static double kIntakeForwardSpeed = 0.4;
-    public final static double kIntakeReverseSpeed = -0.4;
+    public final static double kIntakeForwardSpeed = 0.5;
+    public final static double kIntakeReverseSpeed = -0.5;
     public final static double kSuckerForwardSpeed = 0.6;
     public final static double kSuckerReverseSpeed = -0.6;
-    public final static double kShooterMotorSpeed = -0.5;
+    public final static double kShooterMotorSpeed = -0.33333333333;
     public final static double kArmUpSpeed = 1.0;
     public final static double kArmDownSpeed = -1.0;
 
@@ -55,11 +55,14 @@ public final class Constants {
    
     public final static int kHopperChannel = 5;
     public final static int kShooterMotorPort = 6;
-    public final static int kIntakeChannel = 12; // Temp change due to bad wiring 7;
+    public final static int kIntakeChannel = 7;
     public final static int kSuckerChannel = 8;
     public final static int kStopperChannel = 9;
     public final static int kPCM_CANID = 11;
-    public final static int kArmCANID = 7; // Temp change due to bad wiring 12;
+    public final static int kArmCANID = 12;
+
+    //Digital Inputs
+    public final static int kBumperSwitchChannel = 0;
 
     //Solenoids
     public final static int kArmSolenoidRightForwardChannel = 0;
