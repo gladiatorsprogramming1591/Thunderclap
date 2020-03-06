@@ -41,8 +41,8 @@ public class SlowDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_AxisForward = m_driveTrain.getAxisForward();
-    m_AxisTurning = m_driveTrain.getAxisTurning();
+    m_AxisForward = m_driveTrain.getAxisForward() * Constants.kSlowDriveScalar;
+    m_AxisTurning = m_driveTrain.getAxisTurning() * Constants.kSlowDriveScalar;
     m_driveTrain.drive(m_AxisForward, m_AxisTurning, Constants.kSlowSquaredInputs);
   }
 

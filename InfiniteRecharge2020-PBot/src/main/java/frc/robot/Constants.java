@@ -79,9 +79,10 @@ public final class Constants {
     public final static double kMoveAllBallsTimeOut = 5.0;
     public final static double kStoppertoShooterTimeout = 0.5;
 
-    //Squared Inputs
+    //Drive train constants
     public final static boolean kFastSquaredInputs = false;
     public final static boolean kSlowSquaredInputs = true;
+    public final static double kSlowDriveScalar = 0.7;  // with squared inputs, sets max speed to 49%
 
     //Encoder 
     public final static int kEncoderResolution = 42;
