@@ -108,7 +108,8 @@ public class HopperSubsystem extends SubsystemBase {
      *   - False if not intaking a ball
      */
     public boolean intakeOneBallNoCountCheck() {
-        if ( m_ballSensor.IsBallPresent() ) {
+        // if ( m_ballSensor.IsBallPresent() ) {
+        if ( IsBallPresent() ) {
             if (!m_isHopperOn) {
                 hopperOn();
                 m_ballCount++;
@@ -138,7 +139,8 @@ public class HopperSubsystem extends SubsystemBase {
         else {
             // If we get to ball 5, we will still go through this else, but we need to turn the
             // hopper off once it has moved past the sensor.
-            if ( !m_ballSensor.IsBallPresent() ) {
+            // if ( !m_ballSensor.IsBallPresent() ) {
+            if ( !IsBallPresent() ) {
                 hopperOff();
             }
         }
@@ -161,7 +163,6 @@ public class HopperSubsystem extends SubsystemBase {
         SmartDashboard.putString("Hopper Mode", "Intake");     
         suckerOn();
         stopperOff();
-        resetBallCount();
     }
 
     public void setShootingMode() {
@@ -177,6 +178,10 @@ public class HopperSubsystem extends SubsystemBase {
         suckerOff();
         stopperOff();   
         hopperOff();
+    }
+
+    public boolean IsBallPresent() {
+        return !m_bumperSwitch.get();  
     }
 
     public void outputOneBall() {

@@ -41,6 +41,7 @@ public class SetIntakeMode extends CommandBase {
   @Override
   public void initialize() {
     System.out.println("Setting Intake Mode");
+    m_hopper.resetBallCount();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

@@ -26,8 +26,8 @@ public final class Constants {
     public final static double kPbotStopperForwardSpeed = -1.0;
     public final static double kIntakeForwardSpeed = 0.5;
     public final static double kIntakeReverseSpeed = -0.5;
-    public final static double kSuckerForwardSpeed = 0.6;
-    public final static double kSuckerReverseSpeed = -0.6;
+    public final static double kSuckerForwardSpeed = 0.75;
+    public final static double kSuckerReverseSpeed = -0.75;
     public final static double kShooterMotorSpeed = -0.33333333333;
     public final static double kArmUpSpeed = 1.0;
     public final static double kArmDownSpeed = -1.0;
