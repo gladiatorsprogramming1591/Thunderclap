@@ -24,23 +24,23 @@ public class IntakeArm extends SubsystemBase {
 
     public IntakeArm() {
        
-        rightPiston = new DoubleSolenoid(Constants.kPCM_CANID, Constants.kArmSolenoidRightForwardChannel,
-            Constants.kArmSolenoidRightReverseChannel);
+        // rightPiston = new DoubleSolenoid(Constants.kPCM_CANID, Constants.kArmSolenoidRightForwardChannel,
+        //     Constants.kArmSolenoidRightReverseChannel);
         
-        leftPiston = new DoubleSolenoid(Constants.kPCM_CANID, Constants.kArmSolenoidLeftForwardChannel,
-            Constants.kArmSolenoidLeftReverseChannel);
+        // leftPiston = new DoubleSolenoid(Constants.kPCM_CANID, Constants.kArmSolenoidLeftForwardChannel,
+        //     Constants.kArmSolenoidLeftReverseChannel);
     }
 
     public boolean armLowered = false;
     public void lowerArm() {
-        leftPiston.set(DoubleSolenoid.Value.kForward);
-        rightPiston.set(DoubleSolenoid.Value.kForward);
-        armLowered = true;
+        // leftPiston.set(DoubleSolenoid.Value.kForward);
+        // rightPiston.set(DoubleSolenoid.Value.kForward);
+        // armLowered = true;
     }
     public void raiseArm() {
-        leftPiston.set(DoubleSolenoid.Value.kReverse);
-        rightPiston.set(DoubleSolenoid.Value.kReverse);
-        armLowered = false;
+        // leftPiston.set(DoubleSolenoid.Value.kReverse);
+        // rightPiston.set(DoubleSolenoid.Value.kReverse);
+        // armLowered = false;
     }
    
 }
