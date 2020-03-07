@@ -177,13 +177,10 @@ public class HopperSubsystem extends SubsystemBase {
         suckerOff();
         stopperOff();   
         hopperOff();
-<<<<<<< HEAD
     }
 
     public boolean IsBallPresent() {
         return !m_bumperSwitch.get();  
-=======
->>>>>>> master
     }
 
     public void outputOneBall() {
