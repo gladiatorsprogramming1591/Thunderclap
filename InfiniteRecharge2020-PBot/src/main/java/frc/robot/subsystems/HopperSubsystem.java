@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.BallOutputSensor;
-import frc.robot.BallOutputSensor2m;
 import frc.robot.BallSensor;
 import frc.robot.Constants;
 
