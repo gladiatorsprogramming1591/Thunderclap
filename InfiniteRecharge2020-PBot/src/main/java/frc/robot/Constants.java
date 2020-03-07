@@ -65,12 +65,10 @@ public final class Constants {
     public final static int kBumperSwitchChannel = 0;
 
     //Solenoids
-    public final static int kArmSolenoidRightForwardChannel = 0;
-    public final static int kArmSolenoidRightReverseChannel = 1;
-    public final static int kArmSolenoidLeftForwardChannel = 2;
-    public final static int kArmSolenoidLeftReverseChannel = 3;
-    public final static int kWinchBrakeSolenoidForwardChannel = 4;
-    public final static int kWinchBrakeSolenoidReverseChannel = 4;
+    public final static int kArmSolenoidForwardChannel = 0;
+    public final static int kArmSolenoidReverseChannel = 1;
+    public final static int kWinchBrakeSolenoidForwardChannel = 2;
+    public final static int kWinchBrakeSolenoidReverseChannel = 3;
 
     //Relays
     public final static int kCompressorRelay = 0;

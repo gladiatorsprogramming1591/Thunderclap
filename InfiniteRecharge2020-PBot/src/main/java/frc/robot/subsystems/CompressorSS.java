@@ -56,7 +56,12 @@ public class CompressorSS extends SubsystemBase {
             || compressor.getCompressorCurrentTooHighFault()
             || compressor.getCompressorNotConnectedStickyFault()
             || compressor.getCompressorCurrentTooHighStickyFault();
-        SmartDashboard.putBoolean("Compressor Faulted", faulted);
+        SmartDashboard.putBoolean("getCompressorNotConnectedFault", compressor.getCompressorNotConnectedFault());
+        SmartDashboard.putBoolean("getCompressorShortedStickyFault", compressor.getCompressorShortedStickyFault());
+        SmartDashboard.putBoolean("getCompressorCurrentTooHighFault", compressor.getCompressorCurrentTooHighFault());
+        SmartDashboard.putBoolean("getCompressorNotConnectedStickyFault", compressor.getCompressorNotConnectedStickyFault());
+        SmartDashboard.putBoolean("getCompressorCurrentTooHighStickyFault", compressor.getCompressorCurrentTooHighStickyFault());
+        SmartDashboard.putBoolean("getCompressorShortedFault", compressor.getCompressorShortedFault());
     }   
 }
 

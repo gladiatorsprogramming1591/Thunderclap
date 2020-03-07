@@ -19,28 +19,22 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
  */
 public class IntakeArm extends SubsystemBase {
 
-    private DoubleSolenoid rightPiston;
-    private DoubleSolenoid leftPiston;
+    private DoubleSolenoid m_piston;
 
     public IntakeArm() {
        
-        // rightPiston = new DoubleSolenoid(Constants.kPCM_CANID, Constants.kArmSolenoidRightForwardChannel,
-        //     Constants.kArmSolenoidRightReverseChannel);
-        
-        // leftPiston = new DoubleSolenoid(Constants.kPCM_CANID, Constants.kArmSolenoidLeftForwardChannel,
-        //     Constants.kArmSolenoidLeftReverseChannel);
+        m_piston = new DoubleSolenoid(Constants.kPCM_CANID, Constants.kArmSolenoidForwardChannel,
+            Constants.kArmSolenoidReverseChannel);
     }
 
     public boolean armLowered = false;
     public void lowerArm() {
-        // leftPiston.set(DoubleSolenoid.Value.kForward);
-        // rightPiston.set(DoubleSolenoid.Value.kForward);
-        // armLowered = true;
+        m_piston.set(DoubleSolenoid.Value.kForward);
+        armLowered = true;
     }
     public void raiseArm() {
-        // leftPiston.set(DoubleSolenoid.Value.kReverse);
-        // rightPiston.set(DoubleSolenoid.Value.kReverse);
-        // armLowered = false;
+        m_piston.set(DoubleSolenoid.Value.kReverse);
+        armLowered = false;
     }
    
 }
