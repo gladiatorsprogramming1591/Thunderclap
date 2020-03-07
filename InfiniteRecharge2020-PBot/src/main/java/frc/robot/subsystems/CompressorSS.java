@@ -14,46 +14,49 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class CompressorSS extends SubsystemBase {
     
     private Compressor compressor;
-    private Relay relay;
-
+    
+    // Needed in case PCM internal relay breaks like in Deep Space
+    private Relay m_relay;
+    private boolean m_relayNeeded = false; 
+    
     public CompressorSS() {
         compressor = new Compressor(Constants.kPCM_CANID);
-        relay = new Relay(Constants.kCompressorRelay);
+        if(m_relayNeeded) {
+            m_relay = new Relay(Constants.kCompressorRelay);
+        }
     }
-
-    // public void turnOnCompressor() {
-    //     System.out.println("Starting compressor");
-    //     compressor.start();
-    //     relay.set(Value.kForward);
-    // }
-
-    // public void turnOffCompressor() {
-    //     relay.set(Value.kOff);
-    // }
 
     @Override
     public void periodic() {
         // Put code here to be run every loop
         compressor.start();
-        //Add an if/else statement. use the pressure switch,
-        // which is under the compressor object as the argument,
-        // i.e. the true false factor.
+
+        // If using external relay, must turn compressor on/off 
+        // based on whether the pressure release switch is is on/off
         // if true set the Relay to kForward else kOff
-        if (compressor.getPressureSwitchValue() == false) {
-            relay.set(Relay.Value.kForward);
-            System.out.println("Turning compressor on");
-        }
-        else {
-            relay.set(Relay.Value.kOff);
-            System.out.println("Turning compressor off");
+        if(m_relayNeeded) {
+            if (compressor.getPressureSwitchValue() == false) {
+                m_relay.set(Relay.Value.kForward);
+                System.out.println("Turning compressor on");
+            }
+            else {
+                m_relay.set(Relay.Value.kOff);
+                System.out.println("Turning compressor off");
+           }
         }
 
-    }
-
-    
+        boolean faulted = compressor.getCompressorShortedFault() 
+            | compressor.getCompressorNotConnectedFault()
+            | compressor.getCompressorShortedStickyFault()
+            | compressor.getCompressorCurrentTooHighFault()
+            | compressor.getCompressorNotConnectedStickyFault()
+            | compressor.getCompressorCurrentTooHighStickyFault();
+        SmartDashboard.putBoolean("Compressor Faulted", faulted);
+    }   
 }
 
