@@ -1,0 +1,72 @@
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) 2018-2019 FIRST. All Rights Reserved.                        */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
+
+package frc.robot.subsystems;
+
+import com.revrobotics.CANEncoder;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
+
+public class LiftSubsystem extends SubsystemBase {
+    private CANSparkMax m_winchMotor; 
+    private DoubleSolenoid m_brakeSolenoid;
+    private CANEncoder m_encoder;
+    private boolean m_isBrakeEngaged = false;
+
+    /**
+     * Creates a new ArmSubsystem.
+     */
+    public LiftSubsystem() {
+        m_winchMotor = new CANSparkMax(Constants.kArmCANID, MotorType.kBrushless);
+        m_winchMotor.setOpenLoopRampRate(Constants.kArmRampRate);
+        m_brakeSolenoid = new DoubleSolenoid(Constants.kPCM_CANID, Constants.kWinchBrakeSolenoidForwardChannel, 
+            Constants.kWinchBrakeSolenoidReverseChannel);
+        m_encoder = m_winchMotor.getEncoder();
+    }
+
+    @Override
+    public void periodic() {
+        // This method will be called once per scheduler run
+        SmartDashboard.putNumber("Winch Encoder", m_encoder.getPosition());
+        SmartDashboard.putNumber("Winch Velocity", m_encoder.getVelocity());
+        SmartDashboard.getBoolean("Winch Brake Engaged", m_isBrakeEngaged);
+    }
+    
+    public void engageBrake() {
+        m_brakeSolenoid.set(Value.kForward);
+        m_isBrakeEngaged = true;
+    }
+
+    public void disengageBrake() {
+        m_brakeSolenoid.set(Value.kReverse);
+        m_isBrakeEngaged = false;
+    }
+
+    public void turnOffBrakeSolenoid() {
+        m_brakeSolenoid.set(Value.kOff);
+    }
+    
+    public void releaseWinch() {
+        m_winchMotor.set(Constants.kWinchUpSpeed);
+        SmartDashboard.putNumber("Winch Set Speed", Constants.kWinchUpSpeed);
+    }
+
+    public void stopWinchMotor() {
+        m_winchMotor.set(0);
+        SmartDashboard.putNumber("Winch Set Speed", 0);
+    }
+    public void crankWinch() {
+        m_winchMotor.set(Constants.kWinchDownSpeed);
+        SmartDashboard.putNumber("Winch Set Speed", Constants.kWinchDownSpeed);
+    }
+}

@@ -5,45 +5,45 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.ArmCommands;
+package frc.robot.commands.LiftCommands;
 
-import frc.robot.subsystems.ArmSubsystem;
+import frc.robot.subsystems.LiftSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
  * An example command that uses an example subsystem.
  */
-public class ArmDown extends CommandBase {
-  @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
-  private final ArmSubsystem m_armSubsystem;
-
+public class ReleaseWinch extends CommandBase {
+  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
+  private final LiftSubsystem m_liftSubsystem;
+  
   /**
    * Creates a new ArmCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ArmDown(ArmSubsystem armSubsystem) {
-    m_armSubsystem = armSubsystem;
+  public ReleaseWinch(LiftSubsystem liftSubsystem) {
+    m_liftSubsystem = liftSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(armSubsystem);
+    addRequirements(liftSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("Arm subsystem Calling ArmDown");
+    System.out.println("ReleaseWinch command Calling ");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_armSubsystem.armDown();
+    m_liftSubsystem.releaseWinch();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-  
+   
   }
 
   // Returns true when the command should end.

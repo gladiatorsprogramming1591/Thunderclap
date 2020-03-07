@@ -5,40 +5,40 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.ArmCommands;
+package frc.robot.commands.LiftCommands;
 
-import frc.robot.subsystems.ArmSubsystem;
+import frc.robot.subsystems.LiftSubsystem;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
  * An example command that uses an example subsystem.
  */
-public class ArmOff extends CommandBase {
+public class EngageWinchBrake extends CommandBase {
   @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
-  private final ArmSubsystem m_armSubsystem;
+  private final LiftSubsystem m_liftSubsystem;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ArmOff(ArmSubsystem armSubsystem) {
-    m_armSubsystem = armSubsystem;
+  public EngageWinchBrake(LiftSubsystem liftSubsystem) {
+    m_liftSubsystem = liftSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(armSubsystem);
+    addRequirements(liftSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("Arm subsystem Calling ArmStop");
+    System.out.println("EngageWinchBrake command calling engageBrake");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_armSubsystem.armStop();
+    m_liftSubsystem.engageBrake();
   }
 
   // Called once the command ends or is interrupted.

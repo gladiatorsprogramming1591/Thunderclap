@@ -40,10 +40,12 @@ import frc.robot.commands.UseHopperModeCommands.ResetBallCount;
 
 import frc.robot.commands.CombinationCommandGroups.ReverseAllMotorsExceptShooter;
 
-import frc.robot.subsystems.ArmSubsystem;
-import frc.robot.commands.ArmCommands.ArmDown;
-import frc.robot.commands.ArmCommands.ArmOff;
-import frc.robot.commands.ArmCommands.ArmUp;
+import frc.robot.subsystems.LiftSubsystem;
+import frc.robot.commands.LiftCommands.CrankWinch;
+import frc.robot.commands.LiftCommands.DisengageWinchBrake;
+import frc.robot.commands.LiftCommands.EngageWinchBrake;
+import frc.robot.commands.LiftCommands.StopWinchMotor;
+import frc.robot.commands.LiftCommands.ReleaseWinch;
 
 import frc.robot.commands.AutonomousCommands.DriveStraightAutonomous;
 import frc.robot.commands.AutonomousCommands.DriveLeftAutonomous;
@@ -64,7 +66,7 @@ public class RobotContainer {
   private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
   private final IntakeArm m_intakeArmSubsystem = new IntakeArm();
   private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
-  private final ArmSubsystem m_armSubsystem = new ArmSubsystem();
+  private final LiftSubsystem m_liftSubsystem = new LiftSubsystem();
   // private final HopperSubsystem m_hopperSubsystem = new HopperSubsystem(Constants.kPbotStopperForwardSpeed, Constants.kPbotStopperReverseSpeed);
   private final HopperSubsystem m_hopperSubsystem = new HopperSubsystem(Constants.kCbotStopperForwardSpeed, Constants.kCbotStopperReverseSpeed);
   // private final DriveTrain m_driveTrain = new DriveTrainP(m_driverStick);
@@ -95,7 +97,6 @@ public class RobotContainer {
     // ---DRIVE TRAIN--- 
     new JoystickButton(m_driverStick, JoystickButtonConstants.kL3)
       .whenPressed(new SlowDrive(m_driveTrain));
-
     new JoystickButton(m_driverStick, JoystickButtonConstants.kL3)
       .whenReleased(new FastDrive(m_driveTrain));
 
@@ -103,7 +104,6 @@ public class RobotContainer {
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL1)
       .whenPressed(new IntakeReverse(m_intakeSubsystem));
-
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL1)
       .whenReleased(new IntakeOff(m_intakeSubsystem));
 
@@ -116,7 +116,6 @@ public class RobotContainer {
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL2)
       .whenPressed(new ShootOneBall(m_hopperSubsystem, m_shooterSubsystem));
-
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR2)
       .whenPressed(new ShootAllBalls(m_hopperSubsystem, m_shooterSubsystem));
 
@@ -134,15 +133,19 @@ public class RobotContainer {
     new JoystickButton(m_driverStick, JoystickButtonConstants.kBack)
       .whenPressed(new ReverseAllMotorsExceptShooter(m_hopperSubsystem, m_intakeSubsystem));
 
-    // ---ARM SECTION---
-    // new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL3) 
-    //   .whenPressed(new ArmUp(m_armSubsystem));
-
-    // new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR3)
-    //   .whenPressed(new ArmDown(m_armSubsystem));
-
-    // new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL3)
-    //   .whenReleased(new ArmOff(m_armSubsystem));
+    // ---LIFT SECTION---
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kA) 
+      .whenPressed(new ReleaseWinch(m_liftSubsystem));
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kX)
+      .whenPressed(new StopWinchMotor(m_liftSubsystem));
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kB)
+      .whenPressed(new CrankWinch(m_liftSubsystem));
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL3)
+      .whenPressed(new EngageWinchBrake(m_liftSubsystem));
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR3)
+      .whenPressed(new DisengageWinchBrake(m_liftSubsystem));
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kY)
+      .whenPressed(new DisengageWinchBrake(m_liftSubsystem));
 
     }
     

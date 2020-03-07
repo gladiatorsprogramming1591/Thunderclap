@@ -29,8 +29,8 @@ public final class Constants {
     public final static double kSuckerForwardSpeed = 0.75;
     public final static double kSuckerReverseSpeed = -0.75;
     public final static double kShooterMotorSpeed = -0.33333333333;
-    public final static double kArmUpSpeed = 1.0;
-    public final static double kArmDownSpeed = -1.0;
+    public final static double kWinchUpSpeed = 0.2;  // Release winch slowly as linear motion system extends
+    public final static double kWinchDownSpeed = -0.2;  // Lift bot at full speed (temp slower for testing)
 
     // Motor Ramp Rates (HOW LONG IN SECONDS FROM NEUTRAL TO FULL THROTTLE)
     public final static double kHopperRampRate = 0.5;
@@ -69,6 +69,8 @@ public final class Constants {
     public final static int kArmSolenoidRightReverseChannel = 1;
     public final static int kArmSolenoidLeftForwardChannel = 2;
     public final static int kArmSolenoidLeftReverseChannel = 3;
+    public final static int kWinchBrakeSolenoidForwardChannel = 4;
+    public final static int kWinchBrakeSolenoidReverseChannel = 4;
 
     //Relays
     public final static int kCompressorRelay = 0;
@@ -78,6 +80,7 @@ public final class Constants {
     public final static double kMoveOneBallTimeOut = 1.0;
     public final static double kMoveAllBallsTimeOut = 5.0;
     public final static double kStoppertoShooterTimeout = 0.5;
+    public final static double kBrakeTimeout = 0.25;
 
     //Drive train constants
     public final static boolean kFastSquaredInputs = false;
