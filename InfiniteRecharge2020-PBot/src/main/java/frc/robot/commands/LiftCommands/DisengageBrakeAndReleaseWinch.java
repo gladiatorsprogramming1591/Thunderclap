@@ -15,7 +15,7 @@ import frc.robot.subsystems.LiftSubsystem;
 /**
  * A complex auto command that drives forward, releases a hatch, and then drives backward.
  */
-public class EngageBrakeAndStopWinch extends SequentialCommandGroup {
+public class DisengageBrakeAndReleaseWinch extends SequentialCommandGroup {
   /**
    * Creates a new Command Group.
    * There are 4 types of command groups:
@@ -26,11 +26,13 @@ public class EngageBrakeAndStopWinch extends SequentialCommandGroup {
    *
    * @param subsystem The subsystem this command will run on
    */
-  public EngageBrakeAndStopWinch(LiftSubsystem subsystem) {
+  public DisengageBrakeAndReleaseWinch (LiftSubsystem subsystem) {
     addCommands(
-        new EngageWinchBrake(subsystem),
+        new CrankWinch(subsystem),
         new WaitCommand(Constants.kBrakeTimeout),
-        new StopWinchMotor(subsystem)
+        new DisengageWinchBrake(subsystem),
+        new WaitCommand(Constants.kBrakeTimeout),
+        new ReleaseWinch(subsystem)
     );
   }
 

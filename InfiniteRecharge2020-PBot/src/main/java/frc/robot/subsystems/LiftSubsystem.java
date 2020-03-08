@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class LiftSubsystem extends SubsystemBase {
     private CANSparkMax m_winchMotor; 
@@ -37,6 +38,9 @@ public class LiftSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
+        crankOrReleaseWinch(); // If joystick active, crank or release winch accordingly
+
+        // Update dashboard with important values
         SmartDashboard.putNumber("Winch Encoder", m_encoder.getPosition());
         SmartDashboard.putNumber("Winch Velocity", m_encoder.getVelocity());
         SmartDashboard.getBoolean("Winch Brake Engaged", m_isBrakeEngaged);
@@ -68,5 +72,14 @@ public class LiftSubsystem extends SubsystemBase {
     public void crankWinch() {
         m_winchMotor.set(Constants.kWinchDownSpeed);
         SmartDashboard.putNumber("Winch Set Speed", Constants.kWinchDownSpeed);
+    }
+
+    private void crankOrReleaseWinch() {
+        double speed = -RobotContainer.m_manipulatorStick.getY();
+        // Only adjust the  motor speed here if joystick is active, allowing for noise
+        if(speed > 0.05 || speed < -0.05) {
+            m_winchMotor.set(speed);
+        }
+        SmartDashboard.putNumber("Winch Set Speed", speed);
     }
 }

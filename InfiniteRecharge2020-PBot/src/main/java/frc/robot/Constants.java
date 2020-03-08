@@ -17,7 +17,7 @@ package frc.robot;
  */
 public final class Constants {
 
-    //Motor speed
+    //Motor speeds in duty cycle unless otherwise specified, e.g. RPM
     public final static double kHopperReverseSpeed = -0.6;
     public final static double kHopperForwardSpeed = 0.6;
     public final static double kCbotStopperReverseSpeed = -0.6;
@@ -29,6 +29,9 @@ public final class Constants {
     public final static double kSuckerForwardSpeed = 0.75;
     public final static double kSuckerReverseSpeed = -0.75;
     public final static double kShooterMotorSpeed = -0.33333333333;
+    public final static double kShooterGearRatio = 7/6;
+    public final static double kNeoMaxSpeed = 5676;
+    public final static double kShooterMotorSpeedRPM = kShooterMotorSpeed*kNeoMaxSpeed*kShooterGearRatio;
     public final static double kWinchUpSpeed = 0.2;  // Release winch slowly as linear motion system extends
     public final static double kWinchDownSpeed = -0.2;  // Lift bot at full speed (temp slower for testing)
 

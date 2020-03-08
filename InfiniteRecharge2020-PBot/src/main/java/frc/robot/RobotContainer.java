@@ -43,6 +43,7 @@ import frc.robot.commands.CombinationCommandGroups.ReverseAllMotorsExceptShooter
 import frc.robot.subsystems.LiftSubsystem;
 import frc.robot.commands.LiftCommands.CrankWinch;
 import frc.robot.commands.LiftCommands.DisengageWinchBrake;
+import frc.robot.commands.LiftCommands.EngageBrakeAndStopWinch;
 import frc.robot.commands.LiftCommands.EngageWinchBrake;
 import frc.robot.commands.LiftCommands.StopWinchMotor;
 import frc.robot.commands.LiftCommands.ReleaseWinch;
@@ -146,9 +147,9 @@ public class RobotContainer {
       .whenPressed(new EngageWinchBrake(m_liftSubsystem));
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR3)
       .whenPressed(new DisengageWinchBrake(m_liftSubsystem));
-    // new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kY)
-    //   .whenPressed(new DisengageWinchBrake(m_liftSubsystem));
-
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kY)
+      .whenPressed(new EngageBrakeAndStopWinch(m_liftSubsystem));
+    
     }
     
   
