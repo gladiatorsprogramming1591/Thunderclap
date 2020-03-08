@@ -43,12 +43,12 @@ public class LiftSubsystem extends SubsystemBase {
     }
     
     public void engageBrake() {
-        m_brakeSolenoid.set(Value.kForward);
+        m_brakeSolenoid.set(Value.kReverse);
         m_isBrakeEngaged = true;
     }
 
     public void disengageBrake() {
-        m_brakeSolenoid.set(Value.kReverse);
+        m_brakeSolenoid.set(Value.kForward);
         m_isBrakeEngaged = false;
     }
 

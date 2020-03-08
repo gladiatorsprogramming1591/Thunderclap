@@ -146,8 +146,8 @@ public class RobotContainer {
       .whenPressed(new EngageWinchBrake(m_liftSubsystem));
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR3)
       .whenPressed(new DisengageWinchBrake(m_liftSubsystem));
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kY)
-      .whenPressed(new DisengageWinchBrake(m_liftSubsystem));
+    // new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kY)
+    //   .whenPressed(new DisengageWinchBrake(m_liftSubsystem));
 
     }
     
