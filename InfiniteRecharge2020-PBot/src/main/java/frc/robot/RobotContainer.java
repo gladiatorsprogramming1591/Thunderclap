@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.JoystickButtonConstants;
 // import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+import frc.robot.subsystems.CompressorSS;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.DriveTrainC;
 // import frc.robot.subsystems.DriveTrainP;
@@ -71,12 +71,14 @@ public class RobotContainer {
   private final HopperSubsystem m_hopperSubsystem = new HopperSubsystem(Constants.kCbotStopperForwardSpeed, Constants.kCbotStopperReverseSpeed);
   // private final DriveTrain m_driveTrain = new DriveTrainP(m_driverStick);
   private final DriveTrain m_driveTrain = new DriveTrainC(m_driverStick);
+  private final CompressorSS m_compressor = new CompressorSS();
   
   // The robot's commands are defined here...
   // private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   private final DriveStraightAutonomous m_driveStraightAutonomous = new DriveStraightAutonomous(m_driveTrain);
   private final DriveLeftAutonomous m_driveLeftAutonomous = new DriveLeftAutonomous(m_driveTrain);
   private final DriveRightAutonomous m_driveRightAutonomous = new DriveRightAutonomous(m_driveTrain);
+  
 
 
   /**
