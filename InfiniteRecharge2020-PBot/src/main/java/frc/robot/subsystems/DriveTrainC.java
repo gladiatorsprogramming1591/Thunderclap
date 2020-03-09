@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 
@@ -23,6 +24,8 @@ public class DriveTrainC extends DriveTrain {
     static CANSparkMax m_frontRightMotor;
     static CANSparkMax m_rearLeftMotor;
     static CANSparkMax m_rearRightMotor;
+    static CANEncoder m_leftEncoder;
+    static CANEncoder m_rightEncoder;
 
     public DriveTrainC(Joystick m_driverJoystick) {
         super(new DifferentialDrive(

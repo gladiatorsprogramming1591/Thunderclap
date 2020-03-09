@@ -79,6 +79,8 @@ public class LiftSubsystem extends SubsystemBase {
         // Only adjust the  motor speed here if joystick is active, allowing for noise
         if(speed > 0.05 || speed < -0.05) {
             m_winchMotor.set(speed);
+        } else {
+            m_winchMotor.set(0);
         }
         SmartDashboard.putNumber("Winch Set Speed", speed);
     }
