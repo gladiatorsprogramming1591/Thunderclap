@@ -19,6 +19,7 @@ public class ReverseAllHopperMotors extends CommandBase {
     @Override
     public void initialize() {
         System.out.println("hopperSubsystem Calling stopperReverse, hopperReverse, suckerReverse");
+        m_hopperSubsystem.setOffMode();  // Make sure our modes don't try to count balls
         m_hopperSubsystem.stopperReverse();    
         m_hopperSubsystem.hopperReverse();    
         m_hopperSubsystem.suckerReverse();    

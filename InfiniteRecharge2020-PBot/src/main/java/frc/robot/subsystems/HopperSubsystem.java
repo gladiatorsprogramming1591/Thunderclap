@@ -30,7 +30,7 @@ public class HopperSubsystem extends SubsystemBase {
     private final WPI_TalonSRX m_suckerMotor;
     private final double m_stopperForwardSpeed;
     private final double m_stopperReverseSpeed;
-    private final BallSensor m_ballSensor;
+    // private final BallSensor m_ballSensor;
     // private final BallOutputSensor m_ballOutputSensor;
     // private final BallOutputSensor2m m_ballOutputSensor;
     private final DigitalInput m_bumperSwitch;
@@ -51,13 +51,13 @@ public class HopperSubsystem extends SubsystemBase {
         m_stopperMotor.configOpenloopRamp(Constants.kStopperRampRate);
         m_suckerMotor.configOpenloopRamp(Constants.kSuckerRampRate);
 
-        m_ballSensor = new BallSensor();
+        // m_ballSensor = new BallSensor();
         // m_ballOutputSensor = new BallOutputSensor();
         // m_ballOutputSensor = new BallOutputSensor2m();
         m_bumperSwitch = new DigitalInput(Constants.kBumperSwitchChannel);
 
-        SmartDashboard.putData("Stopper Motor", m_stopperMotor);
-        SmartDashboard.putData("Sucker Motor", m_suckerMotor);
+        // SmartDashboard.putData("Stopper Motor", m_stopperMotor);
+        // SmartDashboard.putData("Sucker Motor", m_suckerMotor);
         SmartDashboard.putNumber("Ball Count", m_ballCount);
     }
     public void hopperOn() {
@@ -152,7 +152,7 @@ public class HopperSubsystem extends SubsystemBase {
     public void periodic() {
         // TODO: Remove after done testing
         // m_ballSensor.SenseColor();
-        m_ballSensor.IsBallPresent();
+        // m_ballSensor.IsBallPresent();
         // m_ballOutputSensor.IsBallPresent();
         SmartDashboard.putBoolean("Bumper Switch", m_bumperSwitch.get());
     }

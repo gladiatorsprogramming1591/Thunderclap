@@ -26,14 +26,14 @@ public final class Constants {
     public final static double kPbotStopperForwardSpeed = -1.0;
     public final static double kIntakeForwardSpeed = 0.5;
     public final static double kIntakeReverseSpeed = -0.5;
-    public final static double kSuckerForwardSpeed = 0.75;
-    public final static double kSuckerReverseSpeed = -0.75;
+    public final static double kSuckerForwardSpeed = 0.2;
+    public final static double kSuckerReverseSpeed = -0.2;
     public final static double kShooterMotorSpeed = -0.33333333333;
     public final static double kShooterGearRatio = 7/6;
     public final static double kNeoMaxSpeed = 5676;
     public final static double kShooterMotorSpeedRPM = kShooterMotorSpeed*kNeoMaxSpeed*kShooterGearRatio;
-    public final static double kWinchUpSpeed = 0.2;  // Release winch slowly as linear motion system extends
-    public final static double kWinchDownSpeed = -0.2;  // Lift bot at full speed (temp slower for testing)
+    public final static double kWinchUpSpeed = -1.0;  // Release winch slowly as linear motion system extends
+    public final static double kWinchDownSpeed = 0.4;  // Lift bot at full speed (temp slower for testing)
 
     // Motor Ramp Rates (HOW LONG IN SECONDS FROM NEUTRAL TO FULL THROTTLE)
     public final static double kHopperRampRate = 0.5;
