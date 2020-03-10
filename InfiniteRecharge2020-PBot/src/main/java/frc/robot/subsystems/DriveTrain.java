@@ -34,7 +34,7 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public double getAxisTurning() {
-      return m_driverJoystick.getX();
+      return m_driverJoystick.getZ();
   }
 
   public void setBrakeMode() {

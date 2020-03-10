@@ -137,7 +137,7 @@ public class RobotContainer {
       .whenPressed(new ResetBallCount(m_hopperSubsystem)); 
 
     // ---COMBINATION BUTTONS---
-    new JoystickButton(m_driverStick, JoystickButtonConstants.kBack)
+    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kBack)
       .whenPressed(new ReverseAllMotorsExceptShooter(m_hopperSubsystem, m_intakeSubsystem));
 
     // ---LIFT SECTION---
