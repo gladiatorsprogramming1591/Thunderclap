@@ -74,8 +74,16 @@ public class LiftSubsystem extends SubsystemBase {
         SmartDashboard.putNumber("Winch Set Speed", Constants.kWinchDownSpeed);
     }
 
+    public void brakeMode() {
+        m_winchMotor.setIdleMode(CANSparkMax.IdleMode.kBrake);
+    }
+
+    public void coastMode() {
+        m_winchMotor.setIdleMode(CANSparkMax.IdleMode.kCoast);
+    }
+
     private void crankOrReleaseWinch() {
-        double speed = -RobotContainer.m_manipulatorStick.getY();
+        double speed = RobotContainer.m_manipulatorStick.getY();
         // Only adjust the  motor speed here if joystick is active, allowing for noise
         if(speed > 0.05 || speed < -0.05) {
             m_winchMotor.set(speed);

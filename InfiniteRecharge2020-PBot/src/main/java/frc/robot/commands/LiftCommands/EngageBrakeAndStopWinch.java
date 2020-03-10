@@ -29,6 +29,7 @@ public class EngageBrakeAndStopWinch extends SequentialCommandGroup {
   public EngageBrakeAndStopWinch(LiftSubsystem subsystem) {
     addCommands(
         new EngageWinchBrake(subsystem),
+        new WinchMotortoBrakeMode(subsystem),
         new WaitCommand(Constants.kBrakeTimeout),
         new StopWinchMotor(subsystem)
     );
