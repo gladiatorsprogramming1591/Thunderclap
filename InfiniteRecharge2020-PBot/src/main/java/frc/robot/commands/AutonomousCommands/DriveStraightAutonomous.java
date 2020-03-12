@@ -36,10 +36,10 @@ public class DriveStraightAutonomous extends SequentialCommandGroup {
   public DriveStraightAutonomous(DriveTrain driveTrain) {
     addCommands(
         // Drive straight fast
-        new DriveTimed(driveTrain, kFastDriveSpeed, 0, kFastDriveTime),
+        new DriveTimed(driveTrain, kFastDriveSpeed, 0, kFastDriveTime, this.getName()+"Fast"),
 
         // Drive straight slow and park at shooter spot
-        new DriveTimed(driveTrain, kStopSpeed, 0, kStopTime)       
+        new DriveTimed(driveTrain, kStopSpeed, 0, kStopTime, this.getName()+"Slow")       
     );
   }
 

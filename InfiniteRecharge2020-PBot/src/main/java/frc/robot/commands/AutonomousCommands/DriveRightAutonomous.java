@@ -38,15 +38,13 @@ public class DriveRightAutonomous extends SequentialCommandGroup {
   public DriveRightAutonomous(DriveTrain driveTrain) {
     addCommands(
 
-        //Turn left while driving
-        new DriveTimed(driveTrain, kFastDriveSpeed, -kRotationSpeed, kFastDriveTime),
-        //Turn right while driving
-        new DriveTimed(driveTrain, kFastDriveSpeed, kRotationSpeed, kFastDriveTime2),
-        //Bring both motors to same speed before stopping
-        new DriveTimed(driveTrain, kFastDriveSpeed2, 0, kFastDriveTimeFinal),
-        //Park at the shooter spot
-        new DriveTimed(driveTrain, kStopSpeed, 0, kStopTime)
-        
+      new DriveTimed(driveTrain, kFastDriveSpeed, -kRotationSpeed, kFastDriveTime, this.getName()+"TurnRight"),
+      //Turn left while driving
+      new DriveTimed(driveTrain, kFastDriveSpeed, kRotationSpeed, kFastDriveTime2, this.getName()+"TurnLeft"),
+      //Bring both motors to same speed before stopping
+      new DriveTimed(driveTrain, kFastDriveSpeed2, 0, kFastDriveTimeFinal, this.getName()+"Stopping"),
+      //Park at the shooter spot
+      new DriveTimed(driveTrain, kStopSpeed, 0, kStopTime, this.getName()+"Final")
     );
   }
 

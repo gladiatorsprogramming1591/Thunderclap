@@ -45,11 +45,11 @@ public class DriveTrain extends SubsystemBase {
     System.out.println("Override me!!!");
   }
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-    // This should be used for diagnostics and not used to run motors since this is used
-    // in all modes, not just teleop
+  public double getLeftEncPos() {
+    return 0;  // Override me!!!
+  }
 
+  public double getRightEncPos() {
+    return 0;  // Override me!!!
   }
 }

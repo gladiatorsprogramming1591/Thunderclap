@@ -9,6 +9,7 @@ package frc.robot.commands.DriveTrainCommands;
 
 import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrain;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
@@ -35,7 +36,7 @@ public class SlowDrive extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
+    SmartDashboard.putBoolean("Slow Drive", true);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

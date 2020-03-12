@@ -20,6 +20,7 @@ import frc.robot.subsystems.DriveTrainC;
 import frc.robot.commands.DriveTrainCommands.SlowDrive;
 import frc.robot.commands.HopperCommands.HopperOff;
 import frc.robot.commands.HopperCommands.HopperOn;
+import frc.robot.commands.HopperCommands.HopperReverse;
 import frc.robot.commands.HopperCommands.SuckerOff;
 import frc.robot.commands.HopperCommands.SuckerOn;
 import frc.robot.commands.DriveTrainCommands.FastDrive;
@@ -160,8 +161,12 @@ public class RobotContainer {
     new JoystickButton(m_driverStick, JoystickButtonConstants.kA)
       .whenReleased(new HopperOff(m_hopperSubsystem));
     new JoystickButton(m_driverStick, JoystickButtonConstants.kB)
-      .whenPressed(new SuckerOn(m_hopperSubsystem));
+      .whenPressed(new HopperReverse(m_hopperSubsystem));
     new JoystickButton(m_driverStick, JoystickButtonConstants.kB)
+      .whenReleased(new HopperOff(m_hopperSubsystem));
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kY)
+      .whenPressed(new SuckerOn(m_hopperSubsystem));
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kY)
       .whenReleased(new SuckerOff(m_hopperSubsystem));
     
     }

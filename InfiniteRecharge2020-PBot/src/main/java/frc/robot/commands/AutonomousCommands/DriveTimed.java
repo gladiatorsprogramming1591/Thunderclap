@@ -27,10 +27,11 @@ public class DriveTimed extends ParallelRaceGroup {
    * @param subsystem1 The subsystem this command will run on
    * @param subsystem2 The subsystem this command will run on
    */
-  public DriveTimed(DriveTrain driveTrain, double forwardSpeed, double rotationSpeed, double driveTime) {
+  public DriveTimed(DriveTrain driveTrain, double forwardSpeed, double rotationSpeed, 
+      double driveTime, String name) {
     addCommands(
         // Example 1
-        new DriveAutonomous(driveTrain, forwardSpeed, rotationSpeed),
+        new DriveAutonomous(driveTrain, forwardSpeed, rotationSpeed, name),
 
         // Example 2
         new WaitCommand(driveTime)
