@@ -44,7 +44,7 @@ import frc.robot.commands.SetHopperModeCommands.SetShootingMode;
 import frc.robot.commands.UseHopperModeCommands.ResetBallCount;
 
 import frc.robot.commands.CombinationCommandGroups.ReverseAllMotorsExceptShooter;
-
+import frc.robot.commands.CombinationCommandGroups.ShootOneBallWrapped;
 import frc.robot.subsystems.LiftSubsystem;
 import frc.robot.commands.LiftCommands.CrankWinch;
 import frc.robot.commands.LiftCommands.DisengageWinchBrake;
@@ -123,7 +123,7 @@ public class RobotContainer {
     // ---SHOOTER SECTION---
 
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL2)
-      .whenPressed(new ShootOneBall(m_hopperSubsystem, m_shooterSubsystem));
+      .whenPressed(new ShootOneBallWrapped(m_shooterSubsystem, m_hopperSubsystem, m_intakeSubsystem));
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR2)
       .whenPressed(new ShootAllBalls(m_hopperSubsystem, m_shooterSubsystem));
 
