@@ -103,9 +103,9 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // ---DRIVE TRAIN--- 
-    new JoystickButton(m_driverStick, JoystickButtonConstants.kL3)
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kL2)
       .whenPressed(new SlowDrive(m_driveTrain));
-    new JoystickButton(m_driverStick, JoystickButtonConstants.kL3)
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kL2)
       .whenReleased(new FastDrive(m_driveTrain));
 
     // ---INTAKE SECTION---
