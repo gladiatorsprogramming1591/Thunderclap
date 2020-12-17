@@ -23,6 +23,8 @@ public class LiftSubsystem extends SubsystemBase {
     private DoubleSolenoid m_brakeSolenoid;
     private CANEncoder m_encoder;
     private boolean m_isBrakeEngaged = false;
+    private boolean m_crankWinchActive = false;
+    private boolean m_crankWinchMoving = false;
 
     /**
      * Creates a new ArmSubsystem.
@@ -74,6 +76,7 @@ public class LiftSubsystem extends SubsystemBase {
     public void crankWinch() {
         m_winchMotor.set(Constants.kWinchDownSpeed);
         SmartDashboard.putNumber("Winch Set Speed", Constants.kWinchDownSpeed);
+        m_crankWinchActive = true;
     }
 
     public void brakeMode() {
@@ -96,13 +99,20 @@ public class LiftSubsystem extends SubsystemBase {
     }
 
     private void checkAndStopMotor() {
-        final double kStopThreshold = 0.1;
-        if(m_encoder.getVelocity() < kStopThreshold) {
-            SmartDashboard.putBoolean("Winch Speed < " + kStopThreshold, true);
-            // stopWinchMotor();
-        }
-        else {
-            SmartDashboard.putBoolean("Winch Speed < " + kStopThreshold, false);
+        if(m_crankWinchActive) {
+            final double kStopThreshold = 0.1;
+            if(m_encoder.getVelocity() > kStopThreshold) {
+                m_crankWinchMoving = true;
+            }
+            if(m_crankWinchMoving && (m_encoder.getVelocity() < kStopThreshold)) {
+                SmartDashboard.putBoolean("Winch Speed Stop" + kStopThreshold, true);
+                m_crankWinchMoving = false;
+                m_crankWinchActive = false;
+                stopWinchMotor();
+            }
+            else {
+                SmartDashboard.putBoolean("Winch Speed Stop" + kStopThreshold, false);
+            }
         }
     }
 }
