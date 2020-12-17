@@ -42,7 +42,7 @@ public class LiftSubsystem extends SubsystemBase {
         // This method will be called once per scheduler run
         crankOrReleaseWinch(); // If joystick active, crank or release winch accordingly
 
-        checkAndStopMotor();
+        // checkAndStopMotor(); seems like its not functioning currently
 
         // Update dashboard with important values
         SmartDashboard.putNumber("Winch Encoder", m_encoder.getPosition());
@@ -100,7 +100,7 @@ public class LiftSubsystem extends SubsystemBase {
 
     private void checkAndStopMotor() {
         if(m_crankWinchActive) {
-            final double kStopThreshold = 0.1;
+            final double kStopThreshold = 0.1; // ?????
             if(m_encoder.getVelocity() > kStopThreshold) {
                 m_crankWinchMoving = true;
             }
