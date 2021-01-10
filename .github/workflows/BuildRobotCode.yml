@@ -28,7 +28,7 @@ jobs:
 
     # Move to Java Project
     - name: Move to Java Project
-      run: cd InfiniteRecharge2020-PBot
+      run: cd ./InfiniteRecharge2020-PBot/
 
     # Examine Directory
     - name: Examine Directory
