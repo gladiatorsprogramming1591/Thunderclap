@@ -26,8 +26,12 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    # Move to java project
-    - name: Move to java project
+    # Move to Java Project
+    - name: Move to Java Project
+      run: cd InfiniteRecharge2020-PBot
+
+    # Examine Directory
+    - name: Examine Directory
       run: ls
 
     # Grant execute permission for gradlew
