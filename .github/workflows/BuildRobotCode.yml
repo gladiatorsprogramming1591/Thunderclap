@@ -15,7 +15,6 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
-
     # Define global defaults
     defaults:
       run:
