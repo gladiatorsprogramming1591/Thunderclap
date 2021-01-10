@@ -15,9 +15,16 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
+
+    # Define global defaults
+    defaults:
+      run:
+        # Set default directory to java project
+        working-directory: ./InfiniteRecharge2020-PBot
+    
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
+    
     # This grabs the WPILib docker container
     container: wpilib/roborio-cross-ubuntu:2021-18.04
 
@@ -25,14 +32,6 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-
-    # Move to Java Project
-    - name: Move to Java Project
-      run: cd ./InfiniteRecharge2020-PBot/
-
-    # Examine Directory
-    - name: Examine Directory
-      run: ls
 
     # Grant execute permission for gradlew
     - name: Grant execute permission for gradlew
