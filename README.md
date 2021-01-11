@@ -1,2 +1,2 @@
-# InfiniteRecharge2020-PBot
-Code for the Greece Gladiators, FIRST Robotics Competition practice bot in 2020
+# Thunderclap
+Code for the Greece Gladiators FRC Team 1591 2020-21
