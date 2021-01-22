@@ -5,17 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.AutonomousCommands;
+package frc.robot.commands.CombinationCommandGroups;
 
-import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.subsystems.DriveTrain;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import frc.robot.commands.HopperCommands.SuckerOff;
+import frc.robot.commands.IntakeCommands.IntakeOff;
+import frc.robot.subsystems.HopperSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 
 /**
  * A complex auto command that drives forward, releases a hatch, and then drives backward.
  */
-public class DriveTimed extends ParallelRaceGroup {
-
+public class IntakeandSuckerOff extends ParallelCommandGroup {
   /**
    * Creates a new Command Group.
    * There are 4 types of command groups:
@@ -27,15 +28,13 @@ public class DriveTimed extends ParallelRaceGroup {
    * @param subsystem1 The subsystem this command will run on
    * @param subsystem2 The subsystem this command will run on
    */
-  public DriveTimed(DriveTrain driveTrain, double forwardSpeed, double rotationSpeed, 
-      double driveTime, String name) {
+  public IntakeandSuckerOff(IntakeSubsystem intakeSubsystem, HopperSubsystem hopperSubsystem) {
     addCommands(
-        // Example 1
-        new DriveAutonomous(driveTrain, forwardSpeed, rotationSpeed, name),
+        // Turns off intake
+        new IntakeOff(intakeSubsystem),
 
-        // Example 2
-        new WaitCommand(driveTime)
-        
+        // Turns off sucker
+        new SuckerOff(hopperSubsystem)
     );
   }
 

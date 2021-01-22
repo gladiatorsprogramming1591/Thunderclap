@@ -7,7 +7,7 @@
 
 package frc.robot.subsystems;
 
-import frc.robot.commands.FastDrive;
+import frc.robot.commands.DriveTrainCommands.FastDrive;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Joystick;
@@ -34,7 +34,7 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public double getAxisTurning() {
-      return m_driverJoystick.getX();
+      return m_driverJoystick.getZ();
   }
 
   public void setBrakeMode() {
@@ -45,11 +45,11 @@ public class DriveTrain extends SubsystemBase {
     System.out.println("Override me!!!");
   }
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-    // This should be used for diagnostics and not used to run motors since this is used
-    // in all modes, not just teleop
+  public double getLeftEncPos() {
+    return 0;  // Override me!!!
+  }
 
+  public double getRightEncPos() {
+    return 0;  // Override me!!!
   }
 }

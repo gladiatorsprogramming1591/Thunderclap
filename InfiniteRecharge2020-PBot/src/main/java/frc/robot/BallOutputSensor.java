@@ -106,7 +106,8 @@ public class BallOutputSensor{
 
   public boolean IsBallPresent() {
     int proximity = m_colorSensor.getProximity();
-    boolean isPresent = proximity > 100;
+    boolean isPresent = proximity > 140;
+    SmartDashboard.putNumber("Output Proximity", proximity);
     SmartDashboard.putBoolean("Output BallPresent", isPresent);
     return isPresent;
   }

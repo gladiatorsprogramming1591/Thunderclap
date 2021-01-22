@@ -5,24 +5,21 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.AutonomousCommands;
+package frc.robot.commands.CombinationCommandGroups;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.subsystems.DriveTrain;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.Constants;
+import frc.robot.commands.HopperCommands.StopperOn;
+import frc.robot.commands.ShooterCommands.ShooterOn;
+import frc.robot.subsystems.HopperSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 
 /**
  * A complex auto command that drives forward, releases a hatch, and then drives
  * backward.
  */
-public class DriveStraightAutonomous extends SequentialCommandGroup {
-
-  private final static double kFastDriveSpeed = 0.8;
-  // private final static double kSlowDriveSpeed = 0.3;
-  private final static double kStopSpeed = -0.3;
-  private final static double kFastDriveTime = 1.0;
-  // private final static double kSlowDriveTime = 0.3;
-  private final static double kStopTime = 0.7;
-
+public class StopperandShooterOn extends SequentialCommandGroup {
   /**
    * Creates a new Command Group. There are 4 types of command groups:
    * SequentialCommandGroup - first command is executed, then the second, etc. and
@@ -33,13 +30,16 @@ public class DriveStraightAutonomous extends SequentialCommandGroup {
    * @param subsystem1 The subsystem this command will run on
    * @param subsystem2 The subsystem this command will run on
    */
-  public DriveStraightAutonomous(DriveTrain driveTrain) {
+  public StopperandShooterOn(HopperSubsystem m_hopperSubsystem, ShooterSubsystem m_shooterSubsystem) {
     addCommands(
-        // Drive straight fast
-        new DriveTimed(driveTrain, kFastDriveSpeed, 0, kFastDriveTime, this.getName()+"Fast"),
+        // Turns on shooter
+        new ShooterOn(m_shooterSubsystem),
 
-        // Drive straight slow and park at shooter spot
-        new DriveTimed(driveTrain, kStopSpeed, 0, kStopTime, this.getName()+"Slow")       
+        // Sets delay
+        new WaitCommand(Constants.kStoppertoShooterTimeout),
+
+        // Turns on stopper
+        new StopperOn(m_hopperSubsystem)
     );
   }
 

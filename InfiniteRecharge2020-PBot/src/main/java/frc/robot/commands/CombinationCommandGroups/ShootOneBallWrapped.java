@@ -5,17 +5,24 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.AutonomousCommands;
+package frc.robot.commands.CombinationCommandGroups;
 
-import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.commands.HopperCommands.MoveBall;
+import frc.robot.commands.HopperCommands.SuckerOn;
+import frc.robot.commands.IntakeCommands.IntakeOn;
+import frc.robot.commands.ShooterCommands.ShooterOn;
+import frc.robot.commands.UseHopperModeCommands.ShootOneBall;
+import frc.robot.subsystems.HopperSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 
 /**
  * A complex auto command that drives forward, releases a hatch, and then drives backward.
  */
-public class DriveTimed extends ParallelRaceGroup {
-
+public class ShootOneBallWrapped extends SequentialCommandGroup {
   /**
    * Creates a new Command Group.
    * There are 4 types of command groups:
@@ -27,15 +34,19 @@ public class DriveTimed extends ParallelRaceGroup {
    * @param subsystem1 The subsystem this command will run on
    * @param subsystem2 The subsystem this command will run on
    */
-  public DriveTimed(DriveTrain driveTrain, double forwardSpeed, double rotationSpeed, 
-      double driveTime, String name) {
+  public ShootOneBallWrapped(ShooterSubsystem shooterSubsystem, HopperSubsystem hopperSubsystem, IntakeSubsystem intakeSubsystem) {
     addCommands(
-        // Example 1
-        new DriveAutonomous(driveTrain, forwardSpeed, rotationSpeed, name),
+        // Turns off intake and sucker
+        new IntakeandSuckerOff(intakeSubsystem, hopperSubsystem),
 
-        // Example 2
-        new WaitCommand(driveTime)
-        
+        // Turn on shooter
+        new ShooterOn(shooterSubsystem),
+
+        // Wait for shooter to get to speed
+        new WaitCommand(0.3),
+
+        // Turn the sucker on to advance the ball to the shooter  
+        new SuckerOn(hopperSubsystem)
     );
   }
 

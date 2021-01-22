@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.BallOutputSensor;
@@ -29,8 +30,10 @@ public class HopperSubsystem extends SubsystemBase {
     private final WPI_TalonSRX m_suckerMotor;
     private final double m_stopperForwardSpeed;
     private final double m_stopperReverseSpeed;
-    private final BallSensor m_ballSensor;
-    private final BallOutputSensor m_ballOutputSensor;
+    // private final BallSensor m_ballSensor;
+    // private final BallOutputSensor m_ballOutputSensor;
+    // private final BallOutputSensor2m m_ballOutputSensor;
+    private final DigitalInput m_bumperSwitch;
     private int m_ballCount = 0;
     private boolean m_isHopperOn = false;
     private boolean m_ballOutputSensorTriggered = false;
@@ -48,13 +51,14 @@ public class HopperSubsystem extends SubsystemBase {
         m_stopperMotor.configOpenloopRamp(Constants.kStopperRampRate);
         m_suckerMotor.configOpenloopRamp(Constants.kSuckerRampRate);
 
-        m_ballSensor = new BallSensor();
-        m_ballOutputSensor = new BallOutputSensor();
+        // m_ballSensor = new BallSensor();
+        // m_ballOutputSensor = new BallOutputSensor();
+        // m_ballOutputSensor = new BallOutputSensor2m();
+        m_bumperSwitch = new DigitalInput(Constants.kBumperSwitchChannel);
 
-        SmartDashboard.putData("Stopper Motor", m_stopperMotor);
-        SmartDashboard.putData("Sucker Motor", m_suckerMotor);
-        SmartDashboard.putData("Hopper Subsystem", this);
-        SmartDashboard.putNumber("Hopper Subsystem", m_ballCount);
+        // SmartDashboard.putData("Stopper Motor", m_stopperMotor);
+        // SmartDashboard.putData("Sucker Motor", m_suckerMotor);
+        SmartDashboard.putNumber("Ball Count", m_ballCount);
     }
     public void hopperOn() {
         m_hopperMotor.set(Constants.kHopperForwardSpeed);
@@ -103,11 +107,12 @@ public class HopperSubsystem extends SubsystemBase {
      *   - False if not intaking a ball
      */
     public boolean intakeOneBallNoCountCheck() {
-        if ( m_ballSensor.IsBallPresent() ) {
+        // if ( m_ballSensor.IsBallPresent() ) {
+        if ( IsBallPresent() ) {
             if (!m_isHopperOn) {
                 hopperOn();
                 m_ballCount++;
-                SmartDashboard.putNumber("Hopper Subsystem", m_ballCount);
+                SmartDashboard.putNumber("Ball Count", m_ballCount);
             }
         }
         else {
@@ -133,7 +138,8 @@ public class HopperSubsystem extends SubsystemBase {
         else {
             // If we get to ball 5, we will still go through this else, but we need to turn the
             // hopper off once it has moved past the sensor.
-            if ( !m_ballSensor.IsBallPresent() ) {
+            // if ( !m_ballSensor.IsBallPresent() ) {
+            if ( !IsBallPresent() ) {
                 hopperOff();
             }
         }
@@ -145,10 +151,10 @@ public class HopperSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
         // TODO: Remove after done testing
-        m_ballSensor.SenseColor();
-        m_ballSensor.IsBallPresent();
-        m_ballOutputSensor.SenseColor();
-        m_ballOutputSensor.IsBallPresent();
+        // m_ballSensor.SenseColor();
+        // m_ballSensor.IsBallPresent();
+        // m_ballOutputSensor.IsBallPresent();
+        SmartDashboard.putBoolean("Bumper Switch", m_bumperSwitch.get());
     }
 
     public void setIntakeMode() {
@@ -162,7 +168,7 @@ public class HopperSubsystem extends SubsystemBase {
         m_hopperMode = HopperMode.shootingMode;
         SmartDashboard.putString("Hopper Mode", "Shooting");
         suckerOff();
-        stopperOn();
+        // stopperOn();
     }
 
     public void setOffMode() {
@@ -173,7 +179,15 @@ public class HopperSubsystem extends SubsystemBase {
         hopperOff();
     }
 
+    public boolean IsBallPresent() {
+        return !m_bumperSwitch.get();  
+    }
+
     public void outputOneBall() {
+        // Until sensor is in place, assume ball is at stopper and just turn stopper on to advance ball to shooter
+        stopperOn(); 
+
+        /* Temp remove until sensor is hooked up
         // If we are just starting and the ball hasn't triggered the sensor, turn on the hopper and wait for trigger
         if ( !m_ballOutputSensorTriggered ) {
             hopperOn();  // Make sure hopper is on
@@ -185,14 +199,23 @@ public class HopperSubsystem extends SubsystemBase {
         if ( m_ballOutputSensorTriggered && !m_ballOutputSensor.IsBallPresent() ) {
             hopperOff();
             m_ballCount--;
-            SmartDashboard.putNumber("Hopper Subsystem", m_ballCount);
+            SmartDashboard.putNumber("Ball Count", m_ballCount);
         }
+        */
 
         SmartDashboard.putBoolean("Hopper active", m_isHopperOn);
     }
 
     public void outputAllBalls() {
-        hopperOn();
+        stopperOn();  // Make sure stopper is on first so balls don't get wedged
+        hopperOn();  // Now turn on hopper to advance all balls
         m_ballCount = 0;
+        SmartDashboard.putNumber("Ball Count", m_ballCount);
     }
+
+    public void resetBallCount() {
+        m_ballCount = 0;
+        SmartDashboard.putNumber("Ball Count", m_ballCount);
+    }
+
 }
