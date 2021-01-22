@@ -18,7 +18,7 @@ jobs:
     defaults:
       run:
         # Set default directory to java project
-        working-directory: ./InfiniteRecharge2020-PBot
+        working-directory: ./Thunderclap
     
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
