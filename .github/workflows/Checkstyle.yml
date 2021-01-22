@@ -1,0 +1,28 @@
+# This is a workflow to check Java code against Google's Java Style
+
+name: Checkstyle
+
+# Action will run on every commit to any branch. 
+on:
+  push:
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  checkstyle:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Run checkstyle
+        uses: nikitasavinov/checkstyle-action@0.3.1
+        with:
+          reporter: 'github-check' # Uses reportdog to format style issues
+          level: 'warning' # Shows as a problem, but won't fail the check in a PR. Just using this tool for info, not enforcement at the moment.
+          github_token: ${{ secrets.GITHUB_TOKEN }}
