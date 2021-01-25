@@ -15,8 +15,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
  * Drive a certain distance based on an encoder value, autonomously.
  */
 public class DriveEncoder extends CommandBase {
-  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-
   private final DriveTrain m_DriveTrain;
   private final double m_encoderDistance;
   private final double m_startEncoderValue;
@@ -25,6 +23,7 @@ public class DriveEncoder extends CommandBase {
    * Creates a new DriveEncoder command.
    *
    * @param subsystem The subsystem used by this command.
+   * @param encoderDistance The distance in rotations the robot should travel.
    */
   public DriveEncoder(DriveTrain subsystem, double encoderDistance) {
     m_DriveTrain = subsystem;

@@ -75,7 +75,6 @@ public final class Constants {
 
     //Relays
     public final static int kCompressorRelay = 0;
-
     
     //Timeouts
     public final static double kMoveOneBallTimeOut = 1.0;
@@ -93,4 +92,10 @@ public final class Constants {
 
     // Autonomous
     public final static double kAutoDriveSpeed = 0.25;
+
+    // Robot measurements
+    public final static double kWheelDiameterInches = 6;
+    public final static double kWheelDiameterCM = kWheelDiameterInches * 2.54; // derived from above
+    public final static double kWheelCircumferenceInches = kWheelDiameterInches * Math.PI; // derived from above
+    public final static double kWheelCircumferenceCM = kWheelDiameterCM * Math.PI; // derived from above
 }
