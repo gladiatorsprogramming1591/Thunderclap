@@ -54,6 +54,7 @@ import frc.robot.commands.LiftCommands.StopWinchMotor;
 import frc.robot.commands.LiftCommands.ReleaseWinch;
 
 import frc.robot.commands.AutonomousCommands.DriveStraightAutonomous;
+import frc.robot.commands.AutonomousCommands.GalacticSearch.OnePowerCell;
 import frc.robot.commands.AutonomousCommands.DriveLeftAutonomous;
 import frc.robot.commands.AutonomousCommands.DriveRightAutonomous;
 
@@ -84,8 +85,6 @@ public class RobotContainer {
   private final DriveStraightAutonomous m_driveStraightAutonomous = new DriveStraightAutonomous(m_driveTrain);
   private final DriveLeftAutonomous m_driveLeftAutonomous = new DriveLeftAutonomous(m_driveTrain);
   private final DriveRightAutonomous m_driveRightAutonomous = new DriveRightAutonomous(m_driveTrain);
-  
-
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -180,7 +179,10 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     // return m_driveStraightAutonomous;
-    return m_driveLeftAutonomous;
+    // return m_driveLeftAutonomous;
     // return m_driveRightAutonomous;
+
+    // Galactic Search
+    return new OnePowerCell(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
   }
 }
