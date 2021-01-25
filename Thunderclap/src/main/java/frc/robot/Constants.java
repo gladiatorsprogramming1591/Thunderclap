@@ -90,4 +90,7 @@ public final class Constants {
 
     //Encoder 
     public final static int kEncoderResolution = 42;
+
+    // Autonomous
+    public final static double kAutoDriveSpeed = 0.25;
 }

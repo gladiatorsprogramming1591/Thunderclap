@@ -30,7 +30,7 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public double getAxisForward() {
-      return -m_driverJoystick.getY();
+      return -m_driverJoystick.getY(); // TODO why is this negative? is joystick up negative? that would be fine, but if the drive train is wired backwards, the negative should apply to drive(), so it works for both auto and teleop
   }
 
   public double getAxisTurning() {

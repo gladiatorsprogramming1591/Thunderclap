@@ -21,26 +21,28 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class DriveTrainC extends DriveTrain {
 
-    static CANSparkMax m_frontLeftMotor;
-    static CANSparkMax m_frontRightMotor;
-    static CANSparkMax m_rearLeftMotor;
-    static CANSparkMax m_rearRightMotor;
-    static CANEncoder m_leftEncoder;
-    static CANEncoder m_rightEncoder;
+  static CANSparkMax m_frontLeftMotor;
+  static CANSparkMax m_frontRightMotor;
+  static CANSparkMax m_rearLeftMotor;
+  static CANSparkMax m_rearRightMotor;
+  static CANEncoder m_leftEncoder;
+  static CANEncoder m_rightEncoder;
 
-    public DriveTrainC(Joystick m_driverJoystick) {
-        super(new DifferentialDrive(
-                new SpeedControllerGroup(
-                        m_frontLeftMotor = new CANSparkMax(Constants.kCbotFrontLeftMotorCANID, MotorType.kBrushless),
-                        m_rearLeftMotor = new CANSparkMax(Constants.kCbotRearLeftMotorCANID, MotorType.kBrushless)
-                ), 
-                new SpeedControllerGroup(
-                        m_frontRightMotor = new CANSparkMax(Constants.kCbotFrontRightMotorCANID, MotorType.kBrushless), 
-                        m_rearRightMotor = new CANSparkMax(Constants.kCbotRearRightMotorCANID, MotorType.kBrushless)
-                )
-        ),
-        m_driverJoystick
+  public DriveTrainC(Joystick m_driverJoystick) {
+    super(
+      new DifferentialDrive(
+        new SpeedControllerGroup(
+          m_frontLeftMotor = new CANSparkMax(Constants.kCbotFrontLeftMotorCANID, MotorType.kBrushless),
+          m_rearLeftMotor = new CANSparkMax(Constants.kCbotRearLeftMotorCANID, MotorType.kBrushless)
+        ), 
+        new SpeedControllerGroup(
+          m_frontRightMotor = new CANSparkMax(Constants.kCbotFrontRightMotorCANID, MotorType.kBrushless), 
+          m_rearRightMotor = new CANSparkMax(Constants.kCbotRearRightMotorCANID, MotorType.kBrushless)
+        )
+      ),
+      m_driverJoystick
     );
+    
     m_frontLeftMotor.setOpenLoopRampRate(Constants.kDriveRampRate);
     m_rearLeftMotor.setOpenLoopRampRate(Constants.kDriveRampRate);
     m_frontRightMotor.setOpenLoopRampRate(Constants.kDriveRampRate);
