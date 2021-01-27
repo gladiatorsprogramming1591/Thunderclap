@@ -16,18 +16,18 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
  */
 public class DriveEncoder extends CommandBase {
   private final DriveTrain m_DriveTrain;
-  private final double m_encoderDistance;
+  private final double m_motorRotations;
   private final double m_startEncoderValue;
 
   /**
    * Creates a new DriveEncoder command.
    *
    * @param subsystem The subsystem used by this command.
-   * @param encoderDistance The distance in rotations the robot should travel.
+   * @param wheelRotations The distance in rotations the robot should travel.
    */
-  public DriveEncoder(DriveTrain subsystem, double encoderDistance) {
+  public DriveEncoder(DriveTrain subsystem, double wheelRotations) {
     m_DriveTrain = subsystem;
-    m_encoderDistance = encoderDistance;
+    m_motorRotations = wheelRotations * Constants.kDriveGearRatio;
     m_startEncoderValue = m_DriveTrain.getRightEncPos(); // using right arbitrarily at the momement, TODO check both or avg if more accurate
 
     // Use addRequirements() here to declare subsystem dependencies.
@@ -39,10 +39,10 @@ public class DriveEncoder extends CommandBase {
   public void initialize() {
     final double m_driveSpeed;
 
-    if (m_encoderDistance == 0) {
+    if (m_motorRotations == 0) {
       end(false);
     } else {
-      if (m_encoderDistance > 0) { // needs to move forward
+      if (m_motorRotations > 0) { // needs to move forward
         m_driveSpeed = Constants.kAutoDriveSpeed;
       } else { // needs to move backwards
         m_driveSpeed = -1 * Constants.kAutoDriveSpeed;
@@ -55,7 +55,7 @@ public class DriveEncoder extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Math.abs(m_encoderDistance) > Math.abs(m_DriveTrain.getRightEncPos() - m_startEncoderValue)) { // when the robot has travelled the necessary distance
+    if (Math.abs(m_motorRotations) > Math.abs(m_DriveTrain.getRightEncPos() - m_startEncoderValue)) { // when the robot has travelled the necessary distance
       end(false);
     }
   }
