@@ -34,6 +34,8 @@ public class DriveTrainC extends DriveTrain {
 
   private AHRS m_NavX;
 
+  private AHRS m_NavX;
+
   public DriveTrainC(Joystick m_driverJoystick) {
     super(
       new DifferentialDrive(
@@ -99,6 +101,11 @@ public class DriveTrainC extends DriveTrain {
     } else {
       return false;
     }
+  }
+
+  @Override
+  public double getHeading() {
+    return m_NavX.getCompassHeading();
   }
 
   @Override
