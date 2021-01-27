@@ -55,21 +55,23 @@ public class DriveEncoder extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Math.abs(m_motorRotations) > Math.abs(m_DriveTrain.getRightEncPos() - m_startEncoderValue)) { // when the robot has travelled the necessary distance
-      end(false);
-    }
-  }
 
+  }
+  
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     m_DriveTrain.setBrakeMode(); 
     m_DriveTrain.drive(0, 0, Constants.kFastSquaredInputs); // stop
   }
-
+  
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    if (Math.abs(m_motorRotations) > Math.abs(m_DriveTrain.getRightEncPos() - m_startEncoderValue)) { // when the robot has travelled the necessary distance
+      return true;
+    } else {
+      return false;
+    }
   }
 }
