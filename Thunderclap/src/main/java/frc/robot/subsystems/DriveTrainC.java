@@ -12,12 +12,14 @@ import frc.robot.Constants;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import com.kauailabs.navx.frc.AHRS;
 
 public class DriveTrainC extends DriveTrain {
 
@@ -28,6 +30,8 @@ public class DriveTrainC extends DriveTrain {
   static CANEncoder m_leftEncoder;
   static CANEncoder m_rightEncoder;
 
+  private AHRS m_NavX;
+
   public DriveTrainC(Joystick m_driverJoystick) {
     super(
       new DifferentialDrive(
@@ -36,13 +40,13 @@ public class DriveTrainC extends DriveTrain {
           m_rearLeftMotor = new CANSparkMax(Constants.kCbotRearLeftMotorCANID, MotorType.kBrushless)
         ), 
         new SpeedControllerGroup(
-          m_frontRightMotor = new CANSparkMax(Constants.kCbotFrontRightMotorCANID, MotorType.kBrushless), 
-          m_rearRightMotor = new CANSparkMax(Constants.kCbotRearRightMotorCANID, MotorType.kBrushless)
+        m_frontRightMotor = new CANSparkMax(Constants.kCbotFrontRightMotorCANID, MotorType.kBrushless), 
+        m_rearRightMotor = new CANSparkMax(Constants.kCbotRearRightMotorCANID, MotorType.kBrushless)
         )
       ),
       m_driverJoystick
     );
-    
+
     m_frontLeftMotor.setOpenLoopRampRate(Constants.kDriveRampRate);
     m_rearLeftMotor.setOpenLoopRampRate(Constants.kDriveRampRate);
     m_frontRightMotor.setOpenLoopRampRate(Constants.kDriveRampRate);
@@ -50,6 +54,8 @@ public class DriveTrainC extends DriveTrain {
 
     m_leftEncoder = m_frontLeftMotor.getEncoder();
     m_rightEncoder = m_frontRightMotor.getEncoder();
+
+    m_NavX = new AHRS(SerialPort.Port.kMXP);
   }
 
   @Override
@@ -77,6 +83,11 @@ public class DriveTrainC extends DriveTrain {
   @Override
   public double getRightEncPos() {
     return m_rightEncoder.getPosition();  
+  }
+
+  @Override
+  public double getHeading() {
+    return m_NavX.getCompassHeading();
   }
 
   @Override
