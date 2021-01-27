@@ -99,5 +99,6 @@ public class DriveTrainC extends DriveTrain {
     SmartDashboard.putNumber("Right Drive Enc", m_rightEncoder.getPosition());
     SmartDashboard.putNumber("Left Drive Vel", m_leftEncoder.getVelocity());
     SmartDashboard.putNumber("Right Drive Vel", m_rightEncoder.getVelocity());
+    SmartDashboard.putNumber("Heading", m_NavX.getCompassHeading());
   }
 }
