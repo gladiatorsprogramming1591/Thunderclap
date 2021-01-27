@@ -92,6 +92,8 @@ public final class Constants {
 
     // Autonomous
     public final static double kAutoDriveSpeed = 0.4;
+    public final static double kAutoRotationSpeed = 0.25;
+    public final static double kAutoRotationError = 1; // stop rotating if bot is x degrees away from target
 
     // Robot measurements
     public final static double kWheelDiameterInches = 7.5;
@@ -105,5 +107,4 @@ public final class Constants {
     */
     public final static double kStopDistance = 0.191; // in wheel rotations
     public final static String kInchesKey = "DriveInches input";
-
 }

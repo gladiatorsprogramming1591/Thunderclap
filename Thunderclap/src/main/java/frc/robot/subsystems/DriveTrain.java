@@ -52,4 +52,8 @@ public class DriveTrain extends SubsystemBase {
   public double getRightEncPos() {
     return 0;  // Override me!!!
   }
+
+  public double getHeading() {
+    return 0; // Override me!!!
+  }
 }
