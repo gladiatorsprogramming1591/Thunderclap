@@ -9,6 +9,7 @@ package frc.robot.commands.AutonomousCommands.DriveDistance;
 
 import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrain;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
@@ -28,8 +29,9 @@ public class DriveEncoder extends CommandBase {
    * @param wheelRotations The distance in rotations the robot should travel.
    */
   public DriveEncoder(DriveTrain subsystem, double wheelRotations) {
+    SmartDashboard.putNumber(Constants.kStopKey, 0);
     m_DriveTrain = subsystem;
-    m_motorRotations = wheelRotations * Constants.kDriveGearRatio;
+    m_motorRotations = (wheelRotations - SmartDashboard.getNumber(Constants.kStopKey, 0)) * Constants.kDriveGearRatio;
     m_startEncoderValue = m_DriveTrain.getRightEncPos(); // using right arbitrarily at the momement, TODO check both or avg if more accurate
 
     // Use addRequirements() here to declare subsystem dependencies.

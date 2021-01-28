@@ -100,7 +100,7 @@ public class RobotContainer {
 
     SmartDashboard.putData("Set Coast Mode", new SetCoastMode(m_driveTrain));
 
-    SmartDashboard.putNumber("DriveInches input", 60);
+    SmartDashboard.putNumber(Constants.kInchesKey, 60);
   }
 
   /**
@@ -192,6 +192,8 @@ public class RobotContainer {
     // return m_driveRightAutonomous;
 
     // Galactic Search
-    return new OnePowerCell(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
+    // return new OnePowerCell(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
+
+    return new DriveInches(m_driveTrain, SmartDashboard.getNumber(Constants.kInchesKey, 60));
   }
 }
