@@ -193,8 +193,8 @@ public class RobotContainer {
     // return m_driveRightAutonomous;
 
     // Galactic Search
-    // return new OnePowerCell(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
+    return new OnePowerCell(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
 
-    return new DriveInches(m_driveTrain, SmartDashboard.getNumber(Constants.kInchesKey, 60));
+    // return new DriveInches(m_driveTrain, SmartDashboard.getNumber(Constants.kInchesKey, 60));
   }
 }

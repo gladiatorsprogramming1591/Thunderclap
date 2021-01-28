@@ -98,7 +98,7 @@ public final class Constants {
     public final static double kWheelDiameterCM = kWheelDiameterInches * 2.54; // derived from above
     public final static double kWheelCircumferenceInches = kWheelDiameterInches * Math.PI; // derived from above
     public final static double kWheelCircumferenceCM = kWheelDiameterCM * Math.PI; // derived from above
-    public final static double kDriveGearRatio = 10.9; // measured as 11.34851783, 10.5 on first day
+    public final static double kDriveGearRatio = 11.34851783; // measured as 11.34851783, 10.5 on first day
     /*
     TODO above is a placeholder. Need to actually figure out what gear ratio is 
     (implemented as: for every one rotation of the wheel, how many rotations of the motor?)
