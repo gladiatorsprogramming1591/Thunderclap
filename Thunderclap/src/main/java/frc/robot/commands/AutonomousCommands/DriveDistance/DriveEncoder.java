@@ -19,6 +19,8 @@ public class DriveEncoder extends CommandBase {
   private final double m_motorRotations;
   private final double m_startEncoderValue;
 
+  private double m_driveSpeed;
+
   /**
    * Creates a new DriveEncoder command.
    *
@@ -37,10 +39,10 @@ public class DriveEncoder extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    final double m_driveSpeed;
-
+    m_DriveTrain.setBrakeMode();
     if (m_motorRotations == 0) {
       end(false);
+      System.out.println("no rotations needed");
     } else {
       if (m_motorRotations > 0) { // needs to move forward
         m_driveSpeed = Constants.kAutoDriveSpeed;
@@ -48,6 +50,7 @@ public class DriveEncoder extends CommandBase {
         m_driveSpeed = -1 * Constants.kAutoDriveSpeed;
       }
 
+      System.out.println("Trying to drive at speed: " + m_driveSpeed);
       m_DriveTrain.drive(m_driveSpeed, 0, Constants.kFastSquaredInputs);
     }
   }
@@ -55,7 +58,7 @@ public class DriveEncoder extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
+    m_DriveTrain.drive(m_driveSpeed, 0, Constants.kFastSquaredInputs);
   }
   
   // Called once the command ends or is interrupted.
@@ -68,7 +71,8 @@ public class DriveEncoder extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (Math.abs(m_motorRotations) > Math.abs(m_DriveTrain.getRightEncPos() - m_startEncoderValue)) { // when the robot has travelled the necessary distance
+    if (Math.abs(m_motorRotations) <= Math.abs(m_DriveTrain.getRightEncPos() - m_startEncoderValue)) { // when the robot has travelled the necessary distance
+      System.out.println("driveEncoder is done");
       return true;
     } else {
       return false;

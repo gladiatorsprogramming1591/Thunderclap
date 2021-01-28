@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.JoystickButtonConstants;
-// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.CompressorSS;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.DriveTrainC;
@@ -24,7 +24,7 @@ import frc.robot.commands.HopperCommands.HopperReverse;
 import frc.robot.commands.HopperCommands.SuckerOff;
 import frc.robot.commands.HopperCommands.SuckerOn;
 import frc.robot.commands.DriveTrainCommands.FastDrive;
-
+import frc.robot.commands.DriveTrainCommands.SetCoastMode;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.commands.IntakeCommands.IntakeReverse;
 import frc.robot.commands.IntakeCommands.IntakeOff;
@@ -57,6 +57,9 @@ import frc.robot.commands.AutonomousCommands.DriveStraightAutonomous;
 import frc.robot.commands.AutonomousCommands.GalacticSearch.OnePowerCell;
 import frc.robot.commands.AutonomousCommands.DriveLeftAutonomous;
 import frc.robot.commands.AutonomousCommands.DriveRightAutonomous;
+
+import frc.robot.commands.AutonomousCommands.DriveTimed;
+import frc.robot.commands.AutonomousCommands.DriveDistance.DriveInches;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -92,6 +95,8 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+
+    SmartDashboard.putData("Set Coast Mode", new SetCoastMode(m_driveTrain));
   }
 
   /**
@@ -183,6 +188,12 @@ public class RobotContainer {
     // return m_driveRightAutonomous;
 
     // Galactic Search
-    return new OnePowerCell(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
+    // return new OnePowerCell(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
+
+    // DriveTimed testing
+    // return new DriveTimed(m_driveTrain, .4, 0, 1, "auto testing");
+
+    // DriveInches testing
+    return new DriveInches(m_driveTrain, 180);
   }
 }
