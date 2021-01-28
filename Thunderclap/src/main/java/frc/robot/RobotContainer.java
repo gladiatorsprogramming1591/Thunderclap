@@ -8,6 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
@@ -54,6 +55,7 @@ import frc.robot.commands.LiftCommands.StopWinchMotor;
 import frc.robot.commands.LiftCommands.ReleaseWinch;
 
 import frc.robot.commands.AutonomousCommands.DriveStraightAutonomous;
+import frc.robot.commands.AutonomousCommands.DriveDistance.DriveInches;
 import frc.robot.commands.AutonomousCommands.GalacticSearch.OnePowerCell;
 import frc.robot.commands.AutonomousCommands.DriveLeftAutonomous;
 import frc.robot.commands.AutonomousCommands.DriveRightAutonomous;
@@ -97,6 +99,8 @@ public class RobotContainer {
     configureButtonBindings();
 
     SmartDashboard.putData("Set Coast Mode", new SetCoastMode(m_driveTrain));
+
+    SmartDashboard.putNumber("DriveInches input", 60);
   }
 
   /**
@@ -188,12 +192,6 @@ public class RobotContainer {
     // return m_driveRightAutonomous;
 
     // Galactic Search
-    // return new OnePowerCell(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
-
-    // DriveTimed testing
-    // return new DriveTimed(m_driveTrain, .4, 0, 1, "auto testing");
-
-    // DriveInches testing
-    return new DriveInches(m_driveTrain, 180);
+    return new OnePowerCell(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
   }
 }
