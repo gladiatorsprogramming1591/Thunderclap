@@ -14,7 +14,7 @@ import frc.robot.subsystems.ShooterSubsystem;
  */
 public class OnePowerCell extends SequentialCommandGroup{
     // How far the robot should drive. Not the full field length (which is 360) because robot starts and ends inside the field.
-    private final int m_length = 120;
+    private final int m_length = 120; //TODO need to test what this length should be for the actual field (300?)
 
     /**
      * Create a new OnePowerCell SequentialCommand Group.

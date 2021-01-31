@@ -12,8 +12,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
-import frc.robot.JoystickButtonConstants;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.CompressorSS;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.DriveTrainC;
@@ -29,14 +27,12 @@ import frc.robot.commands.DriveTrainCommands.SetCoastMode;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.commands.IntakeCommands.IntakeReverse;
 import frc.robot.commands.IntakeCommands.IntakeOff;
-import frc.robot.commands.UseHopperModeCommands.IntakeOneExtraBall;
 
 import frc.robot.subsystems.IntakeArm;
 import frc.robot.commands.IntakeArmCommands.RaiseOrLowerArm;
 
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.commands.UseHopperModeCommands.ShootAllBalls;
-import frc.robot.commands.UseHopperModeCommands.ShootOneBall;
 
 import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.commands.SetHopperModeCommands.SetIntakeMode;
@@ -55,13 +51,9 @@ import frc.robot.commands.LiftCommands.StopWinchMotor;
 import frc.robot.commands.LiftCommands.ReleaseWinch;
 
 import frc.robot.commands.AutonomousCommands.DriveStraightAutonomous;
-import frc.robot.commands.AutonomousCommands.DriveDistance.DriveInches;
 import frc.robot.commands.AutonomousCommands.GalacticSearch.OnePowerCell;
 import frc.robot.commands.AutonomousCommands.DriveLeftAutonomous;
 import frc.robot.commands.AutonomousCommands.DriveRightAutonomous;
-
-import frc.robot.commands.AutonomousCommands.DriveTimed;
-import frc.robot.commands.AutonomousCommands.DriveDistance.DriveInches;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -101,7 +93,6 @@ public class RobotContainer {
     SmartDashboard.putData("Set Coast Mode", new SetCoastMode(m_driveTrain));
 
     SmartDashboard.putNumber(Constants.kInchesKey, 60);
-    SmartDashboard.putNumber(Constants.kStopKey, 0);
   }
 
   /**
@@ -194,7 +185,5 @@ public class RobotContainer {
 
     // Galactic Search
     return new OnePowerCell(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
-
-    // return new DriveInches(m_driveTrain, SmartDashboard.getNumber(Constants.kInchesKey, 60));
   }
 }

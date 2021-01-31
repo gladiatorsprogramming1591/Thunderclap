@@ -9,7 +9,6 @@ package frc.robot.commands.AutonomousCommands.DriveDistance;
 
 import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrain;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
@@ -30,7 +29,7 @@ public class DriveEncoder extends CommandBase {
    */
   public DriveEncoder(DriveTrain subsystem, double wheelRotations) {
     m_DriveTrain = subsystem;
-    m_motorRotations = (wheelRotations - SmartDashboard.getNumber(Constants.kStopKey, 0)) * Constants.kDriveGearRatio;
+    m_motorRotations = (wheelRotations - Constants.kStopDistance) * Constants.kDriveGearRatio;
     m_startEncoderValue = m_DriveTrain.getRightEncPos(); // using right arbitrarily at the momement, TODO check both or avg if more accurate
 
     // Use addRequirements() here to declare subsystem dependencies.
@@ -42,16 +41,14 @@ public class DriveEncoder extends CommandBase {
   public void initialize() {
     m_DriveTrain.setBrakeMode();
     if (m_motorRotations == 0) {
+      m_driveSpeed = 0;
       end(false);
-      System.out.println("no rotations needed");
     } else {
       if (m_motorRotations > 0) { // needs to move forward
         m_driveSpeed = Constants.kAutoDriveSpeed;
       } else { // needs to move backwards
         m_driveSpeed = -1 * Constants.kAutoDriveSpeed;
       }
-
-      System.out.println("Trying to drive at speed: " + m_driveSpeed);
       m_DriveTrain.drive(m_driveSpeed, 0, Constants.kFastSquaredInputs);
     }
   }
@@ -73,7 +70,6 @@ public class DriveEncoder extends CommandBase {
   @Override
   public boolean isFinished() {
     if (Math.abs(m_motorRotations) <= Math.abs(m_DriveTrain.getRightEncPos() - m_startEncoderValue)) { // when the robot has travelled the necessary distance
-      System.out.println("driveEncoder is done");
       return true;
     } else {
       return false;

@@ -100,10 +100,10 @@ public final class Constants {
     public final static double kWheelCircumferenceCM = kWheelDiameterCM * Math.PI; // derived from above
     public final static double kDriveGearRatio = 11.34851783; // measured as 11.34851783, 10.5 on first day
     /*
-    TODO above is a placeholder. Need to actually figure out what gear ratio is 
     (implemented as: for every one rotation of the wheel, how many rotations of the motor?)
     Ex: for every 1 wheel rotation, motor rotates 2 rotations, this vaiable would be 2
     */
-    public final static String kStopKey = "Stop Distance";
+    public final static double kStopDistance = 0.191; // in wheel rotations
     public final static String kInchesKey = "DriveInches input";
+
 }
