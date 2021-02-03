@@ -8,13 +8,13 @@
 package frc.robot.commands.AutonomousCommands.Rotation;
 
 import frc.robot.Constants;
+import frc.robot.commands.AutonomousCommands.AutoMovementCommand;
 import frc.robot.subsystems.DriveTrainC;
-import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
  * Rotate to a specified heading, in degrees.
  */
-public class TurnToDegrees extends CommandBase {
+public class TurnToDegrees extends AutoMovementCommand {
   private final DriveTrainC m_DriveTrain;
   private double m_targetHeading;
   private final Boolean m_isHeadingAbsolute;
@@ -26,6 +26,7 @@ public class TurnToDegrees extends CommandBase {
    * @param targetHeading The heading in degrees that the robot should rotate to.
    */
   public TurnToDegrees(DriveTrainC subsystem, double targetHeading, Boolean isHeadingAbsolute) {
+    super(subsystem);
     m_DriveTrain = subsystem;
     m_targetHeading = targetHeading;
     m_isHeadingAbsolute = isHeadingAbsolute;
@@ -73,13 +74,11 @@ public class TurnToDegrees extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_DriveTrain.setBrakeMode();
-    m_DriveTrain.drive(0, 0, Constants.kFastSquaredInputs); // stop
+    m_DriveTrain.setCoastMode();
   }
   
-  // Returns true when the command should end.
   @Override
-  public boolean isFinished() {
+  public boolean readyToStop() {
     // this check will screw up if target is less than error(negative number) or if target + error > 360
     // shouldn't cause a crash though, will just not stop as accurately
     if ((m_targetHeading - Constants.kAutoRotationError) < m_DriveTrain.getHeading() && m_DriveTrain.getHeading() < (m_targetHeading + Constants.kAutoRotationError)) {
