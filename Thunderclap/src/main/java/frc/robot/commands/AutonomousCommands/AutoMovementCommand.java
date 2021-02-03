@@ -26,11 +26,22 @@ public abstract class AutoMovementCommand extends CommandBase {
     m_DriveTrain = driveTrain;
   }
 
+  /**
+   * Should contain logic for detecting when the robot has reached its destination and should be stopping.
+   * 
+   * @return True when the robot should be stopping.
+   * @return False when the robot is not ready to stop yet.
+   */
+  protected abstract boolean readyToStop();
+
   @Override
   /**
    * DO NOT IMPLEMENT THIS METHOD IN CHILD CLASS
    */
   public boolean isFinished() {
+    if (readyToStop()) {
+      stop();
+    }
     if (m_startedStopping && m_DriveTrain.isStopped()) {
       return true;
     } else {
@@ -38,7 +49,7 @@ public abstract class AutoMovementCommand extends CommandBase {
     }
   }
 
-  public void stop() {
+  private void stop() {
     m_DriveTrain.drive(0, 0, Constants.kFastSquaredInputs);
     m_startedStopping = true;
   }
