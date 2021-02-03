@@ -103,6 +103,14 @@ public class DriveTrainC extends DriveTrain {
     }
   }
 
+  public boolean isStopped() {
+    if (m_rightEncoder.getVelocity() == 0 && m_leftEncoder.getVelocity() == 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
