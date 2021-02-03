@@ -54,6 +54,7 @@ import frc.robot.commands.AutonomousCommands.DriveStraightAutonomous;
 import frc.robot.commands.AutonomousCommands.GalacticSearch.OnePowerCell;
 import frc.robot.commands.AutonomousCommands.DriveLeftAutonomous;
 import frc.robot.commands.AutonomousCommands.DriveRightAutonomous;
+import frc.robot.commands.AutonomousCommands.DriveDistance.DriveInches;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -184,6 +185,8 @@ public class RobotContainer {
     // return m_driveRightAutonomous;
 
     // Galactic Search
-    return new OnePowerCell(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
+    // return new OnePowerCell(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
+
+    return new DriveInches(m_driveTrain, SmartDashboard.getNumber(Constants.kInchesKey, 60));
   }
 }

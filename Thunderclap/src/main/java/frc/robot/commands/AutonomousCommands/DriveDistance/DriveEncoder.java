@@ -29,7 +29,11 @@ public class DriveEncoder extends CommandBase {
    */
   public DriveEncoder(DriveTrain subsystem, double wheelRotations) {
     m_DriveTrain = subsystem;
-    m_motorRotations = (wheelRotations - Constants.kStopDistance) * Constants.kDriveGearRatio;
+    if (wheelRotations > 0) {
+      m_motorRotations = (wheelRotations - Constants.kStopDistance) * Constants.kDriveGearRatio;
+    } else {
+      m_motorRotations = (wheelRotations + Constants.kStopDistance) * Constants.kDriveGearRatio;
+    }
     m_startEncoderValue = m_DriveTrain.getRightEncPos(); // using right arbitrarily at the momement, TODO check both or avg if more accurate
 
     // Use addRequirements() here to declare subsystem dependencies.
