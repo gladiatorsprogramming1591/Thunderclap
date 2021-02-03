@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Joystick;
 
-public class DriveTrain extends SubsystemBase {
+public abstract class DriveTrain extends SubsystemBase {
   // * Member fields
 
   private final DifferentialDrive m_differentialDrive;
@@ -37,23 +37,7 @@ public class DriveTrain extends SubsystemBase {
       return m_driverJoystick.getZ();
   }
 
-  public void setBrakeMode() {
-    System.out.println("Override me!!!");
-  }
+  public abstract void setBrakeMode();
 
-  public void setCoastMode() {
-    System.out.println("Override me!!!");
-  }
-
-  public double getLeftEncPos() {
-    return 0;  // Override me!!!
-  }
-
-  public double getRightEncPos() {
-    return 0;  // Override me!!!
-  }
-
-  public double getHeading() {
-    return 0; // Override me!!!
-  }
+  public abstract void setCoastMode();
 }

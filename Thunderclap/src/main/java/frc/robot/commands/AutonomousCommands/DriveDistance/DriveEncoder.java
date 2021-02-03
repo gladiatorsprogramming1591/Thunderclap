@@ -8,14 +8,14 @@
 package frc.robot.commands.AutonomousCommands.DriveDistance;
 
 import frc.robot.Constants;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.DriveTrainC;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
  * Drive a certain distance based on an encoder value, autonomously.
  */
 public class DriveEncoder extends CommandBase {
-  private final DriveTrain m_DriveTrain;
+  private final DriveTrainC m_DriveTrain;
   private final double m_motorRotations;
   private final double m_startEncoderValue;
 
@@ -27,7 +27,7 @@ public class DriveEncoder extends CommandBase {
    * @param subsystem The subsystem used by this command.
    * @param wheelRotations The distance in rotations the robot should travel.
    */
-  public DriveEncoder(DriveTrain subsystem, double wheelRotations) {
+  public DriveEncoder(DriveTrainC subsystem, double wheelRotations) {
     m_DriveTrain = subsystem;
     m_motorRotations = (wheelRotations - Constants.kStopDistance) * Constants.kDriveGearRatio;
     m_startEncoderValue = m_DriveTrain.getRightEncPos(); // using right arbitrarily at the momement, TODO check both or avg if more accurate

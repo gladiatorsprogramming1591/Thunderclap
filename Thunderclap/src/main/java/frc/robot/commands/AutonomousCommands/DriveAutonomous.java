@@ -7,7 +7,7 @@
 
 package frc.robot.commands.AutonomousCommands;
 
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.DriveTrainC;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
@@ -17,7 +17,7 @@ import frc.robot.Constants;
  */
 public class DriveAutonomous extends CommandBase {
   @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
-  private final DriveTrain m_driveTrain;
+  private final DriveTrainC m_driveTrain;
   private double m_AxisForward;
   private double m_AxisTurning;
   private String m_name;
@@ -27,7 +27,7 @@ public class DriveAutonomous extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public DriveAutonomous(DriveTrain driveTrain, double forwardSpeed, double rotationSpeed, String name) {
+  public DriveAutonomous(DriveTrainC driveTrain, double forwardSpeed, double rotationSpeed, String name) {
     m_driveTrain = driveTrain;
     m_AxisForward = forwardSpeed;
     m_AxisTurning = rotationSpeed;

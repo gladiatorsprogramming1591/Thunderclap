@@ -75,7 +75,7 @@ public class RobotContainer {
   // private final HopperSubsystem m_hopperSubsystem = new HopperSubsystem(Constants.kPbotStopperForwardSpeed, Constants.kPbotStopperReverseSpeed);
   private final HopperSubsystem m_hopperSubsystem = new HopperSubsystem(Constants.kCbotStopperForwardSpeed, Constants.kCbotStopperReverseSpeed);
   // private final DriveTrain m_driveTrain = new DriveTrainP(m_driverStick);
-  private final DriveTrain m_driveTrain = new DriveTrainC(m_driverStick);
+  private final DriveTrainC m_driveTrain = new DriveTrainC(m_driverStick);
   private final CompressorSS m_compressor = new CompressorSS();
   
   // The robot's commands are defined here...

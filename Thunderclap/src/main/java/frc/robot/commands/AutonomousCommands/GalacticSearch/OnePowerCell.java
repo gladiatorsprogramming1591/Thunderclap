@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutonomousCommands.DriveDistance.DriveInches;
 import frc.robot.commands.SetHopperModeCommands.SetIntakeMode;
 import frc.robot.commands.SetHopperModeCommands.SetOffMode;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.DriveTrainC;
 import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
@@ -26,7 +26,7 @@ public class OnePowerCell extends SequentialCommandGroup{
      * @param shooter The ShooterSubsystem to be used.
      * @param driveTrain The DriveTrain to be used.
      */
-    public OnePowerCell(HopperSubsystem hopper, IntakeSubsystem intake, ShooterSubsystem shooter, DriveTrain driveTrain) {
+    public OnePowerCell(HopperSubsystem hopper, IntakeSubsystem intake, ShooterSubsystem shooter, DriveTrainC driveTrain) {
         addCommands(
             new SetIntakeMode(hopper, intake, shooter),
             new DriveInches(driveTrain, m_length),

@@ -9,11 +9,10 @@ package frc.robot.commands.AutonomousCommands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.UseHopperModeCommands.ShootAllBalls;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.DriveTrainC;
 import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
-import frc.robot.commands.UseHopperModeCommands.ShootOneBall;
 
 /**
  * A complex auto command that drives forward, releases a hatch, and then drives
@@ -38,7 +37,7 @@ public class DriveStraightAndShootAuto extends SequentialCommandGroup {
    * @param subsystem1 The subsystem this command will run on
    * @param subsystem2 The subsystem this command will run on
    */
-  public DriveStraightAndShootAuto(DriveTrain driveTrain, IntakeSubsystem intake, HopperSubsystem hopper, 
+  public DriveStraightAndShootAuto(DriveTrainC driveTrain, IntakeSubsystem intake, HopperSubsystem hopper, 
       ShooterSubsystem shooter) {
     addCommands(
         // Drive straight fast
