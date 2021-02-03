@@ -94,6 +94,12 @@ public final class Constants {
     public final static double kAutoDriveSpeed = 0.4;
     public final static double kAutoRotationSpeed = 0.25;
     public final static double kAutoRotationError = 1; // stop rotating if bot is x degrees away from target
+    public static enum GSPaths{
+        ARed,
+        ABlue,
+        BRed,
+        BBlue
+    }
 
     // Robot measurements
     public final static double kWheelDiameterInches = 7.5;
