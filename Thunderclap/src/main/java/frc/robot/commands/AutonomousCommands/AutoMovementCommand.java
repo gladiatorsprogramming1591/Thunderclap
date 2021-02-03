@@ -50,6 +50,7 @@ public abstract class AutoMovementCommand extends CommandBase {
   }
 
   private void stop() {
+    m_DriveTrain.setBrakeMode();
     m_DriveTrain.drive(0, 0, Constants.kFastSquaredInputs);
     m_startedStopping = true;
   }
