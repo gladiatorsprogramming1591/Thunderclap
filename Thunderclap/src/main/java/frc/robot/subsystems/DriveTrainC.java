@@ -102,15 +102,6 @@ public class DriveTrainC extends DriveTrain {
   }
 
   @Override
-  public double getHeading() {
-    return m_NavX.getAngle() + 360;
-  }
-
-  public void calibrateNavX() {
-    m_NavX.calibrate();
-  }
-
-  @Override
   public void periodic() {
     // This method will be called once per scheduler run
     // This should be used for diagnostics and not used to run motors since this is used
