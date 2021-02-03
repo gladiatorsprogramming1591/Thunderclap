@@ -8,7 +8,7 @@
 package frc.robot.commands.AutonomousCommands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.DriveTrainC;
 
 /**
  * A complex auto command that turns right
@@ -35,7 +35,7 @@ public class DriveRightAutonomous extends SequentialCommandGroup {
    * @param subsystem1 The subsystem this command will run on
    * @param subsystem2 The subsystem this command will run on
    */
-  public DriveRightAutonomous(DriveTrain driveTrain) {
+  public DriveRightAutonomous(DriveTrainC driveTrain) {
     addCommands(
 
       new DriveTimed(driveTrain, kFastDriveSpeed, -kRotationSpeed, kFastDriveTime, this.getName()+"TurnRight"),

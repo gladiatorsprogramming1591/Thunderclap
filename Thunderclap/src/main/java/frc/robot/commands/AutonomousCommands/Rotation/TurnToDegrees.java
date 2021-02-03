@@ -8,16 +8,16 @@
 package frc.robot.commands.AutonomousCommands.Rotation;
 
 import frc.robot.Constants;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.DriveTrainC;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /**
  * Rotate to a specified heading, in degrees.
  */
 public class TurnToDegrees extends CommandBase {
-  private final DriveTrain m_DriveTrain;
-  private final Boolean m_isHeadingAbsolute;
+  private final DriveTrainC m_DriveTrain;
   private double m_targetHeading;
+  private final Boolean m_isHeadingAbsolute;
 
   /**
    * Rotate to a specified heading, in degrees, autonomously 
@@ -25,7 +25,7 @@ public class TurnToDegrees extends CommandBase {
    * @param subsystem The DriveTrain subsystem to use.
    * @param targetHeading The heading in degrees that the robot should rotate to.
    */
-  public TurnToDegrees(DriveTrain subsystem, double targetHeading, Boolean isHeadingAbsolute) {
+  public TurnToDegrees(DriveTrainC subsystem, double targetHeading, Boolean isHeadingAbsolute) {
     m_DriveTrain = subsystem;
     m_targetHeading = targetHeading;
     m_isHeadingAbsolute = isHeadingAbsolute;

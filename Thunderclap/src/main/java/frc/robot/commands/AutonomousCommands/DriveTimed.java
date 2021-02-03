@@ -9,7 +9,7 @@ package frc.robot.commands.AutonomousCommands;
 
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.DriveTrainC;
 
 /**
  * A complex auto command that drives forward, releases a hatch, and then drives backward.
@@ -27,7 +27,7 @@ public class DriveTimed extends ParallelRaceGroup {
    * @param subsystem1 The subsystem this command will run on
    * @param subsystem2 The subsystem this command will run on
    */
-  public DriveTimed(DriveTrain driveTrain, double forwardSpeed, double rotationSpeed, 
+  public DriveTimed(DriveTrainC driveTrain, double forwardSpeed, double rotationSpeed, 
       double driveTime, String name) {
     addCommands(
         // Example 1

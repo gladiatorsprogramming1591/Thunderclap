@@ -23,12 +23,12 @@ import com.kauailabs.navx.frc.AHRS;
 
 public class DriveTrainC extends DriveTrain {
 
-  static CANSparkMax m_frontLeftMotor;
-  static CANSparkMax m_frontRightMotor;
-  static CANSparkMax m_rearLeftMotor;
-  static CANSparkMax m_rearRightMotor;
-  static CANEncoder m_leftEncoder;
-  static CANEncoder m_rightEncoder;
+  private static CANSparkMax m_frontLeftMotor;
+  private static CANSparkMax m_frontRightMotor;
+  private static CANSparkMax m_rearLeftMotor;
+  private static CANSparkMax m_rearRightMotor;
+  private static CANEncoder m_leftEncoder;
+  private static CANEncoder m_rightEncoder;
 
   private AHRS m_NavX;
 
@@ -75,23 +75,28 @@ public class DriveTrainC extends DriveTrain {
     m_rearRightMotor.setIdleMode(CANSparkMax.IdleMode.kCoast);
   }
 
-  @Override
   public double getLeftEncPos() {
     return m_leftEncoder.getPosition();  
   }
 
-  @Override
   public double getRightEncPos() {
     return m_rightEncoder.getPosition();  
   }
 
-  @Override
   public double getHeading() {
     return m_NavX.getAngle() + 360;
   }
 
   public void calibrateNavX() {
     m_NavX.calibrate();
+  }
+
+  public boolean isStopped() {
+    if (m_rightEncoder.getVelocity() == 0 && m_leftEncoder.getVelocity() == 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   @Override
