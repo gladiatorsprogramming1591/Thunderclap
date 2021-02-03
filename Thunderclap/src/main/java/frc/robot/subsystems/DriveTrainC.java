@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.Ultrasonic;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANEncoder;
@@ -29,6 +30,7 @@ public class DriveTrainC extends DriveTrain {
   private static CANSparkMax m_rearRightMotor;
   private static CANEncoder m_leftEncoder;
   private static CANEncoder m_rightEncoder;
+  private Ultrasonic m_ultra;
 
   private AHRS m_NavX;
 
@@ -60,6 +62,10 @@ public class DriveTrainC extends DriveTrain {
     m_rightEncoder = m_frontRightMotor.getEncoder();
 
     m_NavX = new AHRS(SerialPort.Port.kMXP);
+
+    m_ultra = new Ultrasonic(Constants.kUltrasonicInputPort, Constants.kUltrasonicOutputPort);
+    m_ultra.setAutomaticMode(true);
+    m_ultra.setEnabled(true;
   }
 
   @Override
@@ -121,5 +127,6 @@ public class DriveTrainC extends DriveTrain {
     SmartDashboard.putNumber("Left Drive Vel", m_leftEncoder.getVelocity());
     SmartDashboard.putNumber("Right Drive Vel", m_rightEncoder.getVelocity());
     SmartDashboard.putNumber("Heading", m_NavX.getCompassHeading());
+    SmartDashboard.putNumber("Ultra Inches", m_ultra.getRangeInches());
   }
 }

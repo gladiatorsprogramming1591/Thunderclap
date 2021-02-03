@@ -6,13 +6,12 @@ import frc.robot.subsystems.DriveTrainC;
 public class UltrasonicChoose extends CommandBase{
     private DriveTrainC m_DriveTrainC;
     
-    
     public UltrasonicChoose(DriveTrainC driveTrainC) {
         m_DriveTrainC = driveTrainC;
     }
 
     @Override
     public void initialize() {
-
+        
     }
 }

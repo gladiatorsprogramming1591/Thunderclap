@@ -98,7 +98,8 @@ public final class Constants {
         ARed,
         ABlue,
         BRed,
-        BBlue
+        BBlue,
+        NONE
     }
 
     // Robot measurements
@@ -113,4 +114,8 @@ public final class Constants {
     */
     public final static double kStopDistance = 0.191; // in wheel rotations
     public final static String kInchesKey = "DriveInches input";
+
+    // Ultrasonic
+    public final static int kUltrasonicInputPort = 1;
+    public final static int kUltrasonicOutputPort = 2;
 }
