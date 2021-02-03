@@ -22,6 +22,8 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import com.kauailabs.navx.frc.AHRS;
 
+import frc.robot.Constants.GSPath;
+
 public class DriveTrainC extends DriveTrain {
 
   private static CANSparkMax m_frontLeftMotor;
@@ -65,7 +67,7 @@ public class DriveTrainC extends DriveTrain {
 
     m_ultra = new Ultrasonic(Constants.kUltrasonicInputPort, Constants.kUltrasonicOutputPort);
     m_ultra.setAutomaticMode(true);
-    m_ultra.setEnabled(true;
+    m_ultra.setEnabled(true);
   }
 
   @Override
@@ -117,6 +119,25 @@ public class DriveTrainC extends DriveTrain {
     }
   }
 
+  public double getRangeInches() {
+    return m_ultra.getRangeInches();
+  }
+
+  public GSPath getPathToStart() {
+    double range = getRangeInches();
+    if (Constants.kARedPos - Constants.kUltraError < range && range < Constants.kARedPos + Constants.kUltraError) {
+      return GSPath.ARed;
+    } else if (Constants.kABluePos - Constants.kUltraError < range && range < Constants.kABluePos + Constants.kUltraError) {
+      return GSPath.ABlue;
+    } else if (Constants.kBRedPos - Constants.kUltraError < range && range < Constants.kBRedPos + Constants.kUltraError) {
+      return GSPath.BRed;
+    } else if (Constants.kBBluePos - Constants.kUltraError < range && range < Constants.kBBluePos + Constants.kUltraError) {
+      return GSPath.BBlue;
+    } else {
+      return GSPath.NONE;
+    }
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
@@ -128,5 +149,6 @@ public class DriveTrainC extends DriveTrain {
     SmartDashboard.putNumber("Right Drive Vel", m_rightEncoder.getVelocity());
     SmartDashboard.putNumber("Heading", m_NavX.getCompassHeading());
     SmartDashboard.putNumber("Ultra Inches", m_ultra.getRangeInches());
+    SmartDashboard.putString("Ultra Path", getPathToStart().toString());
   }
 }

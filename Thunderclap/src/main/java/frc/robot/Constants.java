@@ -94,7 +94,7 @@ public final class Constants {
     public final static double kAutoDriveSpeed = 0.4;
     public final static double kAutoRotationSpeed = 0.25;
     public final static double kAutoRotationError = 1; // stop rotating if bot is x degrees away from target
-    public static enum GSPaths{
+    public static enum GSPath{
         ARed,
         ABlue,
         BRed,
@@ -118,4 +118,13 @@ public final class Constants {
     // Ultrasonic
     public final static int kUltrasonicInputPort = 1;
     public final static int kUltrasonicOutputPort = 2;
+    public final static double kUltraOffset = 8; // ultra is mounted on the right side of the robot this far away from the center (on the axis it is measuring)
+    public final static double kUltraError = 2; // space on either side in which the robot
+
+    // Galactic Search
+    // starting positions (based on Pat's diagrams)
+    public final static double kARedPos = 90 - kUltraOffset;
+    public final static double kABluePos = 30 - kUltraOffset;
+    public final static double kBRedPos = 120 - kUltraOffset;
+    public final static double kBBluePos = 60 - kUltraOffset;
 }
