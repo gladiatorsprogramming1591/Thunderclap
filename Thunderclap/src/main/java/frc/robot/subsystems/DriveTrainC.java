@@ -111,14 +111,6 @@ public class DriveTrainC extends DriveTrain {
     }
   }
 
-  public boolean isStopped() {
-    if (m_rightEncoder.getVelocity() == 0 && m_leftEncoder.getVelocity() == 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   public double getRangeInches() {
     return m_ultra.getRangeInches();
   }

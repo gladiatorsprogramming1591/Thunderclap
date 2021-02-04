@@ -106,6 +106,7 @@ public class RobotContainer {
     SmartDashboard.putData("Set Coast Mode", new SetCoastMode(m_driveTrain));
 
     SmartDashboard.putNumber(Constants.kInchesKey, 60);
+    SmartDashboard.putData("Calibrate NavX", m_calibrateNavX);
   }
 
   /**
