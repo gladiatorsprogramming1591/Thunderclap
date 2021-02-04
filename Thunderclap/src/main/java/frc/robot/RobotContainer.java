@@ -58,6 +58,8 @@ import frc.robot.commands.AutonomousCommands.DriveLeftAutonomous;
 import frc.robot.commands.AutonomousCommands.DriveRightAutonomous;
 import frc.robot.commands.AutonomousCommands.DriveDistance.DriveInches;
 import frc.robot.commands.DriveTrainCommands.CalibrateNavX;
+import frc.robot.commands.AutonomousCommands.GalacticSearch.UltrasonicChoose;
+import frc.robot.commands.AutonomousCommands.GalacticSearch.PathTriggers.PathTrigger;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -87,6 +89,12 @@ public class RobotContainer {
   private final DriveLeftAutonomous m_driveLeftAutonomous = new DriveLeftAutonomous(m_driveTrain);
   private final DriveRightAutonomous m_driveRightAutonomous = new DriveRightAutonomous(m_driveTrain);
   private final CalibrateNavX m_calibrateNavX = new CalibrateNavX(m_driveTrain);
+
+  private final PathTrigger m_ARedTrigger = new PathTrigger();
+  private final PathTrigger m_ABlueTrigger = new PathTrigger();
+  private final PathTrigger m_BRedTrigger = new PathTrigger();
+  private final PathTrigger m_BBlueTrigger = new PathTrigger();
+  private final UltrasonicChoose m_ultrasonicChoose = new UltrasonicChoose(m_driveTrain, m_ARedTrigger, m_ABlueTrigger, m_BRedTrigger, m_BBlueTrigger);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -188,7 +196,6 @@ public class RobotContainer {
     // return m_driveLeftAutonomous;
     // return m_driveRightAutonomous;
 
-    // AutoRotateTesting
-    return new TurnToDegrees(m_driveTrain, 45, true);
+    return m_ultrasonicChoose;
   }
 }
