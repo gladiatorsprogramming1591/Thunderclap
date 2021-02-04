@@ -59,7 +59,7 @@ import frc.robot.commands.AutonomousCommands.DriveRightAutonomous;
 import frc.robot.commands.AutonomousCommands.DriveDistance.DriveInches;
 import frc.robot.commands.DriveTrainCommands.CalibrateNavX;
 import frc.robot.commands.AutonomousCommands.GalacticSearch.UltrasonicChoose;
-import frc.robot.commands.AutonomousCommands.GalacticSearch.PathTriggers.PathTrigger;
+import frc.robot.commands.AutonomousCommands.GalacticSearch.PathTrigger;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a

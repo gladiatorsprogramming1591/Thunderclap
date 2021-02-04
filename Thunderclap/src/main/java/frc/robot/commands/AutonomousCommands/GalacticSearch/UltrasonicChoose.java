@@ -1,7 +1,7 @@
 package frc.robot.commands.AutonomousCommands.GalacticSearch;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.commands.AutonomousCommands.GalacticSearch.PathTriggers.PathTrigger;
+import frc.robot.commands.AutonomousCommands.GalacticSearch.PathTrigger;
 import frc.robot.subsystems.DriveTrainC;
 
 /**

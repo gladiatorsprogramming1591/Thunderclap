@@ -1,4 +1,4 @@
-package frc.robot.commands.AutonomousCommands.GalacticSearch.PathTriggers;
+package frc.robot.commands.AutonomousCommands.GalacticSearch;
 
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
