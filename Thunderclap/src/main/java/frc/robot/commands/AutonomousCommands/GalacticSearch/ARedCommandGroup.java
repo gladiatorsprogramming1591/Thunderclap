@@ -37,7 +37,8 @@ public class ARedCommandGroup extends SequentialCommandGroup{
             new TurnRelDegrees(driveTrain, 98.14),
             new DriveInches(driveTrain, 94.87),
             new TurnRelDegrees(driveTrain, -71.57),
-            new DriveInches(driveTrain, 150)
+            new DriveInches(driveTrain, 150),
+            new SetOffMode(hopper, intake, shooter)
         );
     }
 }

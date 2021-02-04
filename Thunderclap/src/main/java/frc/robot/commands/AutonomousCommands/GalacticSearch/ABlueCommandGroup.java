@@ -37,7 +37,8 @@ public class ABlueCommandGroup extends SequentialCommandGroup{
             new TurnRelDegrees(driveTrain, -98.14),
             new DriveInches(driveTrain, 67.08),
             new TurnRelDegrees(driveTrain, 26.57),
-            new DriveInches(driveTrain, 66)
+            new DriveInches(driveTrain, 66),
+            new SetOffMode(hopper, intake, shooter)
         );
     }
 }

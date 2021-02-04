@@ -37,7 +37,8 @@ public class BRedCommandGroup extends SequentialCommandGroup{
             new TurnRelDegrees(driveTrain, 90),
             new DriveInches(driveTrain, 84.852),
             new TurnRelDegrees(driveTrain, -90),
-            new DriveInches(driveTrain, 120)
+            new DriveInches(driveTrain, 120),
+            new SetOffMode(hopper, intake, shooter)
         );
     }
 }
