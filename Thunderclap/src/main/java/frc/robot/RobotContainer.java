@@ -22,6 +22,7 @@ import frc.robot.commands.HopperCommands.HopperOn;
 import frc.robot.commands.HopperCommands.HopperReverse;
 import frc.robot.commands.HopperCommands.SuckerOff;
 import frc.robot.commands.HopperCommands.SuckerOn;
+import frc.robot.commands.DriveTrainCommands.CalibrateNavX;
 import frc.robot.commands.DriveTrainCommands.FastDrive;
 import frc.robot.commands.DriveTrainCommands.SetCoastMode;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -56,6 +57,7 @@ import frc.robot.commands.AutonomousCommands.Rotation.TurnToDegrees;
 import frc.robot.commands.AutonomousCommands.DriveLeftAutonomous;
 import frc.robot.commands.AutonomousCommands.DriveRightAutonomous;
 import frc.robot.commands.AutonomousCommands.DriveDistance.DriveInches;
+import frc.robot.commands.DriveTrainCommands.CalibrateNavX;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -84,6 +86,7 @@ public class RobotContainer {
   private final DriveStraightAutonomous m_driveStraightAutonomous = new DriveStraightAutonomous(m_driveTrain);
   private final DriveLeftAutonomous m_driveLeftAutonomous = new DriveLeftAutonomous(m_driveTrain);
   private final DriveRightAutonomous m_driveRightAutonomous = new DriveRightAutonomous(m_driveTrain);
+  private final CalibrateNavX m_calibrateNavX = new CalibrateNavX(m_driveTrain);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
