@@ -14,4 +14,9 @@ public class CalibrateNavX extends CommandBase{
     public void initialize() {
         m_DriveTrainC.calibrateNavX();
     }
+
+    @Override
+    public boolean isFinished() {
+        return true;
+    }
 }

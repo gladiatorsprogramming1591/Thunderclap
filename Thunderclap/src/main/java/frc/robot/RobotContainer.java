@@ -52,6 +52,7 @@ import frc.robot.commands.LiftCommands.StopWinchMotor;
 import frc.robot.commands.LiftCommands.ReleaseWinch;
 
 import frc.robot.commands.AutonomousCommands.DriveStraightAutonomous;
+import frc.robot.commands.AutonomousCommands.GalacticSearch.ARedCommandGroup;
 import frc.robot.commands.AutonomousCommands.GalacticSearch.OnePowerCell;
 import frc.robot.commands.AutonomousCommands.Rotation.TurnToDegrees;
 import frc.robot.commands.AutonomousCommands.DriveLeftAutonomous;
@@ -89,7 +90,7 @@ public class RobotContainer {
   private final DriveLeftAutonomous m_driveLeftAutonomous = new DriveLeftAutonomous(m_driveTrain);
   private final DriveRightAutonomous m_driveRightAutonomous = new DriveRightAutonomous(m_driveTrain);
   private final CalibrateNavX m_calibrateNavX = new CalibrateNavX(m_driveTrain);
-
+  private final ARedCommandGroup m_ARedCommandGroup = new ARedCommandGroup(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
   private final PathTrigger m_ARedTrigger = new PathTrigger();
   private final PathTrigger m_ABlueTrigger = new PathTrigger();
   private final PathTrigger m_BRedTrigger = new PathTrigger();
@@ -197,6 +198,7 @@ public class RobotContainer {
     // return m_driveLeftAutonomous;
     // return m_driveRightAutonomous;
 
-    return m_ultrasonicChoose;
+    return new TurnToDegrees(m_driveTrain, 90, false);
+    // return m_ARedCommandGroup;
   }
 }

@@ -7,6 +7,7 @@
 
 package frc.robot.commands.AutonomousCommands.Rotation;
 
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.commands.AutonomousCommands.AutoMovementCommand;
 import frc.robot.subsystems.DriveTrainC;
@@ -14,7 +15,7 @@ import frc.robot.subsystems.DriveTrainC;
 /**
  * Rotate to a specified heading, in degrees.
  */
-public class TurnToDegrees extends AutoMovementCommand {
+public class TurnToDegrees extends CommandBase {
   private final DriveTrainC m_DriveTrain;
   private double m_targetHeading;
   private final Boolean m_isHeadingAbsolute;
@@ -26,9 +27,9 @@ public class TurnToDegrees extends AutoMovementCommand {
    * @param targetHeading The heading in degrees that the robot should rotate to.
    */
   public TurnToDegrees(DriveTrainC subsystem, double targetHeading, Boolean isHeadingAbsolute) {
-    super(subsystem);
+    // super(subsystem);
     m_DriveTrain = subsystem;
-    m_targetHeading = targetHeading;
+    m_targetHeading = -targetHeading; //make ccw pos
     m_isHeadingAbsolute = isHeadingAbsolute;
 
     // Use addRequirements() here to declare subsystem dependencies.
@@ -49,6 +50,7 @@ public class TurnToDegrees extends AutoMovementCommand {
     final double m_rotationSpeed;
 
     if (m_targetHeading == m_DriveTrain.getHeading()) { // robot is already in position
+      System.out.println("robot already in position");
       end(false);
     } else {
       // figure out which direction we need to turn to have the shortest possible path
@@ -66,7 +68,8 @@ public class TurnToDegrees extends AutoMovementCommand {
         // turn counter-clockwise
         m_rotationSpeed = -1 * Constants.kAutoRotationSpeed;
       }
-  
+      
+      System.out.println("moving with rotation speed " + m_rotationSpeed);
       m_DriveTrain.drive(0, m_rotationSpeed, Constants.kFastSquaredInputs);
     }
   }
@@ -77,11 +80,22 @@ public class TurnToDegrees extends AutoMovementCommand {
     m_DriveTrain.setCoastMode();
   }
   
+  // @Override
+  // public boolean readyToStop() {
+  //   // this check will screw up if target is less than error(negative number) or if target + error > 360
+  //   // shouldn't cause a crash though, will just not stop as accurately
+  //   if ((m_targetHeading - Constants.kAutoRotationError) < m_DriveTrain.getHeading() && m_DriveTrain.getHeading() < (m_targetHeading + Constants.kAutoRotationError)) {
+  //     System.out.println("stopping");
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
+
   @Override
-  public boolean readyToStop() {
-    // this check will screw up if target is less than error(negative number) or if target + error > 360
-    // shouldn't cause a crash though, will just not stop as accurately
+  public boolean isFinished() {
     if ((m_targetHeading - Constants.kAutoRotationError) < m_DriveTrain.getHeading() && m_DriveTrain.getHeading() < (m_targetHeading + Constants.kAutoRotationError)) {
+      System.out.println("stopping");
       return true;
     } else {
       return false;

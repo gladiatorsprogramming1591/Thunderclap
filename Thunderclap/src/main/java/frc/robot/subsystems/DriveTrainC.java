@@ -96,11 +96,11 @@ public class DriveTrainC extends DriveTrain {
   }
 
   public double getHeading() {
-    return m_NavX.getAngle() + 360;
+    return m_NavX.getAngle() + 180;
   }
 
   public void calibrateNavX() {
-    m_NavX.calibrate();
+    m_NavX.reset();
   }
 
   public boolean isStopped() {
@@ -139,7 +139,7 @@ public class DriveTrainC extends DriveTrain {
     SmartDashboard.putNumber("Right Drive Enc", m_rightEncoder.getPosition());
     SmartDashboard.putNumber("Left Drive Vel", m_leftEncoder.getVelocity());
     SmartDashboard.putNumber("Right Drive Vel", m_rightEncoder.getVelocity());
-    SmartDashboard.putNumber("Heading", m_NavX.getCompassHeading());
+    SmartDashboard.putNumber("Heading", getHeading());
     SmartDashboard.putNumber("Ultra Inches", m_ultra.getRangeInches());
     SmartDashboard.putString("Ultra Path", getPathToStart().toString());
   }
