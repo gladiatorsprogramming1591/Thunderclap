@@ -103,7 +103,11 @@ public class DriveTrainC extends DriveTrain {
 
   @Override
   public double getHeading() {
-    return m_NavX.getCompassHeading();
+    return m_NavX.getAngle() + 360;
+  }
+
+  public void calibrateNavX() {
+    m_NavX.calibrate();
   }
 
   @Override
