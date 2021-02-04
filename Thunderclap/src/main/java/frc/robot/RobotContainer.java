@@ -186,6 +186,6 @@ public class RobotContainer {
     // return m_driveRightAutonomous;
 
     // AutoRotateTesting
-    return new TurnToDegrees(m_driveTrain, 45);
+    return new TurnToDegrees(m_driveTrain, 45, true);
   }
 }

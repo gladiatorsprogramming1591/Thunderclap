@@ -16,7 +16,8 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
  */
 public class TurnToDegrees extends CommandBase {
   private final DriveTrain m_DriveTrain;
-  private final double m_targetHeading;
+  private final Boolean m_isHeadingAbsolute;
+  private double m_targetHeading;
 
   /**
    * Rotate to a specified heading, in degrees, autonomously 
@@ -24,9 +25,10 @@ public class TurnToDegrees extends CommandBase {
    * @param subsystem The DriveTrain subsystem to use.
    * @param targetHeading The heading in degrees that the robot should rotate to.
    */
-  public TurnToDegrees(DriveTrain subsystem, double targetHeading) {
+  public TurnToDegrees(DriveTrain subsystem, double targetHeading, Boolean isHeadingAbsolute) {
     m_DriveTrain = subsystem;
     m_targetHeading = targetHeading;
+    m_isHeadingAbsolute = isHeadingAbsolute;
 
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
@@ -35,7 +37,9 @@ public class TurnToDegrees extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
+    if (!m_isHeadingAbsolute) {
+      m_targetHeading += m_DriveTrain.getHeading();
+    }
   }
   
   // Called every time the scheduler runs while the command is scheduled.
@@ -47,8 +51,12 @@ public class TurnToDegrees extends CommandBase {
       end(false);
     } else {
       // figure out which direction we need to turn to have the shortest possible path
-      final double m_clockwiseDistance = Math.abs(m_targetHeading - m_DriveTrain.getHeading());
-      final double m_counterClockwiseDistance = 360 - m_clockwiseDistance;
+      double m_clockwiseDistance = m_targetHeading - m_DriveTrain.getHeading();
+      double m_counterClockwiseDistance = 360 - m_clockwiseDistance;
+      if (m_clockwiseDistance < 0) {
+        m_counterClockwiseDistance = -m_clockwiseDistance;
+        m_clockwiseDistance += 360;
+      }
   
       if (m_clockwiseDistance < m_counterClockwiseDistance) {
         // turn clockwise
