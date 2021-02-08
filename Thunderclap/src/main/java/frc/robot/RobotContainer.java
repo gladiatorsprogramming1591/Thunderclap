@@ -99,6 +99,7 @@ public class RobotContainer {
     SmartDashboard.putData("Set Coast Mode", new SetCoastMode(m_driveTrain));
 
     SmartDashboard.putNumber(Constants.kInchesKey, 60);
+    SmartDashboard.putNumber(Constants.kSingleMotorKey, 1);
   }
 
   /**
@@ -192,6 +193,6 @@ public class RobotContainer {
     // Galactic Search
     // return new OnePowerCell(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
 
-    return new SingleMotor(m_driveTrain, Constants.kCbotFrontLeftMotorCANID);
+    return new SingleMotor(m_driveTrain, (int) SmartDashboard.getNumber(Constants.kSingleMotorKey, 1));
   }
 }

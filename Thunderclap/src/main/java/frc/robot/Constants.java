@@ -107,4 +107,5 @@ public final class Constants {
     */
     public final static double kStopDistance = 0.191; // in wheel rotations
     public final static String kInchesKey = "DriveInches input";
+    public final static String kSingleMotorKey = "SingleMotor ID";
 }
