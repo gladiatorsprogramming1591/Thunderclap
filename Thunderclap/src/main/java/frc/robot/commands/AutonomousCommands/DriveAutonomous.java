@@ -10,6 +10,7 @@ package frc.robot.commands.AutonomousCommands;
 import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 
 /**
  * An example command that uses an example subsystem.
@@ -54,6 +55,7 @@ public class DriveAutonomous extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    m_driveTrain.drive(0, 0, Constants.kFastSquaredInputs);
     m_driveTrain.setCoastMode();
     SmartDashboard.putNumber(m_name+" Left Enc End", m_driveTrain.getLeftEncPos());
     SmartDashboard.putNumber(m_name+" Right Enc End", m_driveTrain.getRightEncPos());

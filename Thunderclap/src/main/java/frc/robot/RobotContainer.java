@@ -8,11 +8,10 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
-import frc.robot.JoystickButtonConstants;
-// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.CompressorSS;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.DriveTrainC;
@@ -24,18 +23,16 @@ import frc.robot.commands.HopperCommands.HopperReverse;
 import frc.robot.commands.HopperCommands.SuckerOff;
 import frc.robot.commands.HopperCommands.SuckerOn;
 import frc.robot.commands.DriveTrainCommands.FastDrive;
-
+import frc.robot.commands.DriveTrainCommands.SetCoastMode;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.commands.IntakeCommands.IntakeReverse;
 import frc.robot.commands.IntakeCommands.IntakeOff;
-import frc.robot.commands.UseHopperModeCommands.IntakeOneExtraBall;
 
 import frc.robot.subsystems.IntakeArm;
 import frc.robot.commands.IntakeArmCommands.RaiseOrLowerArm;
 
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.commands.UseHopperModeCommands.ShootAllBalls;
-import frc.robot.commands.UseHopperModeCommands.ShootOneBall;
 
 import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.commands.SetHopperModeCommands.SetIntakeMode;
@@ -54,8 +51,10 @@ import frc.robot.commands.LiftCommands.StopWinchMotor;
 import frc.robot.commands.LiftCommands.ReleaseWinch;
 
 import frc.robot.commands.AutonomousCommands.DriveStraightAutonomous;
+import frc.robot.commands.AutonomousCommands.GalacticSearch.OnePowerCell;
 import frc.robot.commands.AutonomousCommands.DriveLeftAutonomous;
 import frc.robot.commands.AutonomousCommands.DriveRightAutonomous;
+import frc.robot.commands.AutonomousCommands.DriveDistance.DriveInches;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -84,8 +83,6 @@ public class RobotContainer {
   private final DriveStraightAutonomous m_driveStraightAutonomous = new DriveStraightAutonomous(m_driveTrain);
   private final DriveLeftAutonomous m_driveLeftAutonomous = new DriveLeftAutonomous(m_driveTrain);
   private final DriveRightAutonomous m_driveRightAutonomous = new DriveRightAutonomous(m_driveTrain);
-  
-
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -93,6 +90,10 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+
+    SmartDashboard.putData("Set Coast Mode", new SetCoastMode(m_driveTrain));
+
+    SmartDashboard.putNumber(Constants.kInchesKey, 60);
   }
 
   /**
@@ -180,7 +181,12 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
     // return m_driveStraightAutonomous;
-    return m_driveLeftAutonomous;
+    // return m_driveLeftAutonomous;
     // return m_driveRightAutonomous;
+
+    // Galactic Search
+    // return new OnePowerCell(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
+
+    return new DriveInches(m_driveTrain, SmartDashboard.getNumber(Constants.kInchesKey, 60));
   }
 }
