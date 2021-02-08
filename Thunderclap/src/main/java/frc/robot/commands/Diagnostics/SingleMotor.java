@@ -11,6 +11,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+
 import edu.wpi.first.wpilibj.Timer;
 
 public class SingleMotor extends CommandBase {
@@ -70,7 +73,8 @@ public class SingleMotor extends CommandBase {
     }
 
     private void createLogFile() {
-        String name = LocalDateTime.now().toString();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss");
+        String name = LocalDateTime.now().format(formatter);
 
         try {
             m_logFile = new File("1591logs/" + name);
