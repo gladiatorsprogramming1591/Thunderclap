@@ -36,10 +36,6 @@ public class DriveTrainC extends DriveTrain {
 
   private AHRS m_NavX;
 
-  private AHRS m_NavX;
-
-  private AHRS m_NavX;
-
   public DriveTrainC(Joystick m_driverJoystick) {
     super(
       new DifferentialDrive(
