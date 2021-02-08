@@ -7,9 +7,6 @@
 
 package frc.robot;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -195,6 +192,6 @@ public class RobotContainer {
     // Galactic Search
     // return new OnePowerCell(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
 
-    return new SingleMotor(m_driveTrain, new CANSparkMax(Constants.kCbotFrontLeftMotorCANID, MotorType.kBrushless));
+    return new SingleMotor(m_driveTrain, Constants.kCbotFrontLeftMotorCANID);
   }
 }
