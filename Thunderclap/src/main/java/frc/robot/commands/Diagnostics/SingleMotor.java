@@ -36,6 +36,7 @@ public class SingleMotor extends CommandBase {
     @Override
     public void initialize() {
         createLogFile();
+        writeLogFile("Time EncoderPos");
 
         m_startPos = m_encoder.getPosition();
         m_DriveTrainC.setCoastMode();
@@ -47,7 +48,7 @@ public class SingleMotor extends CommandBase {
 
     @Override
     public void execute() {
-        writeLogFile(String.valueOf(m_encoder.getPosition()));
+        writeLogFile(String.valueOf(m_timer.get()) + " " +  String.valueOf(m_encoder.getPosition()));
     }
 
     @Override
