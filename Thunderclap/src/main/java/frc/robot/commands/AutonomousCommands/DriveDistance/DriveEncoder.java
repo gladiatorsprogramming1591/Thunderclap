@@ -15,7 +15,7 @@ import frc.robot.subsystems.DriveTrainC;
 /**
  * Drive a certain distance based on an encoder value, autonomously.
  */
-public class DriveEncoder extends CommandBase {
+public class DriveEncoder extends AutoMovementCommand {
   private final DriveTrainC m_DriveTrain;
   private final double m_motorRotations;
   private final double m_startEncoderValue;
@@ -29,7 +29,7 @@ public class DriveEncoder extends CommandBase {
    * @param wheelRotations The distance in rotations the robot should travel.
    */
   public DriveEncoder(DriveTrainC subsystem, double wheelRotations) {
-    // super(subsystem);
+    super(subsystem);
     m_DriveTrain = subsystem;
     if (wheelRotations > 0) {
       m_motorRotations = (wheelRotations - Constants.kStopDistance) * Constants.kDriveGearRatio;
@@ -71,18 +71,9 @@ public class DriveEncoder extends CommandBase {
     m_DriveTrain.setCoastMode();
   }
 
-  // @Override
-  // public boolean readyToStop() {
-  //   if (Math.abs(m_motorRotations) <= Math.abs(m_DriveTrain.getRightEncPos() - m_startEncoderValue)) { // when the robot has travelled the necessary distance
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
-
   @Override
-  public boolean isFinished() {
-    if (Math.abs(m_motorRotations) >= Math.abs(m_DriveTrain.getRightEncPos() - m_startEncoderValue)) { // when the robot has travelled the necessary distance
+  public boolean readyToStop() {
+    if (Math.abs(m_motorRotations) <= Math.abs(m_DriveTrain.getRightEncPos() - m_startEncoderValue)) { // when the robot has travelled the necessary distance
       return true;
     } else {
       return false;
