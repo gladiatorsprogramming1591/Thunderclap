@@ -78,6 +78,7 @@ public class TurnToDegrees extends AutoMovementCommand {
   @Override
   public void end(boolean interrupted) {
     m_DriveTrain.setCoastMode();
+    System.out.println("isStopped:" + m_DriveTrain.isStopped());
   }
   
   @Override
