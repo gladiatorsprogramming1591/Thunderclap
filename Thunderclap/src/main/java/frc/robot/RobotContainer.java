@@ -7,6 +7,9 @@
 
 package frc.robot;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -43,6 +46,7 @@ import frc.robot.commands.UseHopperModeCommands.ResetBallCount;
 
 import frc.robot.commands.CombinationCommandGroups.ReverseAllMotorsExceptShooter;
 import frc.robot.commands.CombinationCommandGroups.ShootOneBallWrapped;
+import frc.robot.commands.Diagnostics.SingleMotor;
 import frc.robot.subsystems.LiftSubsystem;
 import frc.robot.commands.LiftCommands.CrankWinch;
 import frc.robot.commands.LiftCommands.DisengageWinchBrake;
@@ -188,7 +192,9 @@ public class RobotContainer {
     // return m_driveLeftAutonomous;
     // return m_driveRightAutonomous;
 
-    // AutoRotateTesting
-    return new TurnToDegrees(m_driveTrain, 45, true);
+    // Galactic Search
+    // return new OnePowerCell(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
+
+    return new SingleMotor(m_driveTrain, new CANSparkMax(Constants.kCbotFrontLeftMotorCANID, MotorType.kBrushless));
   }
 }
