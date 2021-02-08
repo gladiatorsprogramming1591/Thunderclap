@@ -54,7 +54,6 @@ public class DriveEncoder extends AutoMovementCommand {
       } else { // needs to move backwards
         m_driveSpeed = -1 * Constants.kAutoDriveSpeed;
       }
-      m_DriveTrain.drive(m_driveSpeed, 0, Constants.kFastSquaredInputs);
     }
   }
 
