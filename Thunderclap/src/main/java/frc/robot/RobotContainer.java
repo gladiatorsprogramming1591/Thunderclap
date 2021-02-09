@@ -53,6 +53,7 @@ import frc.robot.commands.LiftCommands.ReleaseWinch;
 
 import frc.robot.commands.AutonomousCommands.DriveStraightAutonomous;
 import frc.robot.commands.AutonomousCommands.GalacticSearch.ARedCommandGroup;
+import frc.robot.commands.AutonomousCommands.GalacticSearch.DriveTurnGroup;
 import frc.robot.commands.AutonomousCommands.GalacticSearch.OnePowerCell;
 import frc.robot.commands.AutonomousCommands.Rotation.TurnToDegrees;
 import frc.robot.commands.AutonomousCommands.DriveLeftAutonomous;
@@ -198,7 +199,7 @@ public class RobotContainer {
     // return m_driveLeftAutonomous;
     // return m_driveRightAutonomous;
 
-    return new TurnToDegrees(m_driveTrain, 90, false);
+    return new DriveTurnGroup(m_driveTrain);
     // return m_ARedCommandGroup;
   }
 }
