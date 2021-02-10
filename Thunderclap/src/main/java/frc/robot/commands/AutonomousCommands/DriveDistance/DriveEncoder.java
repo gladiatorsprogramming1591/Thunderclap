@@ -18,7 +18,7 @@ import frc.robot.subsystems.DriveTrainC;
 public class DriveEncoder extends AutoMovementCommand {
   private final DriveTrainC m_DriveTrain;
   private final double m_motorRotations;
-  private final double m_startEncoderValue;
+  private double m_startEncoderValue;
 
   private double m_driveSpeed;
 
@@ -36,15 +36,15 @@ public class DriveEncoder extends AutoMovementCommand {
     } else {
       m_motorRotations = (wheelRotations + Constants.kStopDistance) * Constants.kDriveGearRatio;
     }
-    m_startEncoderValue = m_DriveTrain.getRightEncPos(); // using right arbitrarily at the momement, TODO check both or avg if more accurate
-
+    
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
-
+  
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    m_startEncoderValue = m_DriveTrain.getRightEncPos(); // using right arbitrarily at the momement, TODO check both or avg if more accurate
     m_DriveTrain.setBrakeMode();
     if (m_motorRotations == 0) {
       m_driveSpeed = 0;
