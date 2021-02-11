@@ -101,7 +101,7 @@ public final class Constants {
         BBlue,
         NONE
     }
-
+    
     // Robot measurements
     public final static double kWheelDiameterInches = 7.5;
     public final static double kWheelDiameterCM = kWheelDiameterInches * 2.54; // derived from above
@@ -113,7 +113,9 @@ public final class Constants {
     Ex: for every 1 wheel rotation, motor rotates 2 rotations, this vaiable would be 2
     */
     public final static double kStopDistance = 0.191; // in wheel rotations
+    public final static double kRotStopDistance = 0; // in degrees
     public final static String kInchesKey = "DriveInches input";
+    
 
     // Ultrasonic
     public final static int kUltrasonicInputPort = 1;

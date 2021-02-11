@@ -29,8 +29,14 @@ public class TurnToDegrees extends AutoMovementCommand {
   public TurnToDegrees(DriveTrainC subsystem, double targetHeading, Boolean isHeadingAbsolute) {
     super(subsystem);
     m_DriveTrain = subsystem;
-    m_targetHeading = -targetHeading; //make ccw pos
     m_isHeadingAbsolute = isHeadingAbsolute;
+
+    // decrease distance needed to travel by stop distance, negate input to make CCW positive
+    if (targetHeading > 0) {
+      m_targetHeading = -targetHeading + Constants.kRotStopDistance;
+    } else {
+      m_targetHeading = -targetHeading - Constants.kRotStopDistance;
+    }
 
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
