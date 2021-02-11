@@ -60,6 +60,7 @@ public class HopperSubsystem extends SubsystemBase {
         // SmartDashboard.putData("Sucker Motor", m_suckerMotor);
         SmartDashboard.putNumber("Ball Count", m_ballCount);
     }
+
     public void hopperOn() {
         m_hopperMotor.set(Constants.kHopperForwardSpeed);
         m_isHopperOn = true;
@@ -155,6 +156,10 @@ public class HopperSubsystem extends SubsystemBase {
         // m_ballSensor.IsBallPresent();
         // m_ballOutputSensor.IsBallPresent();
         SmartDashboard.putBoolean("Bumper Switch", m_bumperSwitch.get());
+
+        if (m_hopperMode == HopperMode.intakeMode) {
+            intakeOneBall();
+        }
     }
 
     public void setIntakeMode() {
