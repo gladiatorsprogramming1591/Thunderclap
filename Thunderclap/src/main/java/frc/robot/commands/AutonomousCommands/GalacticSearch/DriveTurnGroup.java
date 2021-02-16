@@ -9,16 +9,13 @@ public class DriveTurnGroup extends SequentialCommandGroup{
     public DriveTurnGroup(DriveTrainC driveTrainC) {
         addCommands(
             new DriveInches(driveTrainC, 45),
+            new TurnToDegrees(driveTrainC, 90, false),
+            new DriveInches(driveTrainC, 45),
+            new TurnToDegrees(driveTrainC, 90, false),
+            new DriveInches(driveTrainC, 45),
+            new TurnToDegrees(driveTrainC, 90, false),
+            new DriveInches(driveTrainC, 45),
             new TurnToDegrees(driveTrainC, 90, false)
-
-            // when I add below it won't move forward after the first move forward
-            // turning still works fine though
-            // new DriveInches(driveTrainC, 45),
-            // new TurnToDegrees(driveTrainC, 90, false),
-            // new DriveInches(driveTrainC, 45),
-            // new TurnToDegrees(driveTrainC, 90, false),
-            // new DriveInches(driveTrainC, 45),
-            // new TurnToDegrees(driveTrainC, 90, false)
         );
     }
 }

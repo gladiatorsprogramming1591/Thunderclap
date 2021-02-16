@@ -44,6 +44,7 @@ public class DriveEncoder extends AutoMovementCommand {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    System.out.println("------------ DriveEncoder ---------------");
     m_startEncoderValue = m_DriveTrain.getRightEncPos(); // using right arbitrarily at the momement, TODO check both or avg if more accurate
     m_DriveTrain.setBrakeMode();
     if (m_motorRotations == 0) {

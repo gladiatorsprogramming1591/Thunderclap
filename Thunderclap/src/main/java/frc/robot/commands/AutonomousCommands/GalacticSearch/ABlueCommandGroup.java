@@ -31,11 +31,11 @@ public class ABlueCommandGroup extends SequentialCommandGroup{
         addCommands(
             new SetIntakeMode(hopper, intake, shooter),
             new DriveInches(driveTrain, 150),
-            new TurnToDegrees(driveTrain, 71.57, false),
+            new TurnToDegrees(driveTrain, -71.57, false),
             new DriveInches(driveTrain, 94.87),
-            new TurnToDegrees(driveTrain, -98.14, false),
+            new TurnToDegrees(driveTrain, 98.14, false),
             new DriveInches(driveTrain, 67.08),
-            new TurnToDegrees(driveTrain, 26.57, false),
+            new TurnToDegrees(driveTrain, -26.57, false),
             new DriveInches(driveTrain, 66),
             new SetOffMode(hopper, intake, shooter)
         );

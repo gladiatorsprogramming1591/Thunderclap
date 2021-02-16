@@ -32,11 +32,11 @@ public class BRedCommandGroup extends SequentialCommandGroup{
         addCommands(
             new SetIntakeMode(hopper, intake, shooter),
             new DriveInches(driveTrain, 60),
-            new TurnToDegrees(driveTrain, -45, false),
-            new DriveInches(driveTrain, 84.852),
-            new TurnToDegrees(driveTrain, 90, false),
+            new TurnToDegrees(driveTrain, 45, false),
             new DriveInches(driveTrain, 84.852),
             new TurnToDegrees(driveTrain, -90, false),
+            new DriveInches(driveTrain, 84.852),
+            new TurnToDegrees(driveTrain, 90, false),
             new DriveInches(driveTrain, 120),
             new SetOffMode(hopper, intake, shooter)
         );

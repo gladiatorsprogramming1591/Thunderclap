@@ -177,7 +177,8 @@ public class RobotContainer {
     // return m_driveLeftAutonomous;
     // return m_driveRightAutonomous;
 
-    return new DriveInches(m_driveTrain, SmartDashboard.getNumber(Constants.kInchesKey, 60));
-    // return m_ARedCommandGroup;
+    // return new DriveTurnGroup(m_driveTrain);
+    // return new TurnToDegrees(m_driveTrain, 90, false);
+    return new ARedCommandGroup(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
   }
 }
