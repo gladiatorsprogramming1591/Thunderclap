@@ -25,17 +25,16 @@ public class ABlueCommandGroup extends SequentialCommandGroup{
      * @param intake The IntakeSubsystem to be used.
      * @param shooter The ShooterSubsystem to be used.
      * @param driveTrain The DriveTrain to be used.
-     * @param relDegrees 
      */
     public ABlueCommandGroup(HopperSubsystem hopper, IntakeSubsystem intake, ShooterSubsystem shooter, DriveTrainC driveTrain) {
         addCommands(
             new SetIntakeMode(hopper, intake, shooter),
             new DriveInches(driveTrain, 126),
-            new TurnToDegrees(driveTrain, -71.57, false),
-            new DriveInches(driveTrain, 94.87),
+            new TurnToDegrees(driveTrain, -50, false),
+            new DriveInches(driveTrain, 85),
             new TurnToDegrees(driveTrain, 98.14, false),
             new DriveInches(driveTrain, 67.08),
-            new TurnToDegrees(driveTrain, -26.57, false),
+            new TurnToDegrees(driveTrain, -10, false),
             new DriveInches(driveTrain, 66),
             new SetOffMode(hopper, intake, shooter)
         );
