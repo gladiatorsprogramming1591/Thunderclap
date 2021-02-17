@@ -7,9 +7,6 @@
 
 package frc.robot.commands.AutonomousCommands.Rotation;
 
-import javax.swing.plaf.synth.SynthScrollBarUI;
-
-import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.commands.AutonomousCommands.AutoMovementCommand;
 import frc.robot.subsystems.DriveTrainC;

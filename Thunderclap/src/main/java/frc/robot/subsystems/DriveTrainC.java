@@ -138,5 +138,6 @@ public class DriveTrainC extends DriveTrain {
     SmartDashboard.putNumber("Heading", getHeading());
     SmartDashboard.putNumber("Ultra Inches", m_ultra.getRangeInches());
     SmartDashboard.putString("Ultra Path", getPathToStart().toString());
+    SmartDashboard.putBoolean("Is NavX Calibrating?", m_NavX.isCalibrating());
   }
 }
