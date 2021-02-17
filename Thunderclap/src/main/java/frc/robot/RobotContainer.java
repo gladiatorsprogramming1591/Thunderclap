@@ -45,6 +45,7 @@ import frc.robot.commands.CombinationCommandGroups.ReverseAllMotorsExceptShooter
 import frc.robot.commands.CombinationCommandGroups.ShootOneBallWrapped;
 
 import frc.robot.commands.AutonomousCommands.DriveStraightAutonomous;
+import frc.robot.commands.AutonomousCommands.GalacticSearch.ABlueCommandGroup;
 import frc.robot.commands.AutonomousCommands.GalacticSearch.ARedCommandGroup;
 import frc.robot.commands.AutonomousCommands.GalacticSearch.DriveTurnGroup;
 import frc.robot.commands.AutonomousCommands.GalacticSearch.OnePowerCell;
@@ -178,7 +179,8 @@ public class RobotContainer {
     // return m_driveRightAutonomous;
 
     // return new DriveTurnGroup(m_driveTrain);
+    // return new DriveInches(m_driveTrain, 60);
     // return new TurnToDegrees(m_driveTrain, 90, false);
-    return new ARedCommandGroup(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
+    return new ABlueCommandGroup(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
   }
 }
