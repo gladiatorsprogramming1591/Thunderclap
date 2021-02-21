@@ -19,8 +19,8 @@ public class DriveEncoder extends AutoMovementCommand {
   private final DriveTrainC m_DriveTrain;
   private final double m_motorRotations;
   private double m_startEncoderValue;
-
   private double m_driveSpeed;
+  private double m_targetAngle;
 
   /**
    * Creates a new DriveEncoder command.
@@ -56,6 +56,8 @@ public class DriveEncoder extends AutoMovementCommand {
       } else { // needs to move backwards
         m_driveSpeed = -1 * Constants.kAutoDriveSpeed;
       }
+      // Read the initial heading for tracking to that heading so we drive straight
+      m_targetAngle = m_DriveTrain.getHeading();
       m_DriveTrain.drive(m_driveSpeed, 0, Constants.kFastSquaredInputs);
     }
   }
@@ -63,7 +65,10 @@ public class DriveEncoder extends AutoMovementCommand {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_DriveTrain.drive(m_driveSpeed, 0, Constants.kFastSquaredInputs);
+    // Update the rotation angle if we are starting to veer from our target angle
+    // Since the robot turn error rate is small, using just proportional error should be sufficient
+    double zRotation = Constants.kP_DriveStraight * (m_targetAngle - m_DriveTrain.getHeading());
+    m_DriveTrain.drive(m_driveSpeed, zRotation, Constants.kFastSquaredInputs);
   }
   
   // Called once the command ends or is interrupted.

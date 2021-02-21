@@ -114,6 +114,7 @@ public final class Constants {
     */
     public final static double kStopDistance = 0.25; // in wheel rotations .275
     public final static double kRotStopDistance = 0; // in degrees
+    public final static double kP_DriveStraight = 0.25; // Proportional error gain for driving straight
     public final static String kInchesKey = "DriveInches input";
     
 
