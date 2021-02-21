@@ -41,24 +41,15 @@ public class SetShootingMode extends CommandBase {
   @Override
   public void initialize() {
     System.out.println("Setting Shooter Mode");
-  }
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
+    
     m_hopper.setShootingMode();
     m_shooter.shooterOn();
     m_intake.intakeOff();
   }
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-  }
-
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return true; // end after one execution
   }
 }

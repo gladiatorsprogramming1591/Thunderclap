@@ -92,18 +92,41 @@ public final class Constants {
 
     // Autonomous
     public final static double kAutoDriveSpeed = 0.4;
-
+    public final static double kAutoRotationSpeed = 0.4;
+    public final static double kAutoRotationError = 15; // stop rotating if bot is x degrees away from target
+    public static enum GSPath{
+        ARed,
+        ABlue,
+        BRed,
+        BBlue,
+        NONE
+    }
+    
     // Robot measurements
-    public final static double kWheelDiameterInches = 7.5;
+    public final static double kWheelDiameterInches = 8;
     public final static double kWheelDiameterCM = kWheelDiameterInches * 2.54; // derived from above
     public final static double kWheelCircumferenceInches = kWheelDiameterInches * Math.PI; // derived from above
     public final static double kWheelCircumferenceCM = kWheelDiameterCM * Math.PI; // derived from above
-    public final static double kDriveGearRatio = 11.34851783; // measured as 11.34851783, 10.5 on first day
+    public final static double kDriveGearRatio = 11.1; // measured as 11.34851783, 10.5 on first day
     /*
     (implemented as: for every one rotation of the wheel, how many rotations of the motor?)
     Ex: for every 1 wheel rotation, motor rotates 2 rotations, this vaiable would be 2
     */
-    public final static double kStopDistance = 0.191; // in wheel rotations
+    public final static double kStopDistance = 0.25; // in wheel rotations .275
+    public final static double kRotStopDistance = 0; // in degrees
     public final static String kInchesKey = "DriveInches input";
+    
 
+    // Ultrasonic
+    public final static int kUltrasonicInputPort = 1;
+    public final static int kUltrasonicOutputPort = 2;
+    public final static double kUltraOffset = 8; // ultra is mounted on the right side of the robot this far away from the center (on the axis it is measuring)
+    public final static double kUltraError = 2; // space on either side in which the robot
+
+    // Galactic Search
+    // starting positions (based on Pat's diagrams)
+    public final static double kARedPos = 90 - kUltraOffset;
+    public final static double kABluePos = 30 - kUltraOffset;
+    public final static double kBRedPos = 120 - kUltraOffset;
+    public final static double kBBluePos = 60 - kUltraOffset;
 }

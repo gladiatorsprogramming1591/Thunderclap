@@ -7,17 +7,18 @@
 
 package frc.robot.commands.AutonomousCommands.DriveDistance;
 
-import frc.robot.Constants;
-import frc.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
+import frc.robot.commands.AutonomousCommands.AutoMovementCommand;
+import frc.robot.subsystems.DriveTrainC;
 
 /**
  * Drive a certain distance based on an encoder value, autonomously.
  */
-public class DriveEncoder extends CommandBase {
-  private final DriveTrain m_DriveTrain;
+public class DriveEncoder extends AutoMovementCommand {
+  private final DriveTrainC m_DriveTrain;
   private final double m_motorRotations;
-  private final double m_startEncoderValue;
+  private double m_startEncoderValue;
 
   private double m_driveSpeed;
 
@@ -27,22 +28,24 @@ public class DriveEncoder extends CommandBase {
    * @param subsystem The subsystem used by this command.
    * @param wheelRotations The distance in rotations the robot should travel.
    */
-  public DriveEncoder(DriveTrain subsystem, double wheelRotations) {
+  public DriveEncoder(DriveTrainC subsystem, double wheelRotations) {
+    super(subsystem);
     m_DriveTrain = subsystem;
     if (wheelRotations > 0) {
       m_motorRotations = (wheelRotations - Constants.kStopDistance) * Constants.kDriveGearRatio;
     } else {
       m_motorRotations = (wheelRotations + Constants.kStopDistance) * Constants.kDriveGearRatio;
     }
-    m_startEncoderValue = m_DriveTrain.getRightEncPos(); // using right arbitrarily at the momement, TODO check both or avg if more accurate
-
+    
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
-
+  
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    System.out.println("------------ DriveEncoder ---------------");
+    m_startEncoderValue = m_DriveTrain.getRightEncPos(); // using right arbitrarily at the momement, TODO check both or avg if more accurate
     m_DriveTrain.setBrakeMode();
     if (m_motorRotations == 0) {
       m_driveSpeed = 0;
@@ -66,13 +69,11 @@ public class DriveEncoder extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_DriveTrain.setBrakeMode(); 
-    m_DriveTrain.drive(0, 0, Constants.kFastSquaredInputs); // stop
+    m_DriveTrain.setCoastMode();
   }
-  
-  // Returns true when the command should end.
+
   @Override
-  public boolean isFinished() {
+  public boolean readyToStop() {
     if (Math.abs(m_motorRotations) <= Math.abs(m_DriveTrain.getRightEncPos() - m_startEncoderValue)) { // when the robot has travelled the necessary distance
       return true;
     } else {

@@ -22,6 +22,7 @@ import frc.robot.commands.HopperCommands.HopperOn;
 import frc.robot.commands.HopperCommands.HopperReverse;
 import frc.robot.commands.HopperCommands.SuckerOff;
 import frc.robot.commands.HopperCommands.SuckerOn;
+import frc.robot.commands.DriveTrainCommands.CalibrateNavX;
 import frc.robot.commands.DriveTrainCommands.FastDrive;
 import frc.robot.commands.DriveTrainCommands.SetCoastMode;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -42,19 +43,19 @@ import frc.robot.commands.UseHopperModeCommands.ResetBallCount;
 
 import frc.robot.commands.CombinationCommandGroups.ReverseAllMotorsExceptShooter;
 import frc.robot.commands.CombinationCommandGroups.ShootOneBallWrapped;
-import frc.robot.subsystems.LiftSubsystem;
-import frc.robot.commands.LiftCommands.CrankWinch;
-import frc.robot.commands.LiftCommands.DisengageWinchBrake;
-import frc.robot.commands.LiftCommands.EngageBrakeAndStopWinch;
-import frc.robot.commands.LiftCommands.EngageWinchBrake;
-import frc.robot.commands.LiftCommands.StopWinchMotor;
-import frc.robot.commands.LiftCommands.ReleaseWinch;
 
 import frc.robot.commands.AutonomousCommands.DriveStraightAutonomous;
+import frc.robot.commands.AutonomousCommands.GalacticSearch.ABlueCommandGroup;
+import frc.robot.commands.AutonomousCommands.GalacticSearch.ARedCommandGroup;
+import frc.robot.commands.AutonomousCommands.GalacticSearch.DriveTurnGroup;
 import frc.robot.commands.AutonomousCommands.GalacticSearch.OnePowerCell;
+import frc.robot.commands.AutonomousCommands.Rotation.TurnToDegrees;
 import frc.robot.commands.AutonomousCommands.DriveLeftAutonomous;
 import frc.robot.commands.AutonomousCommands.DriveRightAutonomous;
 import frc.robot.commands.AutonomousCommands.DriveDistance.DriveInches;
+import frc.robot.commands.DriveTrainCommands.CalibrateNavX;
+import frc.robot.commands.AutonomousCommands.GalacticSearch.UltrasonicChoose;
+import frc.robot.commands.AutonomousCommands.GalacticSearch.PathTrigger;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -71,11 +72,10 @@ public class RobotContainer {
   private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
   private final IntakeArm m_intakeArmSubsystem = new IntakeArm();
   private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
-  private final LiftSubsystem m_liftSubsystem = new LiftSubsystem();
   // private final HopperSubsystem m_hopperSubsystem = new HopperSubsystem(Constants.kPbotStopperForwardSpeed, Constants.kPbotStopperReverseSpeed);
   private final HopperSubsystem m_hopperSubsystem = new HopperSubsystem(Constants.kCbotStopperForwardSpeed, Constants.kCbotStopperReverseSpeed);
   // private final DriveTrain m_driveTrain = new DriveTrainP(m_driverStick);
-  private final DriveTrain m_driveTrain = new DriveTrainC(m_driverStick);
+  private final DriveTrainC m_driveTrain = new DriveTrainC(m_driverStick);
   private final CompressorSS m_compressor = new CompressorSS();
   
   // The robot's commands are defined here...
@@ -83,6 +83,13 @@ public class RobotContainer {
   private final DriveStraightAutonomous m_driveStraightAutonomous = new DriveStraightAutonomous(m_driveTrain);
   private final DriveLeftAutonomous m_driveLeftAutonomous = new DriveLeftAutonomous(m_driveTrain);
   private final DriveRightAutonomous m_driveRightAutonomous = new DriveRightAutonomous(m_driveTrain);
+  private final CalibrateNavX m_calibrateNavX = new CalibrateNavX(m_driveTrain);
+  private final ARedCommandGroup m_ARedCommandGroup = new ARedCommandGroup(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
+  private final PathTrigger m_ARedTrigger = new PathTrigger();
+  private final PathTrigger m_ABlueTrigger = new PathTrigger();
+  private final PathTrigger m_BRedTrigger = new PathTrigger();
+  private final PathTrigger m_BBlueTrigger = new PathTrigger();
+  private final UltrasonicChoose m_ultrasonicChoose = new UltrasonicChoose(m_driveTrain, m_ARedTrigger, m_ABlueTrigger, m_BRedTrigger, m_BBlueTrigger);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -94,6 +101,7 @@ public class RobotContainer {
     SmartDashboard.putData("Set Coast Mode", new SetCoastMode(m_driveTrain));
 
     SmartDashboard.putNumber(Constants.kInchesKey, 60);
+    SmartDashboard.putData("Calibrate NavX", m_calibrateNavX);
   }
 
   /**
@@ -142,20 +150,6 @@ public class RobotContainer {
     new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kBack)
       .whenPressed(new ReverseAllMotorsExceptShooter(m_hopperSubsystem, m_intakeSubsystem));
 
-    // ---LIFT SECTION---
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kA) 
-      .whenPressed(new ReleaseWinch(m_liftSubsystem));
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kX)
-      .whenPressed(new StopWinchMotor(m_liftSubsystem));
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kB)
-      .whenPressed(new CrankWinch(m_liftSubsystem));
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kL3)
-      .whenPressed(new EngageWinchBrake(m_liftSubsystem));
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kR3)
-      .whenPressed(new DisengageWinchBrake(m_liftSubsystem));
-    new JoystickButton(m_manipulatorStick, JoystickButtonConstants.kY)
-      .whenPressed(new EngageBrakeAndStopWinch(m_liftSubsystem));
-    
     // ---INDIVIDUAL MOTORS---
     new JoystickButton(m_driverStick, JoystickButtonConstants.kA)
       .whenPressed(new HopperOn(m_hopperSubsystem));
@@ -184,9 +178,9 @@ public class RobotContainer {
     // return m_driveLeftAutonomous;
     // return m_driveRightAutonomous;
 
-    // Galactic Search
-    // return new OnePowerCell(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
-
-    return new DriveInches(m_driveTrain, SmartDashboard.getNumber(Constants.kInchesKey, 60));
+    // return new DriveTurnGroup(m_driveTrain);
+    // return new DriveInches(m_driveTrain, 60);
+    // return new TurnToDegrees(m_driveTrain, 90, false);
+    return new ABlueCommandGroup(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
   }
 }

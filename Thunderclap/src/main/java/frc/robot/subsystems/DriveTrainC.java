@@ -12,21 +12,29 @@ import frc.robot.Constants;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.Ultrasonic;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import com.kauailabs.navx.frc.AHRS;
+
+import frc.robot.Constants.GSPath;
 
 public class DriveTrainC extends DriveTrain {
 
-  static CANSparkMax m_frontLeftMotor;
-  static CANSparkMax m_frontRightMotor;
-  static CANSparkMax m_rearLeftMotor;
-  static CANSparkMax m_rearRightMotor;
-  static CANEncoder m_leftEncoder;
-  static CANEncoder m_rightEncoder;
+  private static CANSparkMax m_frontLeftMotor;
+  private static CANSparkMax m_frontRightMotor;
+  private static CANSparkMax m_rearLeftMotor;
+  private static CANSparkMax m_rearRightMotor;
+  private static CANEncoder m_leftEncoder;
+  private static CANEncoder m_rightEncoder;
+  private Ultrasonic m_ultra;
+
+  private AHRS m_NavX;
 
   public DriveTrainC(Joystick m_driverJoystick) {
     super(
@@ -36,13 +44,13 @@ public class DriveTrainC extends DriveTrain {
           m_rearLeftMotor = new CANSparkMax(Constants.kCbotRearLeftMotorCANID, MotorType.kBrushless)
         ), 
         new SpeedControllerGroup(
-          m_frontRightMotor = new CANSparkMax(Constants.kCbotFrontRightMotorCANID, MotorType.kBrushless), 
-          m_rearRightMotor = new CANSparkMax(Constants.kCbotRearRightMotorCANID, MotorType.kBrushless)
+        m_frontRightMotor = new CANSparkMax(Constants.kCbotFrontRightMotorCANID, MotorType.kBrushless), 
+        m_rearRightMotor = new CANSparkMax(Constants.kCbotRearRightMotorCANID, MotorType.kBrushless)
         )
       ),
       m_driverJoystick
     );
-    
+
     m_frontLeftMotor.setOpenLoopRampRate(Constants.kDriveRampRate);
     m_rearLeftMotor.setOpenLoopRampRate(Constants.kDriveRampRate);
     m_frontRightMotor.setOpenLoopRampRate(Constants.kDriveRampRate);
@@ -50,6 +58,12 @@ public class DriveTrainC extends DriveTrain {
 
     m_leftEncoder = m_frontLeftMotor.getEncoder();
     m_rightEncoder = m_frontRightMotor.getEncoder();
+
+    m_NavX = new AHRS(SerialPort.Port.kMXP);
+
+    m_ultra = new Ultrasonic(Constants.kUltrasonicInputPort, Constants.kUltrasonicOutputPort);
+    m_ultra.setAutomaticMode(true);
+    m_ultra.setEnabled(true);
   }
 
   @Override
@@ -69,14 +83,47 @@ public class DriveTrainC extends DriveTrain {
     m_rearRightMotor.setIdleMode(CANSparkMax.IdleMode.kCoast);
   }
 
-  @Override
   public double getLeftEncPos() {
     return m_leftEncoder.getPosition();  
   }
 
-  @Override
   public double getRightEncPos() {
     return m_rightEncoder.getPosition();  
+  }
+
+  public double getHeading() {
+    return m_NavX.getAngle() + 180;
+  }
+
+  public void calibrateNavX() {
+    m_NavX.reset();
+  }
+
+  public boolean isStopped() {
+    if (m_rightEncoder.getVelocity() == 0 && m_leftEncoder.getVelocity() == 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public double getRangeInches() {
+    return m_ultra.getRangeInches();
+  }
+
+  public GSPath getPathToStart() {
+    double range = getRangeInches();
+    if (Constants.kARedPos - Constants.kUltraError < range && range < Constants.kARedPos + Constants.kUltraError) {
+      return GSPath.ARed;
+    } else if (Constants.kABluePos - Constants.kUltraError < range && range < Constants.kABluePos + Constants.kUltraError) {
+      return GSPath.ABlue;
+    } else if (Constants.kBRedPos - Constants.kUltraError < range && range < Constants.kBRedPos + Constants.kUltraError) {
+      return GSPath.BRed;
+    } else if (Constants.kBBluePos - Constants.kUltraError < range && range < Constants.kBBluePos + Constants.kUltraError) {
+      return GSPath.BBlue;
+    } else {
+      return GSPath.NONE;
+    }
   }
 
   @Override
@@ -88,5 +135,9 @@ public class DriveTrainC extends DriveTrain {
     SmartDashboard.putNumber("Right Drive Enc", m_rightEncoder.getPosition());
     SmartDashboard.putNumber("Left Drive Vel", m_leftEncoder.getVelocity());
     SmartDashboard.putNumber("Right Drive Vel", m_rightEncoder.getVelocity());
+    SmartDashboard.putNumber("Heading", getHeading());
+    SmartDashboard.putNumber("Ultra Inches", m_ultra.getRangeInches());
+    SmartDashboard.putString("Ultra Path", getPathToStart().toString());
+    SmartDashboard.putBoolean("Is NavX Calibrating?", m_NavX.isCalibrating());
   }
 }

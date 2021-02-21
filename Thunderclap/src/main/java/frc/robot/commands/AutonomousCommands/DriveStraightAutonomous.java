@@ -8,7 +8,7 @@
 package frc.robot.commands.AutonomousCommands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.DriveTrainC;
 
 /**
  * A complex auto command that drives forward, releases a hatch, and then drives
@@ -33,7 +33,7 @@ public class DriveStraightAutonomous extends SequentialCommandGroup {
    * @param subsystem1 The subsystem this command will run on
    * @param subsystem2 The subsystem this command will run on
    */
-  public DriveStraightAutonomous(DriveTrain driveTrain) {
+  public DriveStraightAutonomous(DriveTrainC driveTrain) {
     addCommands(
         // Drive straight fast
         new DriveTimed(driveTrain, kFastDriveSpeed, 0, kFastDriveTime, this.getName()+"Fast"),
