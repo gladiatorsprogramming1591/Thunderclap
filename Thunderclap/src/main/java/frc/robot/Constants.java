@@ -132,4 +132,9 @@ public final class Constants {
     public final static double kABluePos = 30 - kUltraOffset;
     public final static double kBRedPos = 120 - kUltraOffset;
     public final static double kBBluePos = 60 - kUltraOffset;
+
+    // PIDTurnToDegrees
+    public final static double kRotationP = 0;
+    public final static double kRotationI = 0;
+    public final static double kRotationD = 0;
 }
