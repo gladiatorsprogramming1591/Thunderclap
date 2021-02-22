@@ -7,6 +7,7 @@
 
 package frc.robot.commands.AutonomousCommands.DriveDistance;
 
+import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.commands.AutonomousCommands.AutoMovementCommand;
@@ -21,6 +22,7 @@ public class DriveEncoder extends AutoMovementCommand {
   private double m_startEncoderValue;
   private double m_driveSpeed;
   private double m_targetAngle;
+  private PIDController anglePID = new PIDController(Constants.kP_DriveStraight, Constants.kI_DriveStraight, Constants.kD_DriveStraight);
 
   /**
    * Creates a new DriveEncoder command.
@@ -57,7 +59,7 @@ public class DriveEncoder extends AutoMovementCommand {
         m_driveSpeed = -1 * Constants.kAutoDriveSpeed;
       }
       // Read the initial heading for tracking to that heading so we drive straight
-      m_targetAngle = m_DriveTrain.getHeading();
+      anglePID.setSetpoint(m_DriveTrain.getHeading());
       m_DriveTrain.drive(m_driveSpeed, 0, Constants.kFastSquaredInputs);
     }
   }
@@ -66,8 +68,7 @@ public class DriveEncoder extends AutoMovementCommand {
   @Override
   public void execute() {
     // Update the rotation angle if we are starting to veer from our target angle
-    // Since the robot turn error rate is small, using just proportional error should be sufficient
-    double zRotation = Constants.kP_DriveStraight * (m_targetAngle - m_DriveTrain.getHeading());
+    double zRotation = anglePID.calculate(m_DriveTrain.getHeading());
     m_DriveTrain.drive(m_driveSpeed, zRotation, Constants.kFastSquaredInputs);
   }
   
