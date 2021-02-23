@@ -7,6 +7,7 @@
 
 package frc.robot.commands.AutonomousCommands.DriveDistance;
 
+import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.commands.AutonomousCommands.AutoMovementCommand;
@@ -19,8 +20,9 @@ public class DriveEncoder extends AutoMovementCommand {
   private final DriveTrainC m_DriveTrain;
   private final double m_motorRotations;
   private double m_startEncoderValue;
-
   private double m_driveSpeed;
+  private double m_targetAngle;
+  private PIDController anglePID = new PIDController(Constants.kP_DriveStraight, Constants.kI_DriveStraight, Constants.kD_DriveStraight);
 
   /**
    * Creates a new DriveEncoder command.
@@ -56,6 +58,8 @@ public class DriveEncoder extends AutoMovementCommand {
       } else { // needs to move backwards
         m_driveSpeed = -1 * Constants.kAutoDriveSpeed;
       }
+      // Read the initial heading for tracking to that heading so we drive straight
+      anglePID.setSetpoint(m_DriveTrain.getHeading());
       m_DriveTrain.drive(m_driveSpeed, 0, Constants.kFastSquaredInputs);
     }
   }
@@ -63,7 +67,9 @@ public class DriveEncoder extends AutoMovementCommand {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_DriveTrain.drive(m_driveSpeed, 0, Constants.kFastSquaredInputs);
+    // Update the rotation angle if we are starting to veer from our target angle
+    double zRotation = anglePID.calculate(m_DriveTrain.getHeading());
+    m_DriveTrain.drive(m_driveSpeed, zRotation, Constants.kFastSquaredInputs);
   }
   
   // Called once the command ends or is interrupted.

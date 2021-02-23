@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.subsystems.CompressorSS;
-import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.DriveTrainC;
 // import frc.robot.subsystems.DriveTrainP;
 import frc.robot.commands.DriveTrainCommands.SlowDrive;
@@ -44,16 +43,16 @@ import frc.robot.commands.UseHopperModeCommands.ResetBallCount;
 import frc.robot.commands.CombinationCommandGroups.ReverseAllMotorsExceptShooter;
 import frc.robot.commands.CombinationCommandGroups.ShootOneBallWrapped;
 
-import frc.robot.commands.AutonomousCommands.DriveStraightAutonomous;
+// import frc.robot.commands.AutonomousCommands.DriveStraightAutonomous;
 import frc.robot.commands.AutonomousCommands.GalacticSearch.ABlueCommandGroup;
-import frc.robot.commands.AutonomousCommands.GalacticSearch.ARedCommandGroup;
-import frc.robot.commands.AutonomousCommands.GalacticSearch.DriveTurnGroup;
-import frc.robot.commands.AutonomousCommands.GalacticSearch.OnePowerCell;
-import frc.robot.commands.AutonomousCommands.Rotation.TurnToDegrees;
-import frc.robot.commands.AutonomousCommands.DriveLeftAutonomous;
-import frc.robot.commands.AutonomousCommands.DriveRightAutonomous;
-import frc.robot.commands.AutonomousCommands.DriveDistance.DriveInches;
-import frc.robot.commands.DriveTrainCommands.CalibrateNavX;
+// import frc.robot.commands.AutonomousCommands.GalacticSearch.ARedCommandGroup;
+// import frc.robot.commands.AutonomousCommands.GalacticSearch.DriveTurnGroup;
+// import frc.robot.commands.AutonomousCommands.GalacticSearch.OnePowerCell;
+// import frc.robot.commands.AutonomousCommands.Rotation.TurnToDegrees;
+// import frc.robot.commands.AutonomousCommands.DriveLeftAutonomous;
+// import frc.robot.commands.AutonomousCommands.DriveRightAutonomous;
+// import frc.robot.commands.AutonomousCommands.DriveDistance.DriveInches;
+// import frc.robot.commands.DriveTrainCommands.CalibrateNavX;
 import frc.robot.commands.AutonomousCommands.GalacticSearch.UltrasonicChoose;
 import frc.robot.commands.AutonomousCommands.GalacticSearch.PathTrigger;
 
@@ -80,11 +79,11 @@ public class RobotContainer {
   
   // The robot's commands are defined here...
   // private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-  private final DriveStraightAutonomous m_driveStraightAutonomous = new DriveStraightAutonomous(m_driveTrain);
-  private final DriveLeftAutonomous m_driveLeftAutonomous = new DriveLeftAutonomous(m_driveTrain);
-  private final DriveRightAutonomous m_driveRightAutonomous = new DriveRightAutonomous(m_driveTrain);
+  // private final DriveStraightAutonomous m_driveStraightAutonomous = new DriveStraightAutonomous(m_driveTrain);
+  // private final DriveLeftAutonomous m_driveLeftAutonomous = new DriveLeftAutonomous(m_driveTrain);
+  // private final DriveRightAutonomous m_driveRightAutonomous = new DriveRightAutonomous(m_driveTrain);
   private final CalibrateNavX m_calibrateNavX = new CalibrateNavX(m_driveTrain);
-  private final ARedCommandGroup m_ARedCommandGroup = new ARedCommandGroup(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
+  // private final ARedCommandGroup m_ARedCommandGroup = new ARedCommandGroup(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
   private final PathTrigger m_ARedTrigger = new PathTrigger();
   private final PathTrigger m_ABlueTrigger = new PathTrigger();
   private final PathTrigger m_BRedTrigger = new PathTrigger();
