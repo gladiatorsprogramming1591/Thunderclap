@@ -9,7 +9,7 @@ import frc.robot.subsystems.DriveTrainC;
 import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
-import frc.robot.commands.AutonomousCommands.Rotation.TurnToDegrees;
+import frc.robot.commands.AutonomousCommands.Rotation.PIDTurnToDegrees;
 
 /**
  * Robot drives to the locations of the three balls, then to the end zone
@@ -30,11 +30,11 @@ public class ABlueCommandGroup extends SequentialCommandGroup{
         addCommands(
             new SetIntakeMode(hopper, intake, shooter),
             new DriveInches(driveTrain, 126),
-            new TurnToDegrees(driveTrain, -50, false),
+            new PIDTurnToDegrees(driveTrain, -50, false),
             new DriveInches(driveTrain, 85),
-            new TurnToDegrees(driveTrain, 98.14, false),
+            new PIDTurnToDegrees(driveTrain, 98.14, false),
             new DriveInches(driveTrain, 67.08),
-            new TurnToDegrees(driveTrain, -10, false),
+            new PIDTurnToDegrees(driveTrain, -10, false),
             new DriveInches(driveTrain, 66),
             new SetOffMode(hopper, intake, shooter)
         );

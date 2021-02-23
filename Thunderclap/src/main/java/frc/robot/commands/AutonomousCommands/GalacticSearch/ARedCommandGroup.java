@@ -9,7 +9,7 @@ import frc.robot.subsystems.DriveTrainC;
 import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
-import frc.robot.commands.AutonomousCommands.Rotation.TurnToDegrees;
+import frc.robot.commands.AutonomousCommands.Rotation.PIDTurnToDegrees;
 
 
 /**
@@ -32,11 +32,11 @@ public class ARedCommandGroup extends SequentialCommandGroup{
         addCommands(
             new SetIntakeMode(hopper, intake, shooter),
             new DriveInches(driveTrain, 36),
-            new TurnToDegrees(driveTrain, 31.57, false),
+            new PIDTurnToDegrees(driveTrain, 31.57, false),
             new DriveInches(driveTrain, 68),
-            new TurnToDegrees(driveTrain, -78, false),
+            new PIDTurnToDegrees(driveTrain, -78, false),
             new DriveInches(driveTrain, 76),
-            new TurnToDegrees(driveTrain, 70, false),
+            new PIDTurnToDegrees(driveTrain, 70, false),
             new DriveInches(driveTrain, 160),
             new SetOffMode(hopper, intake, shooter)
         );
