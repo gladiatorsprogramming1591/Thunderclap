@@ -60,7 +60,6 @@ public class DriveEncoder extends AutoMovementCommand {
       }
       // Read the initial heading for tracking to that heading so we drive straight
       anglePID.setSetpoint(m_DriveTrain.getHeading());
-      m_DriveTrain.drive(m_driveSpeed, 0, Constants.kFastSquaredInputs);
     }
   }
 

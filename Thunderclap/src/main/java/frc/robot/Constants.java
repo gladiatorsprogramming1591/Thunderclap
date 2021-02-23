@@ -93,7 +93,7 @@ public final class Constants {
     // Autonomous
     public final static double kAutoDriveSpeed = 0.4;
     public final static double kAutoRotationSpeed = 0.4;
-    public final static double kAutoRotationError = 15; // stop rotating if bot is x degrees away from target
+    public final static double kAutoRotationError = 1; // stop rotating if bot is x degrees away from target
     public static enum GSPath{
         ARed,
         ABlue,
@@ -134,7 +134,7 @@ public final class Constants {
     public final static double kBBluePos = 60 - kUltraOffset;
 
     // PIDTurnToDegrees
-    public final static double kRotationP = 0;
+    public final static double kRotationP = .01;
     public final static double kRotationI = 0;
     public final static double kRotationD = 0;
 }
