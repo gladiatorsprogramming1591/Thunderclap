@@ -1,22 +1,32 @@
 package frc.robot.commands.AutonomousCommands.Rotation;
 
 import edu.wpi.first.wpilibj.controller.PIDController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
 import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrainC;
 
 public class PIDTurnToDegrees extends PIDCommand{
+    private double m_setpoint;
+    private final DriveTrainC m_DriveTrainC;
+    private final double m_targetHeading;
+    private final boolean m_isAbsolute;
+
     public PIDTurnToDegrees(DriveTrainC driveTrainC, double targetHeading, boolean isAbsolute) {
         super(
             new PIDController(Constants.kRotationP, Constants.kRotationI, Constants.kRotationD),
             driveTrainC::getHeading,
-            getSetpoint(isAbsolute, targetHeading, driveTrainC), //provide value, not function since it is called in execute. don't want to repeatedly apply relative offset
+            0,
             (double out) -> {
                 System.out.println("PID(" + Constants.kRotationP + ") out = " + out);
                 driveTrainC.drive(0, out, Constants.kFastSquaredInputs);
             },
             driveTrainC
         );
+
+        m_DriveTrainC = driveTrainC;
+        m_targetHeading = targetHeading;
+        m_isAbsolute = isAbsolute;
     }
 
     /**
@@ -26,14 +36,27 @@ public class PIDTurnToDegrees extends PIDCommand{
      * @param driveTrainC from PIDTurnToDegrees constructor
      * @return the setpoint. should only be called once
      */
-    private static double getSetpoint(boolean isAbsolute, double targetHeading, DriveTrainC driveTrainC) {
+    private void setSetpoint(boolean isAbsolute, double targetHeading, DriveTrainC driveTrainC) {
         double setpoint;
         if(isAbsolute) {
             setpoint = targetHeading;
         } else {
             setpoint = targetHeading + driveTrainC.getHeading();
         }
-        return setpoint;
+        m_setpoint = setpoint;
+    }
+
+    @Override
+    public void initialize() {
+        super.initialize();
+        setSetpoint(m_isAbsolute, m_targetHeading, m_DriveTrainC);
+    }
+
+    @Override
+    public void execute() {
+        m_useOutput.accept(
+            m_controller.calculate(m_measurement.getAsDouble(), m_setpoint));    
+        SmartDashboard.putNumber("SetPointDifference", m_setpoint - m_DriveTrainC.getHeading());
     }
 
     @Override

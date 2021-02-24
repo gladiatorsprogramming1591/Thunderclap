@@ -8,13 +8,13 @@ import frc.robot.subsystems.DriveTrainC;
 public class DriveTurnGroup extends SequentialCommandGroup{
     public DriveTurnGroup(DriveTrainC driveTrainC) {
         addCommands(
-            // new DriveInches(driveTrainC, 45),
+            new DriveInches(driveTrainC, 45),
             new PIDTurnToDegrees(driveTrainC, 90, false),
-            // new DriveInches(driveTrainC, 45),
+            new DriveInches(driveTrainC, 45),
             new PIDTurnToDegrees(driveTrainC, 90, false),
-            // new DriveInches(driveTrainC, 45),
+            new DriveInches(driveTrainC, 45),
             new PIDTurnToDegrees(driveTrainC, 90, false),
-            // new DriveInches(driveTrainC, 45),
+            new DriveInches(driveTrainC, 45),
             new PIDTurnToDegrees(driveTrainC, 90, false)
         );
     }
