@@ -19,6 +19,15 @@ public class PIDTurnToDegrees extends PIDCommand{
             0,
             (double out) -> {
                 System.out.println("PID(" + Constants.kRotationP + ") out = " + out);
+                
+                if (out < Constants.kStaticPowerRequirement && out > -1 * Constants.kStaticPowerRequirement) {
+                    if (out > 0) {
+                        out = Constants.kStaticPowerRequirement;
+                    } else {
+                        out = -1 * Constants.kStaticPowerRequirement;
+                    }
+                }
+
                 driveTrainC.drive(0, out, Constants.kFastSquaredInputs);
             },
             driveTrainC
