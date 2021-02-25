@@ -139,7 +139,7 @@ public final class Constants {
     public final static double kRotationD = 0;
     // public final static double kRotationD = 0.00045;
     public final static double kAutoRotationError = 2.0; // stop rotating if bot is x degrees away from target
-    public final static double kStaticPowerRequirement = 0.33;
+    public final static double kStaticPowerRequirement = 0.35;
     public final static double kAutoRotationVelocityError = 150.0;
 
 }

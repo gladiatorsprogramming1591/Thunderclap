@@ -31,12 +31,12 @@ public class ARedCommandGroup extends SequentialCommandGroup{
     public ARedCommandGroup(HopperSubsystem hopper, IntakeSubsystem intake, ShooterSubsystem shooter, DriveTrainC driveTrain) {
         addCommands(
             new SetIntakeMode(hopper, intake, shooter),
-            new DriveInches(driveTrain, 36),
-            new PIDTurnToDegrees(driveTrain, 31.57, false),
-            new DriveInches(driveTrain, 68),
-            new PIDTurnToDegrees(driveTrain, -78, false),
-            new DriveInches(driveTrain, 76),
-            new PIDTurnToDegrees(driveTrain, 70, false),
+            new DriveInches(driveTrain, 40),
+            new PIDTurnToDegrees(driveTrain, 26.57, false),
+            new DriveInches(driveTrain, 67.08),
+            new PIDTurnToDegrees(driveTrain, -93.14, false),
+            new DriveInches(driveTrain, 84.87),
+            new PIDTurnToDegrees(driveTrain, 71.57, false),
             new DriveInches(driveTrain, 160),
             new SetOffMode(hopper, intake, shooter)
         );

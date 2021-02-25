@@ -29,13 +29,13 @@ public class ABlueCommandGroup extends SequentialCommandGroup{
     public ABlueCommandGroup(HopperSubsystem hopper, IntakeSubsystem intake, ShooterSubsystem shooter, DriveTrainC driveTrain) {
         addCommands(
             new SetIntakeMode(hopper, intake, shooter),
-            new DriveInches(driveTrain, 126),
-            new PIDTurnToDegrees(driveTrain, -50, false),
-            new DriveInches(driveTrain, 85),
-            new PIDTurnToDegrees(driveTrain, 98.14, false),
-            new DriveInches(driveTrain, 67.08),
-            new PIDTurnToDegrees(driveTrain, -10, false),
-            new DriveInches(driveTrain, 66),
+            new DriveInches(driveTrain, 130),
+            new PIDTurnToDegrees(driveTrain, -61.57, false),
+            new DriveInches(driveTrain, 94.87),
+            new PIDTurnToDegrees(driveTrain, 95.14, false),
+            new DriveInches(driveTrain, 59.08),
+            new PIDTurnToDegrees(driveTrain, -31.57, false),
+            new DriveInches(driveTrain, 64),
             new SetOffMode(hopper, intake, shooter)
         );
     }

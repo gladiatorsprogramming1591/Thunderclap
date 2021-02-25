@@ -45,6 +45,7 @@ import frc.robot.commands.CombinationCommandGroups.ShootOneBallWrapped;
 import frc.robot.commands.AutonomousCommands.DriveDistance.DriveInches;
 // import frc.robot.commands.AutonomousCommands.DriveStraightAutonomous;
 import frc.robot.commands.AutonomousCommands.GalacticSearch.ABlueCommandGroup;
+import frc.robot.commands.AutonomousCommands.GalacticSearch.ARedCommandGroup;
 import frc.robot.commands.AutonomousCommands.GalacticSearch.DriveTurnGroup;
 // import frc.robot.commands.AutonomousCommands.GalacticSearch.ARedCommandGroup;
 // import frc.robot.commands.AutonomousCommands.GalacticSearch.DriveTurnGroup;
@@ -182,7 +183,7 @@ public class RobotContainer {
 
     // return new DriveTurnGroup(m_driveTrain);
     // return new DriveInches(m_driveTrain, 45);
-    return new PIDTurnToDegrees(m_driveTrain, 90, false);
-    // return new ABlueCommandGroup(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
+    // return new PIDTurnToDegrees(m_driveTrain, 90, false);
+    return new ABlueCommandGroup(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
   }
 }
