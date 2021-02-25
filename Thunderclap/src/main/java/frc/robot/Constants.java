@@ -42,7 +42,7 @@ public final class Constants {
     public final static double kIntakeRampRate = 0.5;
     public final static double kShooterRampRate = 0.5;
     public final static double kArmRampRate = 0.5;
-    public final static double kDriveRampRate = 0.5;
+    public final static double kDriveRampRate = 0.1;
     
     // Controller Ports
     public final static int kDriverControllerPort = 0;
@@ -138,6 +138,8 @@ public final class Constants {
     public final static double kRotationI = 0;
     public final static double kRotationD = 0;
     // public final static double kRotationD = 0.00045;
-    public final static double kAutoRotationError = 1.0; // stop rotating if bot is x degrees away from target
-    public final static double kStaticPowerRequirement = 0.28;
+    public final static double kAutoRotationError = 2.0; // stop rotating if bot is x degrees away from target
+    public final static double kStaticPowerRequirement = 0.33;
+    public final static double kAutoRotationVelocityError = 150.0;
+
 }
