@@ -14,6 +14,7 @@ import frc.robot.commands.AutonomousCommands.Rotation.PIDTurnToDegrees;
 
 /**
  * Robot drives to the locations of the three balls, then to the end zone
+ * Line up hopper with first ball, not robot center
  */
 public class BRedCommandGroup extends SequentialCommandGroup{
 
@@ -28,15 +29,15 @@ public class BRedCommandGroup extends SequentialCommandGroup{
      * @param driveTrain The DriveTrain to be used.
      * @param relDegrees 
      */
-    public BRedCommandGroup(HopperSubsystem hopper, IntakeSubsystem intake, ShooterSubsystem shooter, DriveTrainC driveTrain, PIDTurnToDegrees relDegrees) {
+    public BRedCommandGroup(HopperSubsystem hopper, IntakeSubsystem intake, ShooterSubsystem shooter, DriveTrainC driveTrain) {
         addCommands(
             new SetIntakeMode(hopper, intake, shooter),
-            new DriveInches(driveTrain, 60),
+            new DriveInches(driveTrain, 36),
+            new PIDTurnToDegrees(driveTrain, 37, false),
+            new DriveInches(driveTrain, 84.852),
+            new PIDTurnToDegrees(driveTrain, -68, false),
+            new DriveInches(driveTrain, 84.852),
             new PIDTurnToDegrees(driveTrain, 45, false),
-            new DriveInches(driveTrain, 84.852),
-            new PIDTurnToDegrees(driveTrain, -90, false),
-            new DriveInches(driveTrain, 84.852),
-            new PIDTurnToDegrees(driveTrain, 90, false),
             new DriveInches(driveTrain, 120),
             new SetOffMode(hopper, intake, shooter)
         );
