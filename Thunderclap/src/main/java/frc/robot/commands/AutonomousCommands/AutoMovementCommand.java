@@ -18,7 +18,7 @@ import frc.robot.subsystems.DriveTrainC;
  * }
  */
 public abstract class AutoMovementCommand extends CommandBase {
-  private boolean m_startedStopping = false;
+  protected boolean m_startedStopping = false;
 
   private DriveTrainC m_DriveTrain;
 

@@ -42,9 +42,11 @@ import frc.robot.commands.UseHopperModeCommands.ResetBallCount;
 
 import frc.robot.commands.CombinationCommandGroups.ReverseAllMotorsExceptShooter;
 import frc.robot.commands.CombinationCommandGroups.ShootOneBallWrapped;
-
+import frc.robot.commands.AutonomousCommands.DriveDistance.DriveInches;
 // import frc.robot.commands.AutonomousCommands.DriveStraightAutonomous;
 import frc.robot.commands.AutonomousCommands.GalacticSearch.ABlueCommandGroup;
+import frc.robot.commands.AutonomousCommands.GalacticSearch.ARedCommandGroup;
+import frc.robot.commands.AutonomousCommands.GalacticSearch.DriveTurnGroup;
 // import frc.robot.commands.AutonomousCommands.GalacticSearch.ARedCommandGroup;
 // import frc.robot.commands.AutonomousCommands.GalacticSearch.DriveTurnGroup;
 // import frc.robot.commands.AutonomousCommands.GalacticSearch.OnePowerCell;
@@ -54,6 +56,7 @@ import frc.robot.commands.AutonomousCommands.GalacticSearch.ABlueCommandGroup;
 // import frc.robot.commands.AutonomousCommands.DriveDistance.DriveInches;
 // import frc.robot.commands.DriveTrainCommands.CalibrateNavX;
 import frc.robot.commands.AutonomousCommands.GalacticSearch.UltrasonicChoose;
+import frc.robot.commands.AutonomousCommands.Rotation.PIDTurnToDegrees;
 import frc.robot.commands.AutonomousCommands.GalacticSearch.PathTrigger;
 
 /**
@@ -172,14 +175,15 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
+    System.out.println("Autonomous init");
     // An ExampleCommand will run in autonomous
     // return m_driveStraightAutonomous;
     // return m_driveLeftAutonomous;
     // return m_driveRightAutonomous;
 
     // return new DriveTurnGroup(m_driveTrain);
-    // return new DriveInches(m_driveTrain, 60);
-    // return new TurnToDegrees(m_driveTrain, 90, false);
+    // return new DriveInches(m_driveTrain, 45);
+    // return new PIDTurnToDegrees(m_driveTrain, 90, false);
     return new ABlueCommandGroup(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
   }
 }

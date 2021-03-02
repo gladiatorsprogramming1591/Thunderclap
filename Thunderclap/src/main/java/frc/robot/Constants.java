@@ -42,7 +42,7 @@ public final class Constants {
     public final static double kIntakeRampRate = 0.5;
     public final static double kShooterRampRate = 0.5;
     public final static double kArmRampRate = 0.5;
-    public final static double kDriveRampRate = 0.5;
+    public final static double kDriveRampRate = 0.1;
     
     // Controller Ports
     public final static int kDriverControllerPort = 0;
@@ -93,7 +93,6 @@ public final class Constants {
     // Autonomous
     public final static double kAutoDriveSpeed = 0.4;
     public final static double kAutoRotationSpeed = 0.4;
-    public final static double kAutoRotationError = 15; // stop rotating if bot is x degrees away from target
     public static enum GSPath{
         ARed,
         ABlue,
@@ -114,27 +113,33 @@ public final class Constants {
     */
     public final static double kStopDistance = 0.25; // in wheel rotations .275
     public final static double kRotStopDistance = 0; // in degrees
-    public final static double kP_DriveStraight = 0.25; // Proportional error gain for driving straight
+    public final static double kP_DriveStraight = 0.01; // Proportional error gain for driving straight
 	public static final double kI_DriveStraight = 0;
 	public static final double kD_DriveStraight = 0;
     public final static String kInchesKey = "DriveInches input";
     
-
+    
     // Ultrasonic
     public final static int kUltrasonicInputPort = 1;
     public final static int kUltrasonicOutputPort = 2;
     public final static double kUltraOffset = 8; // ultra is mounted on the right side of the robot this far away from the center (on the axis it is measuring)
     public final static double kUltraError = 2; // space on either side in which the robot
-
+    
     // Galactic Search
     // starting positions (based on Pat's diagrams)
     public final static double kARedPos = 90 - kUltraOffset;
     public final static double kABluePos = 30 - kUltraOffset;
     public final static double kBRedPos = 120 - kUltraOffset;
     public final static double kBBluePos = 60 - kUltraOffset;
-
+    
     // PIDTurnToDegrees
-    public final static double kRotationP = 0;
+    public final static double kRotationP = 0.011;
+    // public final static double kRotationP = 0.01522;
     public final static double kRotationI = 0;
     public final static double kRotationD = 0;
+    // public final static double kRotationD = 0.00045;
+    public final static double kAutoRotationError = 2.0; // stop rotating if bot is x degrees away from target
+    public final static double kStaticPowerRequirement = 0.35;
+    public final static double kAutoRotationVelocityError = 150.0;
+
 }

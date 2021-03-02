@@ -12,6 +12,7 @@ import frc.robot.Constants;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Ultrasonic;
@@ -59,7 +60,7 @@ public class DriveTrainC extends DriveTrain {
     m_leftEncoder = m_frontLeftMotor.getEncoder();
     m_rightEncoder = m_frontRightMotor.getEncoder();
 
-    m_NavX = new AHRS(SerialPort.Port.kMXP);
+    m_NavX = new AHRS(SPI.Port.kMXP);
 
     m_ultra = new Ultrasonic(Constants.kUltrasonicInputPort, Constants.kUltrasonicOutputPort);
     m_ultra.setAutomaticMode(true);

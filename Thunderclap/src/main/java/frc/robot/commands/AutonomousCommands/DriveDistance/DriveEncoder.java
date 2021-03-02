@@ -60,13 +60,15 @@ public class DriveEncoder extends AutoMovementCommand {
       }
       // Read the initial heading for tracking to that heading so we drive straight
       anglePID.setSetpoint(m_DriveTrain.getHeading());
-      m_DriveTrain.drive(m_driveSpeed, 0, Constants.kFastSquaredInputs);
     }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if (m_startedStopping) {
+      return;
+    }
     // Update the rotation angle if we are starting to veer from our target angle
     double zRotation = anglePID.calculate(m_DriveTrain.getHeading());
     m_DriveTrain.drive(m_driveSpeed, zRotation, Constants.kFastSquaredInputs);

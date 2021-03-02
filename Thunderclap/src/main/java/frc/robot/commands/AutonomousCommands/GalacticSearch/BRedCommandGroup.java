@@ -9,7 +9,7 @@ import frc.robot.subsystems.DriveTrainC;
 import frc.robot.subsystems.HopperSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
-import frc.robot.commands.AutonomousCommands.Rotation.TurnToDegrees;
+import frc.robot.commands.AutonomousCommands.Rotation.PIDTurnToDegrees;
 
 
 /**
@@ -28,15 +28,15 @@ public class BRedCommandGroup extends SequentialCommandGroup{
      * @param driveTrain The DriveTrain to be used.
      * @param relDegrees 
      */
-    public BRedCommandGroup(HopperSubsystem hopper, IntakeSubsystem intake, ShooterSubsystem shooter, DriveTrainC driveTrain, TurnToDegrees relDegrees) {
+    public BRedCommandGroup(HopperSubsystem hopper, IntakeSubsystem intake, ShooterSubsystem shooter, DriveTrainC driveTrain, PIDTurnToDegrees relDegrees) {
         addCommands(
             new SetIntakeMode(hopper, intake, shooter),
             new DriveInches(driveTrain, 60),
-            new TurnToDegrees(driveTrain, 45, false),
+            new PIDTurnToDegrees(driveTrain, 45, false),
             new DriveInches(driveTrain, 84.852),
-            new TurnToDegrees(driveTrain, -90, false),
+            new PIDTurnToDegrees(driveTrain, -90, false),
             new DriveInches(driveTrain, 84.852),
-            new TurnToDegrees(driveTrain, 90, false),
+            new PIDTurnToDegrees(driveTrain, 90, false),
             new DriveInches(driveTrain, 120),
             new SetOffMode(hopper, intake, shooter)
         );
