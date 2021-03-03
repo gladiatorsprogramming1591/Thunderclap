@@ -28,10 +28,13 @@ public class UltrasonicChoose extends CommandBase{
         m_ABlue = ABlue;
         m_BRed = BRed;
         m_BBlue = BBlue;
+
+        addRequirements(m_DriveTrainC);
     }
 
     @Override
     public void initialize() {
+        System.out.println("Ultrasonic choose: starting path" + m_DriveTrainC.getPathToStart());
         switch (m_DriveTrainC.getPathToStart()) {
             case ARed:
                 m_ARed.activate();
@@ -58,4 +61,9 @@ public class UltrasonicChoose extends CommandBase{
                 break;
         }
     }
+    
+    // @Override
+    // public boolean isFinished() {
+    //     return true;
+    // }
 }

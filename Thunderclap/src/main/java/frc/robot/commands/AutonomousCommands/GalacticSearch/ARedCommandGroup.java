@@ -16,6 +16,7 @@ import frc.robot.commands.IntakeArmCommands.RaiseArm;
 
 /**
  * Robot drives to the locations of the three balls, then to the end zone
+ * Line up robot center with first ball, not hopper
  */
 public class ARedCommandGroup extends SequentialCommandGroup{
 

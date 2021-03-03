@@ -27,7 +27,7 @@ public class PIDTurnToDegrees extends PIDCommand{
     }
 
     private void useOutput(double out) {
-        System.out.println("PID(" + Constants.kRotationP + ") out = " + out);
+        // System.out.println("PID(" + Constants.kRotationP + ") out = " + out);
                 
         if (!this.getController().atSetpoint()) {
             if (out < Constants.kStaticPowerRequirement && out > -1 * Constants.kStaticPowerRequirement) {

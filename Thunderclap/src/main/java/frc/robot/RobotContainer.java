@@ -170,6 +170,12 @@ public class RobotContainer {
       .whenPressed(new SuckerOn(m_hopperSubsystem));
     new JoystickButton(m_driverStick, JoystickButtonConstants.kY)
       .whenReleased(new SuckerOff(m_hopperSubsystem));
+
+    // ---GALACTIC SEARCH PATHS---
+    m_ARedTrigger.whenActive(new ARedCommandGroup(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain)); 
+    m_ABlueTrigger.whenActive(new ABlueCommandGroup(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain)); 
+    m_BRedTrigger.whenActive(new BRedCommandGroup(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain)); 
+    m_BBlueTrigger.whenActive(new BBlueCommandGroup(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain)); 
     
     }
     
@@ -193,6 +199,6 @@ public class RobotContainer {
     // return new BarrelRacingCommandGroup(m_driveTrain, m_intakeArmSubsystem); 
     return new BounceCommandGroup(m_driveTrain, m_intakeArmSubsystem);
     // return new SlalomCommandGroup(m_driveTrain, m_intakeArmSubsystem);
-
+    // return new UltrasonicChoose(m_driveTrain, m_ARedTrigger, m_ABlueTrigger, m_BRedTrigger, m_BBlueTrigger);
   }
 }

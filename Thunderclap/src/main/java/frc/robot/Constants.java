@@ -124,13 +124,14 @@ public final class Constants {
     public final static int kUltrasonicOutputPort = 2;
     public final static double kUltraOffset = 8; // ultra is mounted on the right side of the robot this far away from the center (on the axis it is measuring)
     public final static double kUltraError = 2; // space on either side in which the robot
+    public final static double kUltraWallOffset = 53; //distance between edge of field and wall
     
     // Galactic Search
     // starting positions (based on Pat's diagrams)
-    public final static double kARedPos = 90 - kUltraOffset;
-    public final static double kABluePos = 30 - kUltraOffset;
-    public final static double kBRedPos = 120 - kUltraOffset;
-    public final static double kBBluePos = 60 - kUltraOffset;
+    public final static double kARedPos = 85 - kUltraOffset;
+    public final static double kABluePos = 25 - kUltraOffset;
+    public final static double kBRedPos = 121 - kUltraOffset;
+    public final static double kBBluePos = 58 - kUltraOffset;
     
     // PIDTurnToDegrees
     public final static double kRotationP = 0.011;
