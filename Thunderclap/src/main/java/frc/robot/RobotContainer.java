@@ -172,10 +172,10 @@ public class RobotContainer {
       .whenReleased(new SuckerOff(m_hopperSubsystem));
 
     // ---GALACTIC SEARCH PATHS---
-    m_ARedTrigger.whenActive(new ARedCommandGroup(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain)); 
-    m_ABlueTrigger.whenActive(new ABlueCommandGroup(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain)); 
-    m_BRedTrigger.whenActive(new BRedCommandGroup(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain)); 
-    m_BBlueTrigger.whenActive(new BBlueCommandGroup(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain)); 
+    m_ARedTrigger.whenActive(new ARedCommandGroup(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain, m_intakeArmSubsystem)); 
+    m_ABlueTrigger.whenActive(new ABlueCommandGroup(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain, m_intakeArmSubsystem)); 
+    m_BRedTrigger.whenActive(new BRedCommandGroup(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain, m_intakeArmSubsystem)); 
+    m_BBlueTrigger.whenActive(new BBlueCommandGroup(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain, m_intakeArmSubsystem)); 
     
     }
     
