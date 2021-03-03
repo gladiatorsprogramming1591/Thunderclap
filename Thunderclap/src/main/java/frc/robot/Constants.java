@@ -129,7 +129,7 @@ public final class Constants {
     // Galactic Search
     // starting positions (based on Pat's diagrams)
     public final static double kARedPos = 85 - kUltraOffset;
-    public final static double kABluePos = 25 - kUltraOffset;
+    public final static double kABluePos = 23.5 - kUltraOffset;
     public final static double kBRedPos = 121 - kUltraOffset;
     public final static double kBBluePos = 58 - kUltraOffset;
     
