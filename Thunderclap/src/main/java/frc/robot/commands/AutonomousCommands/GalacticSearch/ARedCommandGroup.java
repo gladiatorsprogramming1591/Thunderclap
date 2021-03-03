@@ -2,14 +2,16 @@ package frc.robot.commands.AutonomousCommands.GalacticSearch;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutonomousCommands.DriveDistance.DriveInches;
-import frc.robot.commands.IntakeCommands.IntakeOn;
 import frc.robot.commands.SetHopperModeCommands.SetIntakeMode;
 import frc.robot.commands.SetHopperModeCommands.SetOffMode;
 import frc.robot.subsystems.DriveTrainC;
 import frc.robot.subsystems.HopperSubsystem;
+import frc.robot.subsystems.IntakeArm;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.commands.AutonomousCommands.Rotation.PIDTurnToDegrees;
+import frc.robot.commands.IntakeArmCommands.LowerArm;
+import frc.robot.commands.IntakeArmCommands.RaiseArm;
 
 
 /**
@@ -28,8 +30,9 @@ public class ARedCommandGroup extends SequentialCommandGroup{
      * @param driveTrain The DriveTrain to be used.
      * @param relDegrees 
      */
-    public ARedCommandGroup(HopperSubsystem hopper, IntakeSubsystem intake, ShooterSubsystem shooter, DriveTrainC driveTrain) {
+    public ARedCommandGroup(HopperSubsystem hopper, IntakeSubsystem intake, ShooterSubsystem shooter, DriveTrainC driveTrain, IntakeArm intakeArm) {
         addCommands(
+            new LowerArm(intakeArm),
             new SetIntakeMode(hopper, intake, shooter),
             new DriveInches(driveTrain, 40),
             new PIDTurnToDegrees(driveTrain, 26.57, false),
@@ -38,7 +41,8 @@ public class ARedCommandGroup extends SequentialCommandGroup{
             new DriveInches(driveTrain, 84.87),
             new PIDTurnToDegrees(driveTrain, 71.57, false),
             new DriveInches(driveTrain, 160),
-            new SetOffMode(hopper, intake, shooter)
+            new SetOffMode(hopper, intake, shooter),
+            new RaiseArm(intakeArm)
         );
     }
 }
