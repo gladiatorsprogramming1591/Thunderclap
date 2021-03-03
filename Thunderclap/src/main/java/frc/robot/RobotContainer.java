@@ -186,6 +186,6 @@ public class RobotContainer {
     // return new DriveTurnGroup(m_driveTrain);
     // return new DriveInches(m_driveTrain, 45);
     // return new PIDTurnToDegrees(m_driveTrain, 90, false);
-    return new BRedCommandGroup(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
+    return new BBlueCommandGroup(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain);
   }
 }
