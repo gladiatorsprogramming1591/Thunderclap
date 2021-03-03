@@ -2,14 +2,16 @@ package frc.robot.commands.AutonomousCommands.GalacticSearch;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutonomousCommands.DriveDistance.DriveInches;
-import frc.robot.commands.IntakeCommands.IntakeOn;
 import frc.robot.commands.SetHopperModeCommands.SetIntakeMode;
 import frc.robot.commands.SetHopperModeCommands.SetOffMode;
 import frc.robot.subsystems.DriveTrainC;
 import frc.robot.subsystems.HopperSubsystem;
+import frc.robot.subsystems.IntakeArm;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.commands.AutonomousCommands.Rotation.PIDTurnToDegrees;
+import frc.robot.commands.IntakeArmCommands.LowerArm;
+import frc.robot.commands.IntakeArmCommands.RaiseArm;
 
 
 /**
@@ -29,8 +31,9 @@ public class BRedCommandGroup extends SequentialCommandGroup{
      * @param driveTrain The DriveTrain to be used.
      * @param relDegrees 
      */
-    public BRedCommandGroup(HopperSubsystem hopper, IntakeSubsystem intake, ShooterSubsystem shooter, DriveTrainC driveTrain) {
+    public BRedCommandGroup(HopperSubsystem hopper, IntakeSubsystem intake, ShooterSubsystem shooter, DriveTrainC driveTrain, IntakeArm intakeArm) {
         addCommands(
+            new LowerArm(intakeArm),
             new SetIntakeMode(hopper, intake, shooter),
             new DriveInches(driveTrain, 36),
             new PIDTurnToDegrees(driveTrain, 37, false),
@@ -39,7 +42,8 @@ public class BRedCommandGroup extends SequentialCommandGroup{
             new DriveInches(driveTrain, 84.852),
             new PIDTurnToDegrees(driveTrain, 45, false),
             new DriveInches(driveTrain, 120),
-            new SetOffMode(hopper, intake, shooter)
+            new SetOffMode(hopper, intake, shooter),
+            new RaiseArm(intakeArm)
         );
     }
 }
