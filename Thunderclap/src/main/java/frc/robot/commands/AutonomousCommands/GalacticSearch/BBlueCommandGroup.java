@@ -13,6 +13,7 @@ import frc.robot.commands.AutonomousCommands.Rotation.PIDTurnToDegrees;
 
 /**
  * Robot drives to the locations of the three balls, then to the end zone
+ * Line up hopper with first ball, not robot center
  */
 public class BBlueCommandGroup extends SequentialCommandGroup{
 
@@ -27,16 +28,16 @@ public class BBlueCommandGroup extends SequentialCommandGroup{
      * @param driveTrain The DriveTrain to be used.
      * @param relDegrees 
      */
-    public BBlueCommandGroup(HopperSubsystem hopper, IntakeSubsystem intake, ShooterSubsystem shooter, DriveTrainC driveTrain, PIDTurnToDegrees relDegrees) {
+    public BBlueCommandGroup(HopperSubsystem hopper, IntakeSubsystem intake, ShooterSubsystem shooter, DriveTrainC driveTrain) {
         addCommands(
             new SetIntakeMode(hopper, intake, shooter),
-            new DriveInches(driveTrain, 150),
-            new PIDTurnToDegrees(driveTrain, -45, false),
+            new DriveInches(driveTrain, 126),
+            new PIDTurnToDegrees(driveTrain, -36, false),
             new DriveInches(driveTrain, 84.852),
-            new PIDTurnToDegrees(driveTrain, 90, false),
-            new DriveInches(driveTrain, 84.852),
-            new PIDTurnToDegrees(driveTrain, -45, false),
-            new DriveInches(driveTrain, 30),
+            new PIDTurnToDegrees(driveTrain, 73, false),
+            new DriveInches(driveTrain, 120.852),
+           // new PIDTurnToDegrees(driveTrain, -10, false),
+           // new DriveInches(driveTrain, 62),
             new SetOffMode(hopper, intake, shooter)
         );
     }
