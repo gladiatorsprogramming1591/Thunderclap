@@ -3,7 +3,12 @@ package frc.robot.commands.AutonomousCommands.AutoNav;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutonomousCommands.DriveDistance.DriveInches;
 import frc.robot.subsystems.DriveTrainC;
+import frc.robot.subsystems.IntakeArm;
 import frc.robot.commands.AutonomousCommands.Rotation.PIDTurnToDegrees;
+import frc.robot.commands.AutonomousCommands.Rotation.TurnToDegrees;
+import frc.robot.commands.DriveTrainCommands.CalibrateNavX;
+import frc.robot.commands.IntakeArmCommands.LowerArm;
+import frc.robot.commands.IntakeArmCommands.RaiseArm;
 
 /**
  * Robot drives the Slalom Path from the AutoNav challenge
@@ -15,39 +20,45 @@ public class SlalomCommandGroup extends SequentialCommandGroup{
      * 
      * @param driveTrain The DriveTrain to be used.
      */
-    public SlalomCommandGroup(DriveTrainC driveTrain) {
+    public SlalomCommandGroup(DriveTrainC driveTrain, IntakeArm intakeArm) {
         addCommands(
-            new DriveInches(driveTrain, 60),
-            new PIDTurnToDegrees(driveTrain, -90, false),
+            new CalibrateNavX(driveTrain),
 
-            new DriveInches(driveTrain, 30),
-            new PIDTurnToDegrees(driveTrain, 90, false),
+            new LowerArm(intakeArm),
 
-            new DriveInches(driveTrain, 180),
-            new PIDTurnToDegrees(driveTrain, 90, false),
-            
-            new DriveInches(driveTrain, 30),
-            new PIDTurnToDegrees(driveTrain, -90, false),
+            new DriveInches(driveTrain, 60),
+            new PIDTurnToDegrees(driveTrain, 90, true),
+
+            new DriveInches(driveTrain, 60),
+            new PIDTurnToDegrees(driveTrain, 180, true),
+
+            new DriveInches(driveTrain, 170),
+            new PIDTurnToDegrees(driveTrain, 270, true),
             
             new DriveInches(driveTrain, 60),
-            new PIDTurnToDegrees(driveTrain, -90, false),
+            new PIDTurnToDegrees(driveTrain, 180, true),
             
-            new DriveInches(driveTrain, 30),
-            new PIDTurnToDegrees(driveTrain, -90, false),
+            new DriveInches(driveTrain, 63),
+            new PIDTurnToDegrees(driveTrain, 90, true),
             
             new DriveInches(driveTrain, 60),
-            new PIDTurnToDegrees(driveTrain, -90, false),
+            new TurnToDegrees(driveTrain, 12, true),
             
-            new DriveInches(driveTrain, 30),
-            new PIDTurnToDegrees(driveTrain, 90, false),
+            new DriveInches(driveTrain, 53),
+            new PIDTurnToDegrees(driveTrain, -90, true),
             
-            new DriveInches(driveTrain, 180),
-            new PIDTurnToDegrees(driveTrain, 90, false),
+            new DriveInches(driveTrain, 55),
+            new PIDTurnToDegrees(driveTrain, 1, true),
             
-            new DriveInches(driveTrain, 30),
-            new PIDTurnToDegrees(driveTrain, -90, false),
+            new DriveInches(driveTrain, 183),
+            new PIDTurnToDegrees(driveTrain, 90, true),
             
-            new DriveInches(driveTrain, 60)
+            new DriveInches(driveTrain, 56),
+            new PIDTurnToDegrees(driveTrain, 0, true),
+            
+            new DriveInches(driveTrain, 60),
+
+            new RaiseArm(intakeArm)
         );
     }
 }

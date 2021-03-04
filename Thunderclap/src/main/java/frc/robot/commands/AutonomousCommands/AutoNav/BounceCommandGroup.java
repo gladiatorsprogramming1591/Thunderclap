@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutonomousCommands.DriveDistance.DriveInches;
 import frc.robot.subsystems.DriveTrainC;
 import frc.robot.commands.AutonomousCommands.Rotation.PIDTurnToDegrees;
+import frc.robot.commands.DriveTrainCommands.CalibrateNavX;
 
 /**
  * Robot drives the Bounce Path from the AutoNav challenge
@@ -17,6 +18,8 @@ public class BounceCommandGroup extends SequentialCommandGroup{
      */
     public BounceCommandGroup(DriveTrainC driveTrain) {
         addCommands(
+            new CalibrateNavX(driveTrain),
+
             new DriveInches(driveTrain, 60),
             new PIDTurnToDegrees(driveTrain, -90, false),
 
