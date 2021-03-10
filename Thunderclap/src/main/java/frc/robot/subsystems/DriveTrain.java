@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import frc.robot.commands.DriveTrainCommands.FastDrive;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Joystick;
 
@@ -27,6 +28,14 @@ public abstract class DriveTrain extends SubsystemBase {
 
   public void drive(double xSpeed, double zRotation, boolean squareInputs) {
     m_differentialDrive.arcadeDrive(xSpeed, zRotation, squareInputs);
+
+    String[] DDarray = {
+      "xSpeed",
+      String.valueOf(xSpeed),
+      "zRotation",
+      String.valueOf(zRotation)
+    };
+    SmartDashboard.putStringArray("Arcade Drive", DDarray);
   }
 
   public double getAxisForward() {

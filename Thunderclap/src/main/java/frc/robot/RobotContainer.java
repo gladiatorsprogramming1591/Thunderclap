@@ -121,8 +121,8 @@ public class RobotContainer {
     // ---DRIVE TRAIN--- 
     new JoystickButton(m_driverStick, JoystickButtonConstants.kL2)
       .whenPressed(new SlowDrive(m_driveTrain));
-    new JoystickButton(m_driverStick, JoystickButtonConstants.kL2)
-      .whenReleased(new FastDrive(m_driveTrain));
+    new JoystickButton(m_driverStick, JoystickButtonConstants.kR2)
+      .whenPressed(new FastDrive(m_driveTrain));
 
     // ---INTAKE SECTION---
 

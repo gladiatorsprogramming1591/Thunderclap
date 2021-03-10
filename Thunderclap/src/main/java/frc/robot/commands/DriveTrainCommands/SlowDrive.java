@@ -43,7 +43,7 @@ public class SlowDrive extends CommandBase {
   @Override
   public void execute() {
     m_AxisForward = m_driveTrain.getAxisForward() * Constants.kSlowDriveScalar;
-    m_AxisTurning = m_driveTrain.getAxisTurning() * Constants.kSlowDriveScalar;
+    m_AxisTurning = m_driveTrain.getAxisTurning() * Constants.kSlowDriveTurnScalar;
     m_driveTrain.drive(m_AxisForward, m_AxisTurning, Constants.kSlowSquaredInputs);
   }
 
