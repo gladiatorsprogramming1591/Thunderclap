@@ -14,7 +14,8 @@ public class PIDDriveEncoder extends CommandBase{
     private final double m_motorRotations;
     private PIDController anglePID = new PIDController(Constants.kPIDDriveRotP, Constants.kPIDDriveRotI, Constants.kPIDDriveRotD);
     private PIDController drivePID = new PIDController(Constants.kPIDDriveP, Constants.kPIDDriveI, Constants.kPIDDriveD);
-
+    private double m_angleSetpoint;
+    private double m_driveSetpoint;
 
     public PIDDriveEncoder(DriveTrainC driveTrainC, double wheelRotations) {
         addRequirements(driveTrainC);
@@ -35,16 +36,23 @@ public class PIDDriveEncoder extends CommandBase{
         }
 
         // set angle to keep as the angle when the command starts
-        anglePID.setSetpoint(m_driveTrainC.getHeading());
+        m_angleSetpoint = m_driveTrainC.getHeading();
 
         // set target encoder value relative to starting encoder value
-        drivePID.setSetpoint(m_driveTrainC.getRightEncPos() + m_motorRotations);
+        m_driveSetpoint = m_driveTrainC.getLeftEncPos() + m_motorRotations; // using left because right decreses as it moves forward, causing the robot to accelerate instead of deccelerate since the error is growing
     }
 
     @Override
     public void execute() {
-        double drive = drivePID.calculate(m_driveTrainC.getRightEncPos());
-        double rot = anglePID.calculate(m_driveTrainC.getHeading());
+        double rot = anglePID.calculate(m_driveTrainC.getHeading(), m_angleSetpoint);
+        double drive = drivePID.calculate(m_driveTrainC.getLeftEncPos(), m_driveSetpoint) * 0.8;
+
+        if (drive < Constants.kPIDDriveMinOut) {
+            drive = Constants.kPIDDriveMinOut;
+        }
+
+        System.out.println("PIDDriveEncoder: " + drive + " " + drivePID.getPositionError());
+
         m_driveTrainC.drive(drive, rot, Constants.kFastSquaredInputs);
     }
 

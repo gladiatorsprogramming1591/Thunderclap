@@ -61,6 +61,7 @@ import frc.robot.commands.AutonomousCommands.GalacticSearch.DriveTurnGroup;
 // import frc.robot.commands.AutonomousCommands.DriveDistance.DriveInches;
 // import frc.robot.commands.DriveTrainCommands.CalibrateNavX;
 import frc.robot.commands.AutonomousCommands.GalacticSearch.UltrasonicChoose;
+import frc.robot.commands.AutonomousCommands.PIDDriveDistance.PIDDriveInches;
 import frc.robot.commands.AutonomousCommands.Rotation.PIDTurnToDegrees;
 import frc.robot.commands.AutonomousCommands.GalacticSearch.PathTrigger;
 
@@ -194,5 +195,6 @@ public class RobotContainer {
     return new BounceCommandGroup(m_driveTrain, m_intakeArmSubsystem);
     // return new SlalomCommandGroup(m_driveTrain, m_intakeArmSubsystem);
 
+    return new PIDDriveInches(m_driveTrain, 120);
   }
 }
