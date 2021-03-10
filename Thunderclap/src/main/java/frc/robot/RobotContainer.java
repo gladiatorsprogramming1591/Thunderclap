@@ -43,6 +43,7 @@ import frc.robot.commands.UseHopperModeCommands.ResetBallCount;
 import frc.robot.commands.CombinationCommandGroups.ReverseAllMotorsExceptShooter;
 import frc.robot.commands.CombinationCommandGroups.ShootOneBallWrapped;
 import frc.robot.commands.AutonomousCommands.AutoNav.BarrelRacingCommandGroup;
+import frc.robot.commands.AutonomousCommands.AutoNav.BounceCommandGroup;
 import frc.robot.commands.AutonomousCommands.AutoNav.SlalomCommandGroup;
 import frc.robot.commands.AutonomousCommands.DriveDistance.DriveInches;
 // import frc.robot.commands.AutonomousCommands.DriveStraightAutonomous;
@@ -190,8 +191,8 @@ public class RobotContainer {
     // return new PIDTurnToDegrees(m_driveTrain, 90, false);
     // return new BBlueCommandGroup(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain, m_intakeArmSubsystem);
     // return new BarrelRacingCommandGroup(m_driveTrain, m_intakeArmSubsystem); 
-    // return new BounceCommandGroup(m_driveTrain, m_intakeArmSubsystem);
-    return new SlalomCommandGroup(m_driveTrain, m_intakeArmSubsystem);
+    return new BounceCommandGroup(m_driveTrain, m_intakeArmSubsystem);
+    // return new SlalomCommandGroup(m_driveTrain, m_intakeArmSubsystem);
 
   }
 }
