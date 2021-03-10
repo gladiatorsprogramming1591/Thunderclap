@@ -23,11 +23,10 @@ public class BounceCommandGroup extends SequentialCommandGroup{
             new DriveInches(driveTrain, 60),
             new PIDTurnToDegrees(driveTrain, -90, false),
 
-            new DriveInches(driveTrain, 60),
-            new PIDTurnToDegrees(driveTrain, 180, false),
+            new DriveInches(driveTrain, -60),
 
             new DriveInches(driveTrain, 60),
-            new PIDTurnToDegrees(driveTrain, -90, false),
+            new PIDTurnToDegrees(driveTrain, 90, false),
             
             new DriveInches(driveTrain, 30),
             new PIDTurnToDegrees(driveTrain, 90, false),
@@ -39,19 +38,17 @@ public class BounceCommandGroup extends SequentialCommandGroup{
             new PIDTurnToDegrees(driveTrain, -90, false),
             
             new DriveInches(driveTrain, 120),
-            new PIDTurnToDegrees(driveTrain, 180, false),
             
-            new DriveInches(driveTrain, 120),
-            new PIDTurnToDegrees(driveTrain, -90, false),
+            new DriveInches(driveTrain, -120),
+            new PIDTurnToDegrees(driveTrain, 90, false),
             
             new DriveInches(driveTrain, 90),
             new PIDTurnToDegrees(driveTrain, -90, false),
             
             new DriveInches(driveTrain, 120),
-            new PIDTurnToDegrees(driveTrain, 180, false),
             
-            new DriveInches(driveTrain, 60),
-            new PIDTurnToDegrees(driveTrain, -90, false),
+            new DriveInches(driveTrain, -60),
+            new PIDTurnToDegrees(driveTrain, 90, false),
             
             new DriveInches(driveTrain, 60)
         );
