@@ -30,10 +30,8 @@ public abstract class DriveTrain extends SubsystemBase {
     m_differentialDrive.arcadeDrive(xSpeed, zRotation, squareInputs);
 
     String[] DDarray = {
-      "xSpeed",
-      String.valueOf(xSpeed),
-      "zRotation",
-      String.valueOf(zRotation)
+      "xSpeed: " + String.valueOf(xSpeed),
+      "zRotation: " + String.valueOf(zRotation)
     };
     SmartDashboard.putStringArray("Arcade Drive", DDarray);
   }
