@@ -151,5 +151,5 @@ public final class Constants {
     public final static double kPIDDriveD = 0;
     public final static double kPIDDrivePosTol = 0.5 / kWheelCircumferenceCM * kDriveGearRatio; // number is in inches
     public final static double kPIDDriveVelTol = 10;
-    public final static double kPIDDriveMinOut = 0.25;
+    public final static double kCustomPower = 1;
 }

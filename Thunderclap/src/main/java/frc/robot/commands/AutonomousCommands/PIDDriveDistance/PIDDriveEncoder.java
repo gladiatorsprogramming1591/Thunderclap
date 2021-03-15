@@ -45,11 +45,7 @@ public class PIDDriveEncoder extends CommandBase{
     @Override
     public void execute() {
         double rot = anglePID.calculate(m_driveTrainC.getHeading(), m_angleSetpoint);
-        double drive = drivePID.calculate(m_driveTrainC.getLeftEncPos(), m_driveSetpoint) * 0.8;
-
-        if (drive < Constants.kPIDDriveMinOut) {
-            drive = Constants.kPIDDriveMinOut;
-        }
+        double drive = customEq(drivePID.getPositionError());
 
         System.out.println("PIDDriveEncoder: " + drive + " " + drivePID.getPositionError());
 
@@ -65,5 +61,9 @@ public class PIDDriveEncoder extends CommandBase{
     public void end(boolean interrupted) {
         m_driveTrainC.drive(0, 0, Constants.kFastSquaredInputs);
         m_driveTrainC.setCoastMode();
+    }
+
+    private double customEq(double x) {
+        return Constants.kCustomPower * Math.log(x + 1);
     }
 }
