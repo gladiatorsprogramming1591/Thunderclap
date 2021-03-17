@@ -38,7 +38,7 @@ public class BRedCommandGroup extends SequentialCommandGroup{
             new DriveInches(driveTrain, 36),
             new PIDTurnToDegrees(driveTrain, 37, false),
             new DriveInches(driveTrain, 84.852),
-            new PIDTurnToDegrees(driveTrain, -68, false),
+            new PIDTurnToDegrees(driveTrain, -69, false),
             new DriveInches(driveTrain, 84.852),
             new PIDTurnToDegrees(driveTrain, 45, false),
             new DriveInches(driveTrain, 120),

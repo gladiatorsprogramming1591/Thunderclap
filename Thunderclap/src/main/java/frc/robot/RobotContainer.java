@@ -197,8 +197,8 @@ public class RobotContainer {
     // return new PIDTurnToDegrees(m_driveTrain, 90, false);
     // return new BBlueCommandGroup(m_hopperSubsystem, m_intakeSubsystem, m_shooterSubsystem, m_driveTrain, m_intakeArmSubsystem);
     // return new BarrelRacingCommandGroup(m_driveTrain, m_intakeArmSubsystem); 
-    return new BounceCommandGroup(m_driveTrain, m_intakeArmSubsystem);
+    // return new BounceCommandGroup(m_driveTrain, m_intakeArmSubsystem);
     // return new SlalomCommandGroup(m_driveTrain, m_intakeArmSubsystem);
-    // return new UltrasonicChoose(m_driveTrain, m_ARedTrigger, m_ABlueTrigger, m_BRedTrigger, m_BBlueTrigger);
+    return new UltrasonicChoose(m_driveTrain, m_ARedTrigger, m_ABlueTrigger, m_BRedTrigger, m_BBlueTrigger);
   }
 }
