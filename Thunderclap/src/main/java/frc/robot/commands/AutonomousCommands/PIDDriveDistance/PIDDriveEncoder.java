@@ -45,7 +45,8 @@ public class PIDDriveEncoder extends CommandBase{
     @Override
     public void execute() {
         double rot = anglePID.calculate(m_driveTrainC.getHeading(), m_angleSetpoint);
-        double drive = customEq(m_driveSetpoint - m_driveTrainC.getLeftEncPos());
+        drivePID.calculate(m_driveTrainC.getLeftEncPos(), m_driveSetpoint);
+        double drive = customEq(drivePID.getPositionError());
 
         System.out.println("PIDDriveEncoder: " + drive + " " + drivePID.getPositionError());
 
