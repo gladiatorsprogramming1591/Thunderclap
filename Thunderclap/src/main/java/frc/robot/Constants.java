@@ -85,8 +85,8 @@ public final class Constants {
     //Drive train constants
     public final static boolean kFastSquaredInputs = true;
     public final static boolean kSlowSquaredInputs = true;
-    public final static double kSlowDriveScalar = 0.5;
-    public final static double kSlowDriveTurnScalar = 0.5;
+    public final static double kSlowDriveScalar = 0.6;
+    public final static double kSlowDriveTurnScalar = 0.6;
 
     //Encoder 
     public final static int kEncoderResolution = 42;
