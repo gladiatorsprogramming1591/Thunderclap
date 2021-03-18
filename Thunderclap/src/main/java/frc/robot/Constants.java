@@ -143,7 +143,7 @@ public final class Constants {
     public final static double kAutoRotationVelocityError = 150.0;
 
     // PIDDriveEncoder
-    public final static double kPIDDriveRotP = 0.01;
+    public final static double kPIDDriveRotP = 0.015;
     public final static double kPIDDriveRotI = 0;
     public final static double kPIDDriveRotD = 0;
     public final static double kPIDDriveP = 0.03;
@@ -151,5 +151,5 @@ public final class Constants {
     public final static double kPIDDriveD = 0;
     public final static double kPIDDrivePosTol = 0.5 / kWheelCircumferenceCM * kDriveGearRatio; // number is in inches
     public final static double kPIDDriveVelTol = 10;
-    public final static double kCustomPower = 1;
+    public final static double kCustomPower = 0.17;
 }
