@@ -27,34 +27,35 @@ public class BarrelRacingCommandGroup extends SequentialCommandGroup{
 
             new RaiseArm(intakeArm),
 
-            new DriveInches(driveTrain, 154),
+            new PIDDriveInches(driveTrain, 142),
             new PIDTurnToDegrees(driveTrain, 270, true),
 
-            new DriveInches(driveTrain, 72),
+            new DriveInches(driveTrain, 62),
             new PIDTurnToDegrees(driveTrain, 360, true),
 
             new DriveInches(driveTrain, 70),
             new PIDTurnToDegrees(driveTrain, 450, true),
             
-            new DriveInches(driveTrain, 54),
-            new TurnToDegrees(driveTrain, 520, true),
+            new DriveInches(driveTrain, 53),
+            // new TurnToDegrees(driveTrain, 520, true),
+            new PIDTurnToDegrees(driveTrain, 539, true),
             
-            new DriveInches(driveTrain, 145),
+            new PIDDriveInches(driveTrain, 145),
             new PIDTurnToDegrees(driveTrain, 450, true),
             
-            new DriveInches(driveTrain, 60),
+            new DriveInches(driveTrain, 68),
             new PIDTurnToDegrees(driveTrain, 360, true),
             
             new DriveInches(driveTrain, 75),
             new PIDTurnToDegrees(driveTrain, 270, true),
             
-            new DriveInches(driveTrain, 112),
+            new DriveInches(driveTrain, 115),
             new PIDTurnToDegrees(driveTrain, 180, true),
             
-            new DriveInches(driveTrain, 115),
+            new DriveInches(driveTrain, 121),
             new PIDTurnToDegrees(driveTrain, 90, true),
             
-            new DriveInches(driveTrain, 60),
+            new DriveInches(driveTrain, 57),
             new TurnToDegrees(driveTrain, 18, true),
             
             new PIDDriveInches(driveTrain, 265)

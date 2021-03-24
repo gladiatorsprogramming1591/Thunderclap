@@ -65,6 +65,13 @@ public class PIDDriveEncoder extends CommandBase{
     }
 
     private double customEq(double x) {
-        return Constants.kCustomPower * Math.log(x + 1);
+        if (x < 0) {
+            return 0;
+        }
+        double out = Constants.kCustomPower * Math.log(x + 1) + Constants.kCustomPowerMin;
+        if (out < Constants.kCustomPowerMin) {
+            out = Constants.kCustomPowerMin;
+        }
+        return out;
     }
 }

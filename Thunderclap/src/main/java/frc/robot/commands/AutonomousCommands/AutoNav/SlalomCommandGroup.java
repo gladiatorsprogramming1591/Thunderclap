@@ -2,6 +2,7 @@ package frc.robot.commands.AutonomousCommands.AutoNav;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.AutonomousCommands.DriveDistance.DriveInches;
+import frc.robot.commands.AutonomousCommands.PIDDriveDistance.PIDDriveInches;
 import frc.robot.subsystems.DriveTrainC;
 import frc.robot.subsystems.IntakeArm;
 import frc.robot.commands.AutonomousCommands.Rotation.PIDTurnToDegrees;
@@ -32,7 +33,7 @@ public class SlalomCommandGroup extends SequentialCommandGroup{
             new DriveInches(driveTrain, 60),
             new PIDTurnToDegrees(driveTrain, 180, true),
 
-            new DriveInches(driveTrain, 170),
+            new PIDDriveInches(driveTrain, 170),
             new PIDTurnToDegrees(driveTrain, 270, true),
             
             new DriveInches(driveTrain, 60),
@@ -50,7 +51,7 @@ public class SlalomCommandGroup extends SequentialCommandGroup{
             new DriveInches(driveTrain, 55),
             new PIDTurnToDegrees(driveTrain, 1, true),
             
-            new DriveInches(driveTrain, 183),
+            new PIDDriveInches(driveTrain, 183),
             new PIDTurnToDegrees(driveTrain, 90, true),
             
             new DriveInches(driveTrain, 56),
