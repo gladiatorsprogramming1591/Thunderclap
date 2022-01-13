@@ -25,36 +25,36 @@ public class SlalomCommandGroup extends SequentialCommandGroup{
         addCommands(
             new CalibrateNavX(driveTrain),
 
-            new LowerArm(intakeArm),
+            new RaiseArm(intakeArm),
 
             new DriveInches(driveTrain, 60),
             new PIDTurnToDegrees(driveTrain, 90, true),
 
-            new DriveInches(driveTrain, 60),
+            new DriveInches(driveTrain, 56),
             new PIDTurnToDegrees(driveTrain, 180, true),
 
-            new PIDDriveInches(driveTrain, 170),
+            new PIDDriveInches(driveTrain, 167),
             new PIDTurnToDegrees(driveTrain, 270, true),
             
             new DriveInches(driveTrain, 60),
             new PIDTurnToDegrees(driveTrain, 180, true),
             
-            new DriveInches(driveTrain, 63),
+            new DriveInches(driveTrain, 60),
             new PIDTurnToDegrees(driveTrain, 90, true),
             
             new DriveInches(driveTrain, 60),
             new TurnToDegrees(driveTrain, 12, true),
             
-            new DriveInches(driveTrain, 53),
+            new DriveInches(driveTrain, 54),
             new PIDTurnToDegrees(driveTrain, -90, true),
             
-            new DriveInches(driveTrain, 55),
+            new DriveInches(driveTrain, 57),
             new PIDTurnToDegrees(driveTrain, 1, true),
             
-            new PIDDriveInches(driveTrain, 183),
+            new PIDDriveInches(driveTrain, 185),
             new PIDTurnToDegrees(driveTrain, 90, true),
             
-            new DriveInches(driveTrain, 56),
+            new DriveInches(driveTrain, 64),
             new PIDTurnToDegrees(driveTrain, 0, true),
             
             new DriveInches(driveTrain, 60),
