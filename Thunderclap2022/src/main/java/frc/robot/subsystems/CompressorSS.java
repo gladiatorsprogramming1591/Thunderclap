@@ -13,6 +13,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -25,7 +26,7 @@ public class CompressorSS extends SubsystemBase {
     private boolean m_relayNeeded = false; 
     
     public CompressorSS() {
-        compressor = new Compressor(Constants.kPCM_CANID);
+        compressor = new Compressor(Constants.kPCM_CANID, PneumaticsModuleType.CTREPCM);
         if(m_relayNeeded) {
             m_relay = new Relay(Constants.kCompressorRelay);
         }
@@ -34,7 +35,7 @@ public class CompressorSS extends SubsystemBase {
     @Override
     public void periodic() {
         // Put code here to be run every loop
-        compressor.start();
+        compressor.enableDigital();
 
         // If using external relay, must turn compressor on/off 
         // based on whether the pressure release switch is is on/off
@@ -50,18 +51,19 @@ public class CompressorSS extends SubsystemBase {
            }
         }
 
-        boolean faulted = compressor.getCompressorShortedFault() 
-            || compressor.getCompressorNotConnectedFault()
-            || compressor.getCompressorShortedStickyFault()
-            || compressor.getCompressorCurrentTooHighFault()
-            || compressor.getCompressorNotConnectedStickyFault()
-            || compressor.getCompressorCurrentTooHighStickyFault();
-        SmartDashboard.putBoolean("getCompressorNotConnectedFault", compressor.getCompressorNotConnectedFault());
-        SmartDashboard.putBoolean("getCompressorShortedStickyFault", compressor.getCompressorShortedStickyFault());
-        SmartDashboard.putBoolean("getCompressorCurrentTooHighFault", compressor.getCompressorCurrentTooHighFault());
-        SmartDashboard.putBoolean("getCompressorNotConnectedStickyFault", compressor.getCompressorNotConnectedStickyFault());
-        SmartDashboard.putBoolean("getCompressorCurrentTooHighStickyFault", compressor.getCompressorCurrentTooHighStickyFault());
-        SmartDashboard.putBoolean("getCompressorShortedFault", compressor.getCompressorShortedFault());
+        // Fault methods don't seem to be available in 2022. This was only used for debug anyway.
+        // boolean faulted = compressor.getCompressorShortedFault() 
+        //     || compressor.getCompressorNotConnectedFault()
+        //     || compressor.getCompressorShortedStickyFault()
+        //     || compressor.getCompressorCurrentTooHighFault()
+        //     || compressor.getCompressorNotConnectedStickyFault()
+        //     || compressor.getCompressorCurrentTooHighStickyFault();
+        // SmartDashboard.putBoolean("getCompressorNotConnectedFault", compressor.getCompressorNotConnectedFault());
+        // SmartDashboard.putBoolean("getCompressorShortedStickyFault", compressor.getCompressorShortedStickyFault());
+        // SmartDashboard.putBoolean("getCompressorCurrentTooHighFault", compressor.getCompressorCurrentTooHighFault());
+        // SmartDashboard.putBoolean("getCompressorNotConnectedStickyFault", compressor.getCompressorNotConnectedStickyFault());
+        // SmartDashboard.putBoolean("getCompressorCurrentTooHighStickyFault", compressor.getCompressorCurrentTooHighStickyFault());
+        // SmartDashboard.putBoolean("getCompressorShortedFault", compressor.getCompressorShortedFault());
     }   
 }
 

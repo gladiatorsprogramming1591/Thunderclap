@@ -13,6 +13,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -24,7 +25,7 @@ public class IntakeArm extends SubsystemBase {
 
     public IntakeArm() {
        
-        m_piston = new DoubleSolenoid(Constants.kPCM_CANID, Constants.kArmSolenoidForwardChannel,
+        m_piston = new DoubleSolenoid(Constants.kPCM_CANID, PneumaticsModuleType.CTREPCM, Constants.kArmSolenoidForwardChannel,
             Constants.kArmSolenoidReverseChannel);
     }
 

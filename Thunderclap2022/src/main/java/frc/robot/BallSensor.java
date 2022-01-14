@@ -44,7 +44,7 @@ public class BallSensor{
   /**
    * Color of ball 
    */
-  private final Color kYellowTarget = ColorMatch.makeColor(0.361, 0.524, 0.113);
+  private final Color kYellowTarget = new Color(0.361, 0.524, 0.113);
 
   public BallSensor() {
     m_colorMatcher.addColorMatch(kYellowTarget);  

@@ -14,11 +14,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SerialPort;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.Ultrasonic;
 
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANEncoder;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import com.kauailabs.navx.frc.AHRS;
@@ -31,8 +31,8 @@ public class DriveTrainC extends DriveTrain {
   private static CANSparkMax m_frontRightMotor;
   private static CANSparkMax m_rearLeftMotor;
   private static CANSparkMax m_rearRightMotor;
-  private static CANEncoder m_leftEncoder;
-  private static CANEncoder m_rightEncoder;
+  private static RelativeEncoder m_leftEncoder;
+  private static RelativeEncoder m_rightEncoder;
   private Ultrasonic m_ultra;
 
   private AHRS m_NavX;
@@ -40,11 +40,11 @@ public class DriveTrainC extends DriveTrain {
   public DriveTrainC(Joystick m_driverJoystick) {
     super(
       new DifferentialDrive(
-        new SpeedControllerGroup(
+        new MotorControllerGroup(
           m_frontLeftMotor = new CANSparkMax(Constants.kCbotFrontLeftMotorCANID, MotorType.kBrushless),
           m_rearLeftMotor = new CANSparkMax(Constants.kCbotRearLeftMotorCANID, MotorType.kBrushless)
         ), 
-        new SpeedControllerGroup(
+        new MotorControllerGroup(
         m_frontRightMotor = new CANSparkMax(Constants.kCbotFrontRightMotorCANID, MotorType.kBrushless), 
         m_rearRightMotor = new CANSparkMax(Constants.kCbotRearRightMotorCANID, MotorType.kBrushless)
         )
@@ -57,6 +57,11 @@ public class DriveTrainC extends DriveTrain {
     m_frontRightMotor.setOpenLoopRampRate(Constants.kDriveRampRate);
     m_rearRightMotor.setOpenLoopRampRate(Constants.kDriveRampRate);
 
+    // In 2021, DifferentialDrive inverted the right side motor controllers. 
+    // Starting in 2022, this needs to be done explicitly.
+    m_frontRightMotor.setInverted(true);
+    m_rearRightMotor.setInverted(true);
+    
     m_leftEncoder = m_frontLeftMotor.getEncoder();
     m_rightEncoder = m_frontRightMotor.getEncoder();
 
