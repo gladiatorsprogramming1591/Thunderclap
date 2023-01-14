@@ -10,7 +10,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import com.revrobotics.CANEncoder;
+// import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -23,7 +23,7 @@ enum DutyCycleOrRPM {
 
 public class ShooterSubsystem extends SubsystemBase {
   CANSparkMax m_shooterMotor;
-  CANEncoder m_encoder;
+  // CANEncoder m_encoder;
   double m_targetVelocity;
   DutyCycleOrRPM m_rpmOrDutyCycle = DutyCycleOrRPM.RPM;
   private double m_maxSpeed;
@@ -41,7 +41,7 @@ public class ShooterSubsystem extends SubsystemBase {
     m_shooterMotor.getPIDController().setD(2.0);
     m_shooterMotor.getPIDController().setFF(0.00019);
 
-    m_encoder = new CANEncoder(m_shooterMotor);
+    // m_encoder = new CANEncoder(m_shooterMotor);
     m_shooterMotor.setOpenLoopRampRate(Constants.kShooterRampRate);
 
     if (m_rpmOrDutyCycle == DutyCycleOrRPM.RPM) {
@@ -54,9 +54,9 @@ public class ShooterSubsystem extends SubsystemBase {
     }
   }
 
-  public double getShooterVelocity() {
-    return m_encoder.getVelocity();
-  }
+  // public double getShooterVelocity() {
+  //   return m_encoder.getVelocity();
+  // }
 
   public void setShooterSpeed(double speed) {
     if (speed < m_minSpeed || speed > m_maxSpeed) {

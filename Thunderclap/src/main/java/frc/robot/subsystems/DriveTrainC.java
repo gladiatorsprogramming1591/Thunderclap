@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.Ultrasonic;
 
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANEncoder;
+// import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import com.kauailabs.navx.frc.AHRS;
@@ -31,8 +31,8 @@ public class DriveTrainC extends DriveTrain {
   private static CANSparkMax m_frontRightMotor;
   private static CANSparkMax m_rearLeftMotor;
   private static CANSparkMax m_rearRightMotor;
-  private static CANEncoder m_leftEncoder;
-  private static CANEncoder m_rightEncoder;
+  // private static CANEncoder m_leftEncoder;
+  // private static CANEncoder m_rightEncoder;
   private Ultrasonic m_ultra;
 
   private AHRS m_NavX;
@@ -57,8 +57,8 @@ public class DriveTrainC extends DriveTrain {
     m_frontRightMotor.setOpenLoopRampRate(Constants.kDriveRampRate);
     m_rearRightMotor.setOpenLoopRampRate(Constants.kDriveRampRate);
 
-    m_leftEncoder = m_frontLeftMotor.getEncoder();
-    m_rightEncoder = m_frontRightMotor.getEncoder();
+    // m_leftEncoder = m_frontLeftMotor.getEncoder();
+    // m_rightEncoder = m_frontRightMotor.getEncoder();
 
     m_NavX = new AHRS(SPI.Port.kMXP);
 
@@ -84,13 +84,13 @@ public class DriveTrainC extends DriveTrain {
     m_rearRightMotor.setIdleMode(CANSparkMax.IdleMode.kCoast);
   }
 
-  public double getLeftEncPos() {
-    return m_leftEncoder.getPosition();  
-  }
+  // public double getLeftEncPos() {
+  //   return m_leftEncoder.getPosition();  
+  // }
 
-  public double getRightEncPos() {
-    return m_rightEncoder.getPosition();  
-  }
+  // public double getRightEncPos() {
+  //   return m_rightEncoder.getPosition();  
+  // }
 
   public double getHeading() {
     return m_NavX.getAngle() + 180;
@@ -132,10 +132,10 @@ public class DriveTrainC extends DriveTrain {
     // This method will be called once per scheduler run
     // This should be used for diagnostics and not used to run motors since this is used
     // in all modes, not just teleop
-    SmartDashboard.putNumber("Left Drive Enc", m_leftEncoder.getPosition());
-    SmartDashboard.putNumber("Right Drive Enc", m_rightEncoder.getPosition());
-    SmartDashboard.putNumber("Left Drive Vel", m_leftEncoder.getVelocity());
-    SmartDashboard.putNumber("Right Drive Vel", m_rightEncoder.getVelocity());
+    // SmartDashboard.putNumber("Left Drive Enc", m_leftEncoder.getPosition());
+    // SmartDashboard.putNumber("Right Drive Enc", m_rightEncoder.getPosition());
+    // SmartDashboard.putNumber("Left Drive Vel", m_leftEncoder.getVelocity());
+    // SmartDashboard.putNumber("Right Drive Vel", m_rightEncoder.getVelocity());
     SmartDashboard.putNumber("Heading", getHeading());
     SmartDashboard.putNumber("Ultra Inches", m_ultra.getRangeInches());
     SmartDashboard.putString("Ultra Path", getPathToStart().toString());
